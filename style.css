@@ -3,92 +3,34 @@
 
 /* --- CSS Variables (NEW MODERN Color Palette) --- */
 :root {
-    --primary-blue: #2B2A64; /* The deep, vibrant blue you liked */
-    --accent-pink: #E94560;  /* A strong pink for buttons and highlights */
-    --light-bg: #f1f5f9;     /* A very clean, light grey for text-heavy sections */
+    --primary-blue: #2B2A64;
+    --accent-pink: #E94560;
+    --light-bg: #f1f5f9;
     --white-color: #ffffff;
     --text-color: #333;
     --font-family: 'Poppins', sans-serif;
 }
 
-/* --- Global Styles --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+/* Global Styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-family); line-height: 1.6; background-color: var(--light-bg); color: var(--text-color); }
+.container { max-width: 1100px; margin: auto; overflow: hidden; padding: 0 2rem; }
 
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--font-family);
-    line-height: 1.6;
-    background-color: var(--light-bg); /* Set a light default background */
-    color: var(--text-color);
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    overflow: hidden;
-    padding: 0 2rem;
-}
-
-/* --- Header & Navbar --- */
-.header {
-    background-color: var(--white-color);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-}
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1.5rem;
-}
-
-.nav-logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-blue);
-    text-decoration: none;
-}
-
-.nav-logo img {
-    height: 50px;
-    width: auto;
-    vertical-align: middle;
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--primary-blue);
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: var(--accent-pink);
-}
-
+/* Header & Navbar */
+.header { background-color: var(--white-color); box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: fixed; width: 100%; z-index: 100; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 1.5rem; }
+.nav-logo { text-decoration: none; }
+.nav-logo img { height: 50px; width: auto; vertical-align: middle; }
+.nav-menu { display: flex; list-style: none; gap: 1.5rem; }
+.nav-link { text-decoration: none; color: var(--primary-blue); font-weight: 600; transition: color 0.3s ease; }
+.nav-link:hover { color: var(--accent-pink); }
 .hamburger { display: none; }
 .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--primary-blue); transition: all 0.3s ease-in-out; }
 
-/* --- Hero Section (Inspired by your image) --- */
+/* Hero Section */
 .hero-section {
     background-color: var(--primary-blue);
-    /* IMAGE PATH UPDATED HERE */
     background-image: url('assets/images/hero-bg.jpg'); 
     background-blend-mode: overlay;
     background-position: center center;
@@ -103,124 +45,40 @@ body {
     color: var(--white-color);
 }
 
-.hero-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
+.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); }
 .hero-content { z-index: 1; }
+.hero-content h1 { font-size: 3.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.hero-content p { font-size: 1.4rem; font-weight: 300; margin-bottom: 2.5rem; }
+.btn-primary { display: inline-block; background-color: var(--accent-pink); color: var(--white-color); padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4); }
+.btn-primary:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); }
 
-.hero-content h1 {
-    font-size: 3.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
+/* General Content Sections */
+.content-section { padding: 5rem 0; }
+.section-title { text-align: center; font-size: 2.5rem; color: var(--primary-blue); margin-bottom: 3rem; font-weight: 700; }
 
-.hero-content p {
-    font-size: 1.4rem;
-    font-weight: 300;
-    margin-bottom: 2.5rem;
-}
-
-.btn-primary {
-    display: inline-block;
-    background-color: var(--accent-pink);
-    color: var(--white-color);
-    padding: 14px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
-}
-
-.btn-primary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5);
-}
-
-
-/* --- General Content Sections --- */
-.content-section {
-    padding: 5rem 0;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--primary-blue);
-    margin-bottom: 3rem;
-    font-weight: 700;
-}
-
-/* --- Principal's Message --- */
-.principal-flex {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    background: var(--white-color);
-    padding: 3rem;
-    border-radius: 10px;
-}
-
+/* --- Principal's Message (IMAGE SHAPE UPDATED HERE) --- */
+.principal-flex { display: flex; align-items: center; gap: 3rem; background: var(--white-color); padding: 3rem; border-radius: 10px; }
 .principal-img img {
     width: 200px;
     height: 200px;
-    border-radius: 50%;
+    border-radius: 15px; /* Changed from 50% to create a rounded square */
     object-fit: cover;
     border: 5px solid var(--accent-pink);
 }
-
 .principal-text p { margin-bottom: 1rem; }
 
-/* --- Courses Section --- */
-.courses-section {
-    background-color: var(--white-color);
-}
+/* Courses Section */
+.courses-section { background-color: var(--white-color); }
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.course-card { background: var(--light-bg); padding: 2.5rem 2rem; text-align: center; border-radius: 10px; border: 1px solid #e2e8f0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.course-card:hover { transform: translateY(-10px); box-shadow: 0 8px 25px rgba(43, 42, 100, 0.1); }
+.course-card h3 { color: var(--primary-blue); font-size: 1.8rem; margin-bottom: 1rem; }
+.course-card a { display: inline-block; margin-top: 1.5rem; text-decoration: none; color: var(--accent-pink); font-weight: 600; }
 
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
+/* Footer */
+.footer { background-color: var(--primary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
 
-.course-card {
-    background: var(--light-bg);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.course-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 25px rgba(43, 42, 100, 0.1);
-}
-
-.course-card h3 {
-    color: var(--primary-blue);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-}
-
-.course-card a {
-    display: inline-block;
-    margin-top: 1.5rem;
-    text-decoration: none;
-    color: var(--accent-pink);
-    font-weight: 600;
-}
-
-/* --- Footer --- */
-.footer {
-    background-color: var(--primary-blue);
-    color: var(--white-color);
-    text-align: center;
-    padding: 3rem 0;
-}
-
-/* --- Responsive Design (Media Queries) --- */
+/* Responsive Design */
 @media(max-width: 768px) {
     .nav-menu { position: fixed; left: -100%; top: 4.4rem; flex-direction: column; background-color: var(--white-color); width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
     .nav-menu.active { left: 0; }
@@ -229,9 +87,8 @@ body {
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
     .hero-content h1 { font-size: 2.5rem; }
     .hero-content p { font-size: 1.2rem; }
     .principal-flex { flex-direction: column; text-align: center; }
     .card-grid { grid-template-columns: 1fr; }
-    }
+      }
