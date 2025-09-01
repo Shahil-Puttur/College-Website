@@ -8,14 +8,43 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <header class="header"><!-- ... your header code ... --></header>
+
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+                <li class="nav-item"><a href="faculty.html" class="nav-link">Faculty</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="notices.html" class="nav-link">Notices</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
 
     <main>
         <!-- Hero Section -->
-        <section class="hero-section"><!-- ... your hero code ... --></section>
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content" data-aos="fade-up">
+                <h1>Welcome to Vidyarashmi College</h1>
+                <p>Excellence in Education, Foundation for Life.</p>
+                <a href="courses.html" class="btn-primary">Explore Our Courses</a>
+            </div>
+        </section>
 
-        <!-- Principal's Message Section -->
-        <section class="content-section bg-light" data-aos="fade-up">
+        <!-- Principal's Message Section (New Attractive Layout) -->
+        <section class="content-section" data-aos="fade-up">
             <div class="container">
                 <h2 class="section-title">From the Principal's Desk</h2>
                 <div class="principal-card" data-aos="fade-up" data-aos-delay="200">
@@ -31,14 +60,40 @@
         </section>
 
         <!-- Courses Section -->
-        <section class="content-section courses-section" data-aos="fade-up"> <!-- Removed bg-light -->
-             <!-- ... your courses code ... -->
+        <section class="content-section courses-section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="section-title">Our Programs</h2>
+                <div class="card-grid">
+                    <div class="course-card" data-aos="fade-up" data-aos-delay="100">
+                        <h3>BCA</h3>
+                        <p>Bachelor of Computer Applications. Dive into the world of technology, software, and innovation.</p>
+                        <a href="courses.html#bca">Learn More</a>
+                    </div>
+                    <div class="course-card" data-aos="fade-up" data-aos-delay="200">
+                        <h3>B.Com</h3>
+                        <p>Bachelor of Commerce. Build a strong foundation in accounting, finance, and business management.</p>
+                        <a href="courses.html#bcom">Learn More</a>
+                    </div>
+                    <div class="course-card" data-aos="fade-up" data-aos-delay="300">
+                        <h3>BA</h3>
+                        <p>Bachelor of Arts. Explore diverse fields like history, economics, and literature.</p>
+                        <a href="courses.html#ba">Learn More</a>
+                    </div>
+                </div>
+            </div>
         </section>
+
     </main>
 
-    <footer class="footer"><!-- ... your footer code ... --></footer>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vidyarashmi College. All Rights Reserved. Designed by You!</p>
+        </div>
+    </footer>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
+
 </body>
-</html>
+    </html>
