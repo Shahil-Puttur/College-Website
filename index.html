@@ -4,14 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vidyarashmi College - Home</title>
+    
+    <!-- Professional Icon Library (Boxicons) -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- AOS Animation Library CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
     <!-- Header Section -->
-    <header class="header"><!-- ... your header code ... --></header>
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+                <li class="nav-item"><a href="faculty.html" class="nav-link">Faculty</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="notices.html" class="nav-link">Notices</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
 
     <div class="overlay"></div>
 
@@ -19,7 +45,7 @@
         <!-- Hero Section -->
         <section class="hero-section">
             
-            <!-- NEW Owner Images -->
+            <!-- Owner Images -->
             <img src="assets/images/owner2.png" alt="College Founder" class="owner-image owner-left" data-aos="fade-down" data-aos-delay="400">
             <img src="assets/images/owner1.png" alt="College Chairman" class="owner-image owner-right" data-aos="fade-down" data-aos-delay="400">
 
@@ -33,26 +59,74 @@
 
         <!-- Principal's Message Section -->
         <section class="content-section" data-aos="fade-up">
-            <!-- ... your principal's section code ... -->
+            <div class="container">
+                <h2 class="section-title">From the Principal's Desk</h2>
+                <div class="principal-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="principal-img">
+                        <img src="assets/images/principal.jpg" alt="College Principal">
+                    </div>
+                    <div class="principal-text">
+                        <p>It gives me immense pleasure to welcome you to the creative world of Vidyarashmi College. Our commitment is to provide a safe and intellectually challenging environment that will empower students to become innovative thinkers, creative problem solvers, and inspired learners prepared to thrive in the twenty-first century.</p>
+                        <p><strong>- Dr. [Principal's Name]</strong></p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Courses Section -->
         <section class="content-section courses-section" data-aos="fade-up">
-            <!-- ... your courses section code ... -->
+            <div class="container">
+                <h2 class="section-title">Our Programs</h2>
+                <div class="card-grid">
+                    <div class="course-card bca-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="card-content"><h3>BCA</h3><p>Dive into the world of technology, software, and innovation.</p><a href="courses.html#bca">Learn More</a></div>
+                    </div>
+                    <div class="course-card bcom-card" data-aos="fade-up" data-aos-delay="200">
+                         <div class="card-content"><h3>B.Com</h3><p>Build a strong foundation in accounting, finance, and business.</p><a href="courses.html#bcom">Learn More</a></div>
+                    </div>
+                    <div class="course-card ba-card" data-aos="fade-up" data-aos-delay="300">
+                         <div class="card-content"><h3>BA</h3><p>Explore diverse fields like history, economics, and literature.</p><a href="courses.html#ba">Learn More</a></div>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <!-- Facilities Section -->
         <section class="content-section facilities-section" data-aos="fade-up">
-             <!-- ... your facilities section code ... -->
+            <div class="container">
+                <div class="pill-heading">AMENITIES</div>
+                <h2 class="section-title">Facilities & Infrastructure</h2>
+                <div class="facilities-grid">
+                    <!-- Laboratory Card -->
+                    <div class="facility-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="facility-icon"><i class='bx bx-test-tube'></i></div>
+                        <h3>Laboratory</h3>
+                    </div>
+                    <!-- Library Card -->
+                    <div class="facility-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="facility-icon"><i class='bx bx-book-open'></i></div>
+                        <h3>Library</h3>
+                    </div>
+                    <!-- Sports Card -->
+                    <div class="facility-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="facility-icon"><i class='bx bx-run'></i></div>
+                        <h3>Track and Field</h3>
+                    </div>
+                </div>
+            </div>
         </section>
 
     </main>
 
     <!-- Footer Section -->
-    <footer class="footer"><!-- ... your footer code ... --></footer>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vidyarashmi College. All Rights Reserved. Designed by You!</p>
+        </div>
+    </footer>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
 
 </body>
-</html>
+        </html>
