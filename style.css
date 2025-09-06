@@ -135,4 +135,4 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hero-content h1 { font-size: 2.5rem; }
     .hero-content p { font-size: 1.2rem; }
     .card-grid, .facilities-grid { grid-template-columns: 1fr; }
-    }
+}
