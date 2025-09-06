@@ -26,7 +26,6 @@ hamburger.addEventListener("click", () => {
 document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", closeMenu));
 overlay.addEventListener("click", closeMenu);
 
-
 // --- Initialize AOS (Animate on Scroll) Library ---
 AOS.init({
     duration: 1000,
