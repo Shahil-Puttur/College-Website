@@ -30,9 +30,9 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
 .overlay.active { opacity: 1; visibility: visible; }
 
-/* --- HERO SECTION (RE-ENGINEERED) --- */
+/* --- HERO SECTION --- */
 .hero-section { 
-    position: relative; /* This is the anchor for the absolute positioned owner images */
+    position: relative;
     background-color: var(--primary-blue); 
     background-image: url('assets/images/hero-bg.jpg'); 
     background-blend-mode: multiply; 
@@ -47,25 +47,37 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     color: var(--white-color); 
 }
 .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.1); z-index: 1; }
-.hero-content { z-index: 2; /* Content is above the overlay */ }
+.hero-content { z-index: 2; }
 .hero-content h1 { font-size: 3.8rem; font-weight: 700; margin-bottom: 0.5rem; }
 .hero-content p { font-size: 1.4rem; font-weight: 300; margin-bottom: 2.5rem; }
 .btn-primary { display: inline-block; background-color: var(--accent-pink); color: var(--white-color); padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4); }
 .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); }
 
-/* --- Hero Section Owners (CORRECTED) --- */
+/* --- Hero Section Owners (RE-POSITIONED LIKE A GENIUS) --- */
 .owner-image {
-    position: absolute; /* Takes the image out of the layout flow, preventing conflict */
-    width: 100px;       /* Smaller, more elegant size */
-    height: 100px;
+    position: absolute;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--white-color);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    z-index: 3; /* Sits above EVERYTHING else in the hero */
+    border: 3px solid var(--white-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    z-index: 3;
+    opacity: 0.9;
+    transition: all 0.3s ease;
 }
-.owner-left { top: 80px; left: 50px; }
-.owner-right { top: 80px; right: 50px; }
+.owner-image:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+.owner-left { 
+    top: 20%;   /* Pushes down from top */
+    left: 18%;  /* Pushes in from left */
+}
+.owner-right { 
+    top: 20%;    /* Pushes down from top */
+    right: 18%; /* Pushes in from right */
+}
 
 /* General Content Sections */
 .content-section { padding: 5rem 0; }
@@ -105,9 +117,15 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 /* Footer */
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
 
-/* --- RESPONSIVE DESIGN (CORRECTED) --- */
+/* Responsive Design */
+@media(max-width: 1200px) {
+    /* Adjust position for slightly smaller screens */
+    .owner-left { left: 10%; }
+    .owner-right { right: 10%; }
+}
+
 @media(max-width: 992px) {
-    .owner-image { display: none; } /* Hide owner images on tablets and smaller to prevent clutter */
+    .owner-image { display: none; }
     .principal-card { flex-direction: column; text-align: center; }
     .principal-text::before { top: -20px; left: 0; right: 0; margin: auto; text-align: center; }
 }
@@ -122,9 +140,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    
     .hero-content h1 { font-size: 2.5rem; }
     .hero-content p { font-size: 1.2rem; }
-    
     .card-grid, .facilities-grid { grid-template-columns: 1fr; }
-          }
+    }
