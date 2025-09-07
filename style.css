@@ -31,46 +31,13 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .overlay.active { opacity: 1; visibility: visible; }
 
 /* HERO SECTION */
-.hero-section { 
-    position: relative;
-    height: 95vh; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    color: var(--white-color);
-    overflow: hidden;
-}
-.hero-background {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: var(--primary-blue); 
-    background-image: url('assets/images/hero-bg.jpg'); 
-    background-blend-mode: multiply; 
-    background-position: center center; 
-    background-size: cover; 
-    z-index: 1;
-}
-.owner-image {
-    position: absolute;
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--white-color);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    z-index: 2;
-    opacity: 0.9;
-    transition: all 0.3s ease;
-}
+.hero-section { position: relative; height: 95vh; display: flex; justify-content: center; align-items: center; text-align: center; color: var(--white-color); overflow: hidden; }
+.hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--primary-blue); background-image: url('assets/images/hero-bg.jpg'); background-blend-mode: multiply; background-position: center center; background-size: cover; z-index: 1; }
+.owner-image { position: absolute; width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--white-color); box-shadow: 0 4px 20px rgba(0,0,0,0.25); z-index: 2; opacity: 0.9; transition: all 0.3s ease; }
 .owner-image:hover { opacity: 1; transform: scale(1.1); }
 .owner-left { top: 20%; left: 18%; }
 .owner-right { top: 20%; right: 18%; }
-.hero-content { 
-    position: relative; 
-    z-index: 3;
-}
+.hero-content { position: relative; z-index: 3; padding: 0 1rem; /* Added padding for mobile */ }
 .hero-content h1 { font-size: 3.8rem; font-weight: 700; margin-bottom: 0.5rem; }
 .hero-content p { font-size: 1.4rem; font-weight: 300; margin-bottom: 2.5rem; }
 .btn-primary { display: inline-block; background-color: var(--accent-pink); color: var(--white-color); padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4); }
@@ -125,8 +92,41 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 /* Footer */
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
 
-/* Responsive Design */
+/* --- RESPONSIVE DESIGN (REBUILT & VERIFIED) --- */
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
 @media(max-width: 992px) {
     .owner-image { display: none; }
-    .principal-card
+    .principal-card { flex-direction: column; text-align: center; }
+    .principal-text::before { top: -20px; left: 0; right: 0; margin: auto; text-align: center; }
+}
+@media(max-width: 768px) {
+    /* MOBILE MENU STYLES */
+    .nav-menu { position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--white-color); width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; }
+    .nav-menu.active { right: 0; }
+    .nav-item { width: 100%; }
+    .nav-link { color: var(--text-color-dark); font-size: 1.2rem; display: block; padding: 1rem 0; border-bottom: 1px solid #eee; }
+    .hamburger { display: block; }
+    .hamburger.active .bar { background-color: var(--text-color-dark); }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    
+    /* --- CRITICAL MOBILE FIXES --- */
+    .hero-content h1 { font-size: 2.8rem; /* FIXED: Reduced font size */ }
+    .hero-content p { font-size: 1.2rem; /* FIXED: Reduced font size */ }
+    
+    /* FIXED: All grids now stack to a single column */
+    .card-grid, 
+    .facilities-grid, 
+    .cocurricular-grid { 
+        grid-template-columns: 1fr; 
+    }
+    
+    .principal-card {
+        padding: 2rem; /* Adjust padding for mobile */
+    }
+    
+    .section-title {
+        font-size: 2rem; /* Smaller titles on mobile */
+    }
+                  }
