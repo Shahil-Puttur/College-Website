@@ -34,16 +34,15 @@ AOS.init({
 
 // --- "Read More" Button Logic ---
 const readMoreBtn = document.getElementById('readMoreBtn');
-const managementText = document.getElementById('managementText');
+const managementTextWrapper = document.getElementById('managementText');
 
 if (readMoreBtn) {
     readMoreBtn.addEventListener('click', () => {
-        const wrapper = readMoreBtn.previousElementSibling; // Get the text-wrapper
-        wrapper.classList.toggle('expanded');
-        if (wrapper.classList.contains('expanded')) {
+        managementTextWrapper.classList.toggle('expanded');
+        if (managementTextWrapper.classList.contains('expanded')) {
             readMoreBtn.textContent = 'Read Less';
         } else {
             readMoreBtn.textContent = 'Read More';
         }
     });
-                }
+}
