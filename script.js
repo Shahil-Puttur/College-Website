@@ -38,11 +38,12 @@ const managementText = document.getElementById('managementText');
 
 if (readMoreBtn) {
     readMoreBtn.addEventListener('click', () => {
-        managementText.classList.toggle('expanded');
-        if (managementText.classList.contains('expanded')) {
+        const wrapper = readMoreBtn.previousElementSibling; // Get the text-wrapper
+        wrapper.classList.toggle('expanded');
+        if (wrapper.classList.contains('expanded')) {
             readMoreBtn.textContent = 'Read Less';
         } else {
             readMoreBtn.textContent = 'Read More';
         }
     });
-}
+                }
