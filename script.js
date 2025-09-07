@@ -32,19 +32,17 @@ AOS.init({
     once: true,
 });
 
-// --- NEW "Read More" Button Logic ---
+// --- "Read More" Button Logic ---
 const readMoreBtn = document.getElementById('readMoreBtn');
 const managementText = document.getElementById('managementText');
 
-// Check if the button exists on the page before adding event listener
 if (readMoreBtn) {
     readMoreBtn.addEventListener('click', () => {
         managementText.classList.toggle('expanded');
-    
         if (managementText.classList.contains('expanded')) {
             readMoreBtn.textContent = 'Read Less';
         } else {
             readMoreBtn.textContent = 'Read More';
         }
     });
-    }
+}
