@@ -30,18 +30,21 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
 .overlay.active { opacity: 1; visibility: visible; }
 
-/* --- HERO SECTION (REBUILT & STABLE) --- */
+/* --- HERO SECTION (RE-ARCHITECTED & BULLETPROOF) --- */
 .hero-section { 
-    position: relative;
+    position: relative; /* This is the anchor for ALL floating children */
     height: 95vh; 
     display: flex; 
     justify-content: center; 
     align-items: center; 
     text-align: center; 
     color: var(--white-color);
-    overflow: hidden;
+    overflow: hidden; /* Prevents anything from spilling out */
 }
-.hero-background {
+
+/* LAYER 1: The Background. It uses a ::before pseudo-element to stay behind everything. */
+.hero-section::before {
+    content: '';
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
@@ -50,15 +53,10 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     background-blend-mode: multiply; 
     background-position: center center; 
     background-size: cover; 
-    z-index: 1;
+    z-index: -1; /* The magic: This forces the background to the very back */
 }
-.hero-content { position: relative; z-index: 3; }
-.hero-content h1 { font-size: 3.8rem; font-weight: 700; margin-bottom: 0.5rem; }
-.hero-content p { font-size: 1.4rem; font-weight: 300; margin-bottom: 2.5rem; }
-.btn-primary { display: inline-block; background-color: var(--accent-pink); color: var(--white-color); padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4); }
-.btn-primary:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); }
 
-/* --- Hero Section Owners (STABLE & CORRECT) --- */
+/* LAYER 2: The Owner Images. They float on top of the background. */
 .owner-image {
     position: absolute;
     width: 90px;
@@ -67,13 +65,23 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     object-fit: cover;
     border: 3px solid var(--white-color);
     box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    z-index: 2; /* On top of background, below content */
+    z-index: 1; /* A higher number than the background's layer */
     opacity: 0.9;
     transition: all 0.3s ease;
 }
 .owner-image:hover { opacity: 1; transform: scale(1.1); }
 .owner-left { top: 20%; left: 18%; }
 .owner-right { top: 20%; right: 18%; }
+
+/* LAYER 3: The Text Content. It floats on top of everything. */
+.hero-content { 
+    position: relative; 
+    z-index: 2; /* A higher number than the owner images' layer */
+}
+.hero-content h1 { font-size: 3.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.hero-content p { font-size: 1.4rem; font-weight: 300; margin-bottom: 2.5rem; }
+.btn-primary { display: inline-block; background-color: var(--accent-pink); color: var(--white-color); padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4); }
+.btn-primary:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); }
 
 /* --- ALL OTHER SECTIONS ARE VERIFIED TO BE CORRECT --- */
 .content-section { padding: 5rem 0; }
@@ -83,7 +91,6 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .principal-text { position: relative; z-index: 2; }
 .principal-text::before { content: '“'; position: absolute; top: -40px; left: -20px; font-size: 8rem; color: var(--primary-blue); opacity: 0.1; z-index: 1; font-family: Georgia, serif; }
 .principal-text p { margin-bottom: 1rem; font-size: 1.05rem; }
-
 .courses-section { background-color: var(--white-color); }
 .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .course-card { position: relative; background-size: cover; background-position: center; color: var(--white-color); padding: 6rem 2rem 2rem 2rem; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; align-items: flex-end; }
@@ -97,7 +104,6 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .course-card p { margin-bottom: 1.5rem; }
 .course-card a { text-decoration: none; color: var(--white-color); font-weight: 600; background-color: var(--accent-pink); padding: 8px 18px; border-radius: 50px; transition: background-color 0.3s ease; }
 .course-card a:hover { background-color: #d8344f; }
-
 .facilities-section { text-align: center; }
 .pill-heading { display: inline-block; background-color: rgba(74, 144, 226, 0.1); color: var(--primary-blue); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
 .facilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; }
@@ -105,10 +111,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .facility-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15); }
 .facility-icon { font-size: 2.5rem; color: var(--white-color); background: var(--primary-blue); width: 70px; height: 70px; border-radius: 50%; margin: 0 auto 1.5rem auto; display: flex; justify-content: center; align-items: center; }
 .facility-card h3 { font-size: 1.25rem; color: var(--text-color-dark); }
-
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
-
-/* Responsive Design */
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
 @media(max-width: 992px) {
     .owner-image { display: none; }
@@ -128,4 +131,4 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hero-content h1 { font-size: 2.5rem; }
     .hero-content p { font-size: 1.2rem; }
     .card-grid, .facilities-grid { grid-template-columns: 1fr; }
-}
+          }
