@@ -133,4 +133,4 @@ body {
     .principal-text::before { display: none; }
     .principal-text p { font-size: 1rem; }
     .card-grid, .facilities-grid, .cocurricular-grid { grid-template-columns: 1fr; }
-                                }
+      }
