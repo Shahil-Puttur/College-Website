@@ -31,6 +31,4 @@ overlay.addEventListener("click", closeMenu);
 AOS.init({
     duration: 1000,
     once: true,
-});```
-
-Now, refresh your page. The NSS and Red Cross sections will have their background images, just like you wanted.
+});
