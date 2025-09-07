@@ -1,7 +1,7 @@
 /* --- Google Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-/* --- CSS Variables (LIGHT SKY BLUE THEME) --- */
+/* --- CSS Variables --- */
 :root {
     --primary-blue: #4A90E2;    
     --secondary-blue: #357ABD;  
@@ -103,7 +103,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 /* Footer */
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
 
-/* --- RESPONSIVE DESIGN (REBUILT & VERIFIED) --- */
+/* Responsive Design */
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
 
 @media(max-width: 992px) {
@@ -113,7 +113,6 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 }
 
 @media(max-width: 768px) {
-    /* MOBILE MENU STYLES */
     .nav-menu { position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--white-color); width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; }
     .nav-menu.active { right: 0; }
     .nav-item { width: 100%; }
@@ -124,30 +123,14 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     
-    /* --- CRITICAL MOBILE FIXES --- */
     .hero-content h1 { font-size: 2.8rem; }
     .hero-content p { font-size: 1.2rem; }
     .section-title { font-size: 2rem; }
 
-    .principal-card { 
-        flex-direction: column; 
-        text-align: center;
-        padding: 2rem;
-    }
-    .principal-img img {
-        width: 150px;
-        height: 150px;
-    }
-    .principal-text::before {
-        display: none; /* Hide decorative quote on small screens */
-    }
-    .principal-text p {
-        font-size: 1rem;
-    }
+    .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
+    .principal-img img { width: 150px; height: 150px; }
+    .principal-text::before { display: none; }
+    .principal-text p { font-size: 1rem; }
 
-    .card-grid, 
-    .facilities-grid, 
-    .cocurricular-grid { 
-        grid-template-columns: 1fr; 
-    }
-                             }
+    .card-grid, .facilities-grid, .cocurricular-grid { grid-template-columns: 1fr; }
+              }
