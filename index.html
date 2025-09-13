@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vidyarashmi College - Home</title>
+    <title>Our Courses - Vidyarashmi College</title>
     
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- We use the same CSS file for a consistent look -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
+    <!-- Re-using the same header is professional and saves time -->
     <header class="header">
         <nav class="navbar">
             <a href="index.html" class="nav-logo">
@@ -36,116 +36,43 @@
     <div class="overlay"></div>
 
     <main>
-        <section class="hero-section">
-            <div class="hero-background"></div>
-            <img src="assets/images/owner2.png" alt="College Founder" class="owner-image owner-left" data-aos="fade-down" data-aos-delay="400">
-            <img src="assets/images/owner1.png" alt="College Chairman" class="owner-image owner-right" data-aos="fade-down" data-aos-delay="400">
-            <div class="hero-content" data-aos="fade-up">
-                <h1>Welcome to Vidyarashmi First Grade College</h1>
-                <p>Excellence in Education, Foundation for Life.</p>
-                <a href="courses.html" class="btn-primary">Explore Our Courses</a>
+        <!-- A simple header for the page -->
+        <section class="page-header">
+            <div class="container">
+                <h1>Our Academic Programs</h1>
             </div>
         </section>
 
-        <section class="content-section management-section" data-aos="fade-up">
+        <!-- The BCA Section with your Canva Animation -->
+        <section class="content-section" id="bca">
             <div class="container">
-                <h2 class="section-title">Our Management & Vision</h2>
-                <div class="management-grid">
-                    <div class="management-text" data-aos="fade-right" data-aos-delay="100">
-                        <div class="text-wrapper" id="managementText">
-                            <p>Vidyarashmi group of institutions is spread across 25 acres on the peak of Vidyagangothri. You can spot the well set campus on 16th K.M. in the adjacent of Puttur-Kukke Subrahmanya state high way. The great visionary Mr. K. Seetharama Rai Savanoor initiated this venture in the year 2001 in commemoration of his father late Mr. Sheentoor Narayana Rai, who was a soldier, farmer and a teacher.</p>
-                            <p class="full-text">Experienced teachers coach kindergarten students. A dedicated scientifically raised building houses the kindergarten students. The kids love to come and dwell here. The education is backed by advanced technologies and each child is monitored with individual attention. The Karnataka State syllabus in English Medium in the content of education for primary and high schools. Coming to plus two level of education we have Vidyarashmi First Grade College B.Com. and B.A. degrees. Vidyarashmi First Grade College is the result core of the initiative taken by SNR Rural Education trust. It’s based on the E. Malloy’s word “The college degree is not a sign that one is finished product. But an indication that a person is prepared for life. In the year 2001 SNR Rural Education Trust started it’s yeomen service in rural Savanoor to peruse local youth to get basic and degree education.</p>
-                        </div>
-                        <button id="readMoreBtn" class="btn-secondary">Read More</button>
-                    </div>
-                    <div class="management-images" data-aos="fade-left" data-aos-delay="200">
-                        <img src="assets/images/owner2.png" alt="Founder">
-                        <img src="assets/images/owner1.png" alt="Chairman">
-                    </div>
+                <h2 class="section-title">Bachelor of Computer Applications (BCA)</h2>
+                
+                <!-- This is your Canva embed code, perfectly placed -->
+                <div style="position: relative; width: 100%; height: 0; padding-top: 56.2225%;
+                 padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+                 border-radius: 8px; will-change: transform;">
+                  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                    src="https://www.canva.com/design/DAGy3KRQWLA/x940w8egCweMKdFSOx7oSA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+                  </iframe>
                 </div>
+                
             </div>
         </section>
 
-        <section class="content-section" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title">From the Principal's Desk</h2>
-                <div class="principal-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="principal-img">
-                        <img src="assets/images/principal.jpg" alt="College Principal">
-                    </div>
-                    <div class="principal-text">
-                        <p>It gives me immense pleasure to welcome you to the creative world of Vidyarashmi College. Our commitment is to provide a safe and intellectually challenging environment that will empower students to become innovative thinkers, creative problem solvers, and inspired learners prepared to thrive in the twenty-first century.</p>
-                        <p><strong>- Dr. [Principal's Name]</strong></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <!-- You can add sections for B.Com and BA here later! -->
 
-        <section class="content-section courses-section" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title">Our Programs</h2>
-                <div class="card-grid">
-                    <div class="course-card bca-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-content"><h3>BCA</h3><p>Dive into the world of technology, software, and innovation.</p><a href="courses.html#bca">Learn More</a></div>
-                    </div>
-                    <div class="course-card bcom-card" data-aos="fade-up" data-aos-delay="200">
-                         <div class="card-content"><h3>B.Com</h3><p>Build a strong foundation in accounting, finance, and business.</p><a href="courses.html#bcom">Learn More</a></div>
-                    </div>
-                    <div class="course-card ba-card" data-aos="fade-up" data-aos-delay="300">
-                         <div class="card-content"><h3>BA</h3><p>Explore diverse fields like history, economics, and literature.</p><a href="courses.html#ba">Learn More</a></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="content-section facilities-section" data-aos="fade-up">
-            <div class="container">
-                <div class="pill-heading">AMENITIES</div>
-                <h2 class="section-title">Facilities & Infrastructure</h2>
-                <div class="facilities-grid">
-                    <div class="facility-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="facility-icon"><i class='bx bx-test-tube'></i></div>
-                        <h3>Laboratory</h3>
-                    </div>
-                    <div class="facility-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="facility-icon"><i class='bx bx-book-open'></i></div>
-                        <h3>Library</h3>
-                    </div>
-                    <div class="facility-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="facility-icon"><i class='bx bx-run'></i></div>
-                        <h3>Track and Field</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="content-section cocurricular-section" data-aos="fade-up">
-            <div class="container">
-                <h2 class="section-title">Co-curricular Activities</h2>
-                <div class="cocurricular-grid">
-                    <div class="activity-card nss-card" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="activity-content">
-                            <h3>NSS</h3>
-                        </div>
-                    </div>
-                    <div class="activity-card redcross-card" data-aos="zoom-in" data-aos-delay="200">
-                         <div class="activity-content">
-                            <h3>Red Cross</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
     </main>
 
+    <!-- Re-using the footer keeps the design consistent -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Vidyarashmi College. All Rights Reserved. Designed by You!</p>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- We need the same JavaScript for the mobile menu -->
     <script src="script.js"></script>
 
 </body>
-                </html>
+            </html>
