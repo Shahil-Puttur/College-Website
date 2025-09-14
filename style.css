@@ -58,14 +58,26 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .management-images { background-color: var(--text-color-dark); border-radius: 15px; padding: 1.5rem; display: flex; justify-content: center; align-items: center; gap: 1.5rem; box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2); }
 .management-images img { width: 120px; height: 120px; border-radius: 10px; object-fit: cover; border: 3px solid var(--primary-blue); }
 
-/* --- Principal's Message (RE-ARCHITECTED & BULLETPROOF) --- */
+/* Principal's Message */
 .principal-card { display: flex; align-items: center; gap: 2rem; background: var(--white-color); color: var(--text-color-dark); padding: 3rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1); }
 .principal-img img { width: 200px; height: 200px; border-radius: 15px; object-fit: cover; border: 5px solid var(--primary-blue); }
-/* The text block is now the positioning parent for the quote */
-.principal-text { position: relative; padding-left: 2.5rem; /* Makes space for the quote to peek out */ }
-/* The quote is now anchored to the text block, not the card */
-.principal-text::before { content: '“'; position: absolute; top: -20px; left: -10px; font-size: 8rem; color: var(--primary-blue); opacity: 0.1; z-index: -1; /* Sits BEHIND the text block */ font-family: Georgia, serif; }
+.principal-text { position: relative; padding-left: 2.5rem; }
+.principal-text::before { content: '“'; position: absolute; top: -20px; left: -10px; font-size: 8rem; color: var(--primary-blue); opacity: 0.1; z-index: -1; font-family: Georgia, serif; }
 .principal-text p { margin-bottom: 1rem; font-size: 1.05rem; }
+
+/* --- NEW Leader Photo Section --- */
+.leader-photo-section {
+    padding-top: 0; /* Remove top padding to bring it closer to the principal's message */
+}
+.leader-photo {
+    display: block;
+    width: 100%;
+    max-width: 900px; /* Control max size on large desktops */
+    margin: 0 auto;
+    border-radius: 15px;
+    border: 5px solid var(--white-color);
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.25);
+}
 
 /* Courses Section */
 .courses-section { background-color: var(--white-color); }
@@ -124,11 +136,12 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .hero-content h1 { font-size: 2.8rem; }
     .hero-content p { font-size: 1.2rem; }
+    .content-section { padding: 3rem 0; } /* Less padding on mobile */
     .section-title { font-size: 2rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
-    .principal-text { padding-left: 0; } /* Remove padding on mobile */
-    .principal-text::before { display: none; } /* Hide quote on small screens for cleanliness */
+    .principal-text { padding-left: 0; }
+    .principal-text::before { display: none; }
     .principal-img img { width: 150px; height: 150px; }
     .principal-text p { font-size: 1rem; }
     .card-grid, .facilities-grid, .cocurricular-grid { grid-template-columns: 1fr; }
-              }
+}
