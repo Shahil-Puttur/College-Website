@@ -15,12 +15,7 @@
 /* Global Styles */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { 
-    font-family: var(--font-family); 
-    line-height: 1.6; 
-    background-color: var(--light-bg); /* THEME FIX IS HERE */
-    color: var(--text-color-dark); 
-}
+body { font-family: var(--font-family); line-height: 1.6; background-color: var(--light-bg); color: var(--text-color-dark); }
 .container { max-width: 1100px; margin: auto; overflow: hidden; padding: 0 2rem; }
 
 /* Header & Navbar */
@@ -63,11 +58,13 @@ body {
 .management-images { background-color: var(--text-color-dark); border-radius: 15px; padding: 1.5rem; display: flex; justify-content: center; align-items: center; gap: 1.5rem; box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2); }
 .management-images img { width: 120px; height: 120px; border-radius: 10px; object-fit: cover; border: 3px solid var(--primary-blue); }
 
-/* Principal's Message */
+/* --- Principal's Message (QUOTE FIX) --- */
 .principal-card { display: flex; align-items: center; gap: 3rem; background: var(--white-color); color: var(--text-color-dark); padding: 3rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1); position: relative; overflow: hidden; }
+/* The decorative quote is now attached to the CARD, not the text */
+.principal-card::before { content: '“'; position: absolute; top: 1rem; left: 1rem; font-size: 8rem; color: var(--primary-blue); opacity: 0.1; z-index: 1; font-family: Georgia, serif; }
 .principal-img img { width: 200px; height: 200px; border-radius: 15px; object-fit: cover; border: 5px solid var(--primary-blue); }
+/* The text block sits on top of the quote */
 .principal-text { position: relative; z-index: 2; }
-.principal-text::before { content: '“'; position: absolute; top: -40px; left: -20px; font-size: 8rem; color: var(--primary-blue); opacity: 0.1; z-index: 1; font-family: Georgia, serif; }
 .principal-text p { margin-bottom: 1rem; font-size: 1.05rem; }
 
 /* Courses Section */
@@ -130,7 +127,6 @@ body {
     .section-title { font-size: 2rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
     .principal-img img { width: 150px; height: 150px; }
-    .principal-text::before { display: none; }
     .principal-text p { font-size: 1rem; }
     .card-grid, .facilities-grid, .cocurricular-grid { grid-template-columns: 1fr; }
-}
+              }
