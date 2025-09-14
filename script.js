@@ -45,4 +45,4 @@ if (readMoreBtn) {
             readMoreBtn.textContent = 'Read More';
         }
     });
-    }
+}
