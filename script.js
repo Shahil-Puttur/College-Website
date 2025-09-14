@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(textElement);
     }
 
-    // --- NEW ADVANCED Professor Carousel ---
+    // --- Professor Carousel ---
     const track = document.querySelector('.carousel-track');
     if (track) {
         const professorData = [
@@ -56,15 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'HOD, Dept of Commerce' }
         ];
 
-        // Create all slide elements dynamically
         professorData.forEach(prof => {
             const slide = document.createElement('div');
             slide.className = 'professor-slide';
-            
             const qualText = prof.qual ? prof.qual : '';
             const descText = prof.desc ? prof.desc : '';
             const separator = qualText && descText ? ', ' : '';
-
             slide.innerHTML = `
                 <img src="${prof.img}" alt="${prof.name}">
                 <div class="professor-info">
@@ -81,13 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateCarousel() {
             slides.forEach((slide, index) => {
                 slide.classList.remove('slide-active', 'slide-prev', 'slide-next', 'slide-hidden');
-                
-                if (index === currentIndex) {
+                let newIndex = (index - currentIndex + slides.length) % slides.length;
+                if (newIndex === 0) {
                     slide.classList.add('slide-active');
-                } else if (index === (currentIndex - 1 + slides.length) % slides.length) {
-                    slide.classList.add('slide-prev');
-                } else if (index === (currentIndex + 1) % slides.length) {
+                } else if (newIndex === 1) {
                     slide.classList.add('slide-next');
+                } else if (newIndex === slides.length - 1) {
+                    slide.classList.add('slide-prev');
                 } else {
                     slide.classList.add('slide-hidden');
                 }
