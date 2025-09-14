@@ -59,11 +59,12 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .management-images img { width: 120px; height: 120px; border-radius: 10px; object-fit: cover; border: 3px solid var(--primary-blue); }
 
 /* --- Principal's Message (QUOTE FIX) --- */
-.principal-card { display: flex; align-items: center; gap: 3rem; background: var(--white-color); color: var(--text-color-dark); padding: 3rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1); position: relative; overflow: hidden; }
-/* The decorative quote is now attached to the CARD, not the text */
-.principal-card::before { content: '“'; position: absolute; top: 1rem; left: 1rem; font-size: 8rem; color: var(--primary-blue); opacity: 0.1; z-index: 1; font-family: Georgia, serif; }
+.principal-card { display: flex; align-items: center; gap: 2rem; background: var(--white-color); color: var(--text-color-dark); padding: 3rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1); position: relative; overflow: hidden; }
+/* LAYER 1: The quote, attached to the card */
+.principal-card::before { content: '“'; position: absolute; top: 1rem; left: 1.5rem; font-size: 8rem; color: var(--primary-blue); opacity: 0.1; z-index: 1; font-family: Georgia, serif; }
+/* LAYER 2: The image and text, sitting on top of the quote */
+.principal-img { position: relative; z-index: 2; }
 .principal-img img { width: 200px; height: 200px; border-radius: 15px; object-fit: cover; border: 5px solid var(--primary-blue); }
-/* The text block sits on top of the quote */
 .principal-text { position: relative; z-index: 2; }
 .principal-text p { margin-bottom: 1rem; font-size: 1.05rem; }
 
@@ -126,7 +127,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hero-content p { font-size: 1.2rem; }
     .section-title { font-size: 2rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
+    .principal-card::before { top: 0.5rem; left: 0.5rem; font-size: 6rem; }
     .principal-img img { width: 150px; height: 150px; }
     .principal-text p { font-size: 1rem; }
     .card-grid, .facilities-grid, .cocurricular-grid { grid-template-columns: 1fr; }
-              }
+}
