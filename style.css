@@ -96,6 +96,18 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .nss-card { background-image: url('assets/images/nss.png'); }
 .redcross-card { background-image: url('assets/images/redcross.png'); }
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
+
+/* --- NEW STYLES FOR COURSES.HTML --- */
+.course-hero-section { background-color: var(--creamy-purple); padding: 120px 0 60px 0; text-align: center; }
+.course-hero-section h1 { font-size: 3rem; color: var(--text-color-dark); }
+.course-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.course-description h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--secondary-blue); }
+.course-description p { margin-bottom: 1.5rem; line-height: 1.8; }
+.course-image img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.audio-player { margin-top: 2rem; background: #fff; padding: 1rem; border-radius: 10px; display: flex; align-items: center; gap: 1rem; }
+.audio-player p { margin: 0; font-weight: 600; }
+.audio-btn { background: var(--primary-blue); color: var(--white-color); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
 @media(max-width: 992px) {
     .owner-image { display: none; }
@@ -128,4 +140,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .slide-prev { transform: translate(-100%, -50%) scale(0.6); }
     .slide-next { transform: translate(0%, -50%) scale(0.6); }
     .card-grid, .facilities-grid, .cocurricular-grid { grid-template-columns: 1fr; }
+    .course-hero-section h1 { font-size: 2rem; }
+    .course-detail-grid { grid-template-columns: 1fr; }
+    .course-image { order: -1; margin-bottom: 2rem; }
 }
