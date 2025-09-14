@@ -21,12 +21,13 @@ if (readMoreBtn) {
     });
 }
 
-// --- Typing Animation & Professor Carousel Logic ---
+// --- LOGIC THAT RUNS ON EVERY PAGE LOAD ---
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Typing Animation ---
+    
+    // --- Typing Animation (runs only if the element exists) ---
     const textElement = document.getElementById('leaderExperienceText');
-    const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
     if (textElement) {
+        const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(textElement);
     }
 
-    // --- Professor Carousel ---
+    // --- Professor Carousel (runs only if the element exists) ---
     const track = document.querySelector('.carousel-track');
     if (track) {
         const professorData = [
@@ -62,41 +63,49 @@ document.addEventListener('DOMContentLoaded', () => {
             const qualText = prof.qual ? prof.qual : '';
             const descText = prof.desc ? prof.desc : '';
             const separator = qualText && descText ? ', ' : '';
-            slide.innerHTML = `
-                <img src="${prof.img}" alt="${prof.name}">
-                <div class="professor-info">
-                    <h3>${prof.name}</h3>
-                    <p>${qualText}${separator}${descText}</p>
-                </div>
-            `;
+            slide.innerHTML = `<img src="${prof.img}" alt="${prof.name}"><div class="professor-info"><h3>${prof.name}</h3><p>${qualText}${separator}${descText}</p></div>`;
             track.appendChild(slide);
         });
 
         const slides = Array.from(track.children);
         let currentIndex = 0;
-
         function updateCarousel() {
             slides.forEach((slide, index) => {
                 slide.classList.remove('slide-active', 'slide-prev', 'slide-next', 'slide-hidden');
                 let newIndex = (index - currentIndex + slides.length) % slides.length;
-                if (newIndex === 0) {
-                    slide.classList.add('slide-active');
-                } else if (newIndex === 1) {
-                    slide.classList.add('slide-next');
-                } else if (newIndex === slides.length - 1) {
-                    slide.classList.add('slide-prev');
-                } else {
-                    slide.classList.add('slide-hidden');
-                }
+                if (newIndex === 0) { slide.classList.add('slide-active'); } 
+                else if (newIndex === 1) { slide.classList.add('slide-next'); } 
+                else if (newIndex === slides.length - 1) { slide.classList.add('slide-prev'); } 
+                else { slide.classList.add('slide-hidden'); }
             });
         }
-
-        function slideNext() {
-            currentIndex = (currentIndex + 1) % slides.length;
-            updateCarousel();
-        }
-
+        function slideNext() { currentIndex = (currentIndex + 1) % slides.length; updateCarousel(); }
         updateCarousel();
         setInterval(slideNext, 3000);
+    }
+
+    // --- NEW Custom Audio Player (runs only if the element exists) ---
+    const audioPlayer = document.getElementById('bcaAudioPlayer');
+    if (audioPlayer) {
+        const audio = document.getElementById('bcaAudio');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+
+        const playAudioWithDelay = () => {
+            audio.play();
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'flex';
+        };
+
+        playBtn.addEventListener('click', playAudioWithDelay);
+
+        pauseBtn.addEventListener('click', () => {
+            audio.pause();
+            playBtn.style.display = 'flex';
+            pauseBtn.style.display = 'none';
+        });
+
+        // Start playing after 2 seconds
+        setTimeout(playAudioWithDelay, 2000);
     }
 });
