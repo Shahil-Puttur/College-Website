@@ -1,7 +1,7 @@
 /* --- Google Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-/* --- CSS Variables (LIGHT SKY BLUE THEME) --- */
+/* --- CSS Variables --- */
 :root {
     --primary-blue: #4A90E2;    
     --secondary-blue: #357ABD;  
@@ -65,19 +65,9 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .principal-text::before { content: '“'; position: absolute; top: -20px; left: -10px; font-size: 8rem; color: var(--primary-blue); opacity: 0.1; z-index: -1; font-family: Georgia, serif; }
 .principal-text p { margin-bottom: 1rem; font-size: 1.05rem; }
 
-/* --- NEW Leader Photo Section --- */
-.leader-photo-section {
-    padding-top: 0; /* Remove top padding to bring it closer to the principal's message */
-}
-.leader-photo {
-    display: block;
-    width: 100%;
-    max-width: 900px; /* Control max size on large desktops */
-    margin: 0 auto;
-    border-radius: 15px;
-    border: 5px solid var(--white-color);
-    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.25);
-}
+/* Leader Photo Section */
+.leader-photo-section { padding-top: 0; }
+.leader-photo { display: block; width: 100%; max-width: 900px; margin: 0 auto; border-radius: 15px; border: 5px solid var(--white-color); box-shadow: 0 15px 40px rgba(74, 144, 226, 0.25); }
 
 /* Courses Section */
 .courses-section { background-color: var(--white-color); }
@@ -136,7 +126,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     .hero-content h1 { font-size: 2.8rem; }
     .hero-content p { font-size: 1.2rem; }
-    .content-section { padding: 3rem 0; } /* Less padding on mobile */
+    .content-section { padding: 3rem 0; }
     .section-title { font-size: 2rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
     .principal-text { padding-left: 0; }
@@ -144,4 +134,4 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .principal-img img { width: 150px; height: 150px; }
     .principal-text p { font-size: 1rem; }
     .card-grid, .facilities-grid, .cocurricular-grid { grid-template-columns: 1fr; }
-}
+    }
