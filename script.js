@@ -46,3 +46,33 @@ if (readMoreBtn) {
         }
     });
 }
+
+// --- Typing Animation Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const textElement = document.getElementById('leaderExperienceText');
+    const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
+    
+    if (textElement) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    let i = 0;
+                    textElement.innerHTML = '';
+                    const typingInterval = setInterval(() => {
+                        if (i < fullText.length) {
+                            textElement.innerHTML += fullText.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typingInterval);
+                            textElement.classList.add('typing-done');
+                        }
+                    }, 50);
+                    
+                    observer.unobserve(textElement);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(textElement);
+    }
+});
