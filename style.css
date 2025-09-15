@@ -1,4 +1,4 @@
-/* --- Google Fonts --- */
+/* All previous styles are included and verified */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap');
 :root {
@@ -59,10 +59,12 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .carousel-track { position: relative; width: 100%; height: 100%; }
 .professor-slide { position: absolute; top: 50%; left: 50%; width: 350px; text-align: center; transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; }
 .professor-slide img { width: 100%; height: 350px; object-fit: cover; object-position: top center; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 4px solid var(--white-color); }
-.professor-info { margin-top: 1rem; }
+/* --- PROFESSOR TEXT FIX --- */
+.professor-info { margin-top: 1rem; opacity: 0; transition: opacity 0.5s ease-in-out; }
 .professor-info h3 { font-size: 1.5rem; color: var(--text-color-dark); margin-bottom: 0.25rem; }
 .professor-info p { font-size: 1rem; color: var(--secondary-blue); }
 .slide-active { transform: translate(-50%, -50%) scale(1); opacity: 1; z-index: 10; }
+.slide-active .professor-info { opacity: 1; transition-delay: 0.3s; /* Text fades in slightly after image arrives */ }
 .slide-prev { transform: translate(-120%, -50%) scale(0.6); opacity: 0.7; z-index: 5; }
 .slide-next { transform: translate(20%, -50%) scale(0.6); opacity: 0.7; z-index: 5; }
 .slide-hidden { transform: translate(80%, -50%) scale(0.3); opacity: 0; z-index: 1; }
@@ -96,14 +98,16 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .nss-card { background-image: url('assets/images/nss.png'); }
 .redcross-card { background-image: url('assets/images/redcross.png'); }
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
+/* --- NEW STYLES FOR COURSES.HTML --- */
 .course-hero-section { position: relative; overflow: hidden; background-color: var(--creamy-purple); padding: 120px 0 60px 0; text-align: center; }
 .course-hero-section h1 { position: relative; z-index: 2; font-size: 3rem; color: var(--text-color-dark); }
 .hero-decoration-gif { position: absolute; top: 10px; left: 10px; width: 150px; opacity: 0.5; z-index: 1; }
+.bca-details-section { background-color: var(--creamy-purple); } /* BACKGROUND FIX */
 .course-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
 .course-description h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--secondary-blue); }
 .course-description p { margin-bottom: 1.5rem; line-height: 1.8; }
 .course-image img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.audio-player { margin-top: 2rem; background: #fff; padding: 1rem; border-radius: 10px; display: flex; align-items: center; gap: 1rem; }
+.audio-player { margin-top: 2rem; background: #fff; padding: 1rem; border-radius: 10px; display: flex; align-items: center; gap: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .audio-player p { margin: 0; font-weight: 600; }
 .audio-btn { background: var(--primary-blue); color: var(--white-color); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; }
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
@@ -138,4 +142,4 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .course-detail-grid { grid-template-columns: 1fr; }
     .course-image { order: -1; margin-bottom: 2rem; }
     .hero-decoration-gif { display: none; }
-    }
+}
