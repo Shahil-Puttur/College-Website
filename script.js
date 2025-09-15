@@ -84,28 +84,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(slideNext, 3000);
     }
 
-    // --- NEW Custom Audio Player (runs only if the element exists) ---
+    // --- Custom Audio Player (runs only if the element exists) ---
     const audioPlayer = document.getElementById('bcaAudioPlayer');
     if (audioPlayer) {
         const audio = document.getElementById('bcaAudio');
         const playBtn = document.getElementById('playBtn');
         const pauseBtn = document.getElementById('pauseBtn');
-
-        const playAudioWithDelay = () => {
-            audio.play();
-            playBtn.style.display = 'none';
-            pauseBtn.style.display = 'flex';
-        };
-
+        const playAudioWithDelay = () => { audio.play(); playBtn.style.display = 'none'; pauseBtn.style.display = 'flex'; };
         playBtn.addEventListener('click', playAudioWithDelay);
-
-        pauseBtn.addEventListener('click', () => {
-            audio.pause();
-            playBtn.style.display = 'flex';
-            pauseBtn.style.display = 'none';
-        });
-
-        // Start playing after 2 seconds
+        pauseBtn.addEventListener('click', () => { audio.pause(); playBtn.style.display = 'flex'; pauseBtn.style.display = 'none'; });
         setTimeout(playAudioWithDelay, 2000);
     }
 });
