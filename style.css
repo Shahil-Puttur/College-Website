@@ -1,4 +1,4 @@
-/* All previous styles are included and verified */
+/* --- Google Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap');
 :root {
@@ -59,28 +59,27 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .carousel-track { position: relative; width: 100%; height: 100%; }
 .professor-slide { position: absolute; top: 50%; left: 50%; width: 350px; text-align: center; transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; }
 .professor-slide img { width: 100%; height: 350px; object-fit: cover; object-position: top center; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 4px solid var(--white-color); }
-/* --- PROFESSOR TEXT FIX --- */
 .professor-info { margin-top: 1rem; opacity: 0; transition: opacity 0.5s ease-in-out; }
 .professor-info h3 { font-size: 1.5rem; color: var(--text-color-dark); margin-bottom: 0.25rem; }
 .professor-info p { font-size: 1rem; color: var(--secondary-blue); }
 .slide-active { transform: translate(-50%, -50%) scale(1); opacity: 1; z-index: 10; }
-.slide-active .professor-info { opacity: 1; transition-delay: 0.3s; /* Text fades in slightly after image arrives */ }
+.slide-active .professor-info { opacity: 1; transition-delay: 0.3s; }
 .slide-prev { transform: translate(-120%, -50%) scale(0.6); opacity: 0.7; z-index: 5; }
 .slide-next { transform: translate(20%, -50%) scale(0.6); opacity: 0.7; z-index: 5; }
 .slide-hidden { transform: translate(80%, -50%) scale(0.3); opacity: 0; z-index: 1; }
 .courses-section { background-color: var(--white-color); }
 .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-.course-card { position: relative; background-size: cover; background-position: center; color: var(--white-color); padding: 6rem 2rem 2rem 2rem; border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; align-items: flex-end; }
+.course-card { position: relative; background-size: cover; background-position: center; color: var(--white-color); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.course-card .card-link { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; }
 .course-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(74, 144, 226, 0.2); }
 .course-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.1)); z-index: 1; }
-.card-content { position: relative; z-index: 2; }
+.card-content { position: relative; z-index: 2; padding: 6rem 2rem 2rem 2rem; display: flex; flex-direction: column; justify-content: flex-end; height: 100%;}
 .bca-card { background-image: url('assets/images/bca.jpeg'); }
 .bcom-card { background-image: url('assets/images/bcom.jpeg'); }
 .ba-card { background-image: url('assets/images/ba.jpeg'); }
-.course-card h3 { color: var(--white-color); font-size: 2rem; margin-bottom: 0.5rem; }
+.course-card h3 { font-size: 2rem; margin-bottom: 0.5rem; }
 .course-card p { margin-bottom: 1.5rem; }
-.course-card a { text-decoration: none; color: var(--white-color); font-weight: 600; background-color: var(--accent-pink); padding: 8px 18px; border-radius: 50px; transition: background-color 0.3s ease; }
-.course-card a:hover { background-color: #d8344f; }
+.course-card span { text-decoration: none; color: var(--white-color); font-weight: 600; background-color: var(--accent-pink); padding: 8px 18px; border-radius: 50px; transition: background-color 0.3s ease; align-self: flex-start; }
 .facilities-section { background-color: var(--white-color); }
 .pill-heading { display: inline-block; background-color: rgba(74, 144, 226, 0.1); color: var(--primary-blue); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
 .facilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; text-align: center; }
@@ -98,11 +97,10 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .nss-card { background-image: url('assets/images/nss.png'); }
 .redcross-card { background-image: url('assets/images/redcross.png'); }
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
-/* --- NEW STYLES FOR COURSES.HTML --- */
 .course-hero-section { position: relative; overflow: hidden; background-color: var(--creamy-purple); padding: 120px 0 60px 0; text-align: center; }
 .course-hero-section h1 { position: relative; z-index: 2; font-size: 3rem; color: var(--text-color-dark); }
 .hero-decoration-gif { position: absolute; top: 10px; left: 10px; width: 150px; opacity: 0.5; z-index: 1; }
-.bca-details-section { background-color: var(--creamy-purple); } /* BACKGROUND FIX */
+.bca-details-section { background-color: var(--creamy-purple); }
 .course-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
 .course-description h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--secondary-blue); }
 .course-description p { margin-bottom: 1.5rem; line-height: 1.8; }
@@ -142,4 +140,4 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .course-detail-grid { grid-template-columns: 1fr; }
     .course-image { order: -1; margin-bottom: 2rem; }
     .hero-decoration-gif { display: none; }
-}
+                }
