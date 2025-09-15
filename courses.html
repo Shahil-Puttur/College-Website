@@ -11,29 +11,44 @@
 </head>
 <body>
 
-    <header class="header"><!-- ... your header ... --></header>
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+                <li class="nav-item"><a href="faculty.html" class="nav-link">Faculty</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="notices.html" class="nav-link">Notices</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
 
     <div class="overlay"></div>
 
     <main>
-        <!-- Course Page Hero Section -->
         <section class="course-hero-section">
-            <!-- THIS IS THE NEW GIF, an elegant decoration -->
             <img src="assets/images/code1.gif" alt="Coding Animation" class="hero-decoration-gif" data-aos="fade-right">
-            
             <div class="container">
                 <h1 data-aos="fade-down">Welcome to the BCA Section</h1>
             </div>
         </section>
 
-        <!-- Course Details Section -->
         <section class="content-section" id="bca">
             <div class="container">
                 <div class="course-detail-grid">
                     <div class="course-description" data-aos="fade-right">
                         <h2>Vidyarashmi First Grade College, Savanoor</h2>
                         <p>Welcome to the BCA section of Vidyarashmi First Grade College! Our 3-year Bachelor of Computer Applications program focuses on programming languages, software development, and practical computer applications. With experienced faculty and hands-on labs, we aim to shape students into skilled software professionals ready for the IT world.</p>
-                        
                         <div class="audio-player" id="bcaAudioPlayer">
                             <p>Listen to an introduction:</p>
                             <audio id="bcaAudio" src="assets/audio/bca1.mp3"></audio>
@@ -49,9 +64,13 @@
         </section>
     </main>
 
-    <footer class="footer"><!-- ... your footer ... --></footer>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vidyarashmi College. All Rights Reserved. Designed by You!</p>
+        </div>
+    </footer>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
+                            </html>
