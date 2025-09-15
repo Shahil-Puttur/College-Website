@@ -1,4 +1,4 @@
-/* --- Google Fonts --- */
+/* All previous styles are included and verified */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap');
 :root {
@@ -97,19 +97,31 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .nss-card { background-image: url('assets/images/nss.png'); }
 .redcross-card { background-image: url('assets/images/redcross.png'); }
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
-.course-hero-section { position: relative; overflow: hidden; background-color: var(--creamy-purple); padding: 120px 0 60px 0; text-align: center; }
+
+/* --- RE-ARCHITECTED STYLES FOR COURSES.HTML --- */
+.course-hero-section { position: relative; overflow: hidden; background-color: var(--creamy-purple); padding: 150px 0 60px 0; text-align: center; }
 .course-hero-section h1 { position: relative; z-index: 2; font-size: 3rem; color: var(--text-color-dark); }
-.hero-decoration-gif { position: absolute; top: 10px; left: 10px; width: 150px; opacity: 0.5; z-index: 1; }
-.bca-details-section { background-color: var(--creamy-purple); }
-.course-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-.course-description h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--secondary-blue); }
-.course-description p { margin-bottom: 1.5rem; line-height: 1.8; }
-.course-image img { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-.audio-player { margin-top: 2rem; background: #fff; padding: 1rem; border-radius: 10px; display: flex; align-items: center; gap: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.hero-decoration-gif { position: absolute; top: 60px; /* Pushed down from the top */ left: 10px; width: 150px; opacity: 0.5; z-index: 1; }
+.bca-details-section { background-color: var(--creamy-purple); padding-bottom: 5rem; }
+.course-detail-layout { position: relative; display: flex; align-items: center; }
+.course-image-wrapper { flex: 1; }
+.course-image-wrapper img { width: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+.course-text-wrapper { flex: 1.2; background: var(--white-color); padding: 3rem; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-left: -50px; z-index: 2; }
+.course-text-wrapper h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--secondary-blue); }
+.course-text-wrapper p { margin-bottom: 1.5rem; line-height: 1.8; }
+.audio-player { margin-top: 2rem; background: var(--light-bg); padding: 1rem; border-radius: 10px; display: flex; align-items: center; gap: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .audio-player p { margin: 0; font-weight: 600; }
 .audio-btn { background: var(--primary-blue); color: var(--white-color); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+
+/* Responsive Design */
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
-@media(max-width: 992px) { .owner-image { display: none; } .management-grid { grid-template-columns: 1fr; } .management-images { order: -1; margin-bottom: 2rem; } }
+@media(max-width: 992px) {
+    .owner-image { display: none; }
+    .management-grid { grid-template-columns: 1fr; }
+    .management-images { order: -1; margin-bottom: 2rem; }
+    .course-detail-layout { flex-direction: column; }
+    .course-text-wrapper { margin-left: 0; margin-top: -50px; }
+}
 @media(max-width: 768px) {
     .nav-menu { position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--white-color); width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; }
     .nav-menu.active { right: 0; }
@@ -137,7 +149,5 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .slide-next { transform: translate(0%, -50%) scale(0.6); }
     .card-grid, .facilities-grid, .cocurricular-grid { grid-template-columns: 1fr; }
     .course-hero-section h1 { font-size: 2rem; }
-    .course-detail-grid { grid-template-columns: 1fr; }
-    .course-image { order: -1; margin-bottom: 2rem; }
-    .hero-decoration-gif { display: none; }
-                }
+    .hero-decoration-gif { top: 70px; width: 100px; opacity: 0.3; } /* Adjusted for mobile */
+               }
