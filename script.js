@@ -24,7 +24,7 @@ if (readMoreBtn) {
 // --- LOGIC THAT RUNS ON EVERY PAGE LOAD ---
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Typing Animation (runs only if the element exists) ---
+    // --- Typing Animation (runs only if the element exists on the page) ---
     const textElement = document.getElementById('leaderExperienceText');
     if (textElement) {
         const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(textElement);
     }
 
-    // --- Professor Carousel (runs only if the element exists) ---
+    // --- Professor Carousel (runs only if the element exists on the page) ---
     const track = document.querySelector('.carousel-track');
     if (track) {
         const professorData = [
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(slideNext, 3000);
     }
 
-    // --- Custom Audio Player (runs only if the element exists) ---
+    // --- Custom Audio Player (runs only if the element exists on the page) ---
     const audioPlayer = document.getElementById('bcaAudioPlayer');
     if (audioPlayer) {
         const audio = document.getElementById('bcaAudio');
