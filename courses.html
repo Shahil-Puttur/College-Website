@@ -19,7 +19,7 @@
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="courses.html" class="nav-link">Courses</a></li>
+                <li class="nav-item"><a href="courses.html" class="nav-link active">Courses</a></li>
                 <li class="nav-item"><a href="faculty.html" class="nav-link">Faculty</a></li>
                 <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
                 <li class="nav-item"><a href="notices.html" class="nav-link">Notices</a></li>
@@ -36,27 +36,143 @@
     <div class="overlay"></div>
 
     <main>
+        <!-- Hero Section with Floating Tech Icons -->
         <section class="course-hero-section">
-            <img src="assets/images/code1.gif" alt="Coding Animation" class="hero-decoration-gif" data-aos="fade-right">
+            <div class="code-particles">
+                <div class="particle" style="--i:1;"><i class='bx bxl-python'></i></div>
+                <div class="particle" style="--i:2;"><i class='bx bxl-java'></i></div>
+                <div class="particle" style="--i:3;"><i class='bx bxl-c-plus-plus'></i></div>
+                <div class="particle" style="--i:4;"><i class='bx bx-data'></i></div>
+                <div class="particle" style="--i:5;"><i class='bx bx-brain'></i></div>
+            </div>
             <div class="container">
-                <h1 data-aos="fade-down">Welcome to the BCA Section</h1>
+                <h1 data-aos="fade-down">Our Academic Programs</h1>
+                <p data-aos="fade-up" data-aos-delay="300">Choose your path. Shape your future with industry-aligned curriculum.</p>
             </div>
         </section>
 
-        <section class="content-section bca-details-section">
+        <!-- BCA Spotlight Section -->
+        <section class="content-section bca-spotlight">
             <div class="container">
-                <div class="course-detail-grid">
-                    <div class="course-image" data-aos="fade-right" data-aos-delay="200">
-                        <img src="assets/images/lab.jpg" alt="BCA Computer Lab">
-                    </div>
-                    <div class="course-description" data-aos="fade-left">
-                        <h2>Vidyarashmi First Grade College, Savanoor</h2>
-                        <p>Welcome to the BCA section of Vidyarashmi First Grade College! Our 3-year Bachelor of Computer Applications program focuses on programming languages, software development, and practical computer applications. With experienced faculty and hands-on labs, we aim to shape students into skilled software professionals ready for the IT world.</p>
+                <div class="spotlight-wrapper" data-aos="fade-up">
+                    <div class="spotlight-content">
+                        <h2><i class='bx bxl-code-alt'></i> BCA: Bachelor of Computer Applications</h2>
+                        <p>Welcome to the BCA section of Vidyarashmi First Grade College! Our 3-year program focuses on programming languages, software development, and practical computer applications.</p>
+                        
+                        <div class="core-tech">
+                            <h3>Core Technologies:</h3>
+                            <div class="tech-tags">
+                                <span>C Programming</span>
+                                <span>Java</span>
+                                <span>Python</span>
+                                <span>DBMS</span>
+                                <span>AI & ML</span>
+                            </div>
+                        </div>
+
+                        <div class="lab-skills">
+                            <h3>IT Lab Skills:</h3>
+                            <div class="skill-tags">
+                                <span>MS Word</span>
+                                <span>Excel</span>
+                                <span>Access</span>
+                                <span>PowerPoint</span>
+                            </div>
+                        </div>
+
                         <div class="audio-player" id="bcaAudioPlayer">
-                            <p>Listen to an introduction:</p>
+                            <p><i class='bx bxs-microphone'></i> Listen to program intro:</p>
                             <audio id="bcaAudio" src="assets/audio/bca1.mp3"></audio>
                             <button id="playBtn" class="audio-btn"><i class='bx bx-play'></i></button>
                             <button id="pauseBtn" class="audio-btn" style="display: none;"><i class='bx bx-pause'></i></button>
+                        </div>
+
+                        <a href="contact.html" class="btn-primary">Apply for BCA</a>
+                    </div>
+                    <div class="spotlight-image">
+                        <img src="assets/images/lab.jpg" alt="BCA Computer Lab" data-aos="fade-left">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IT Fest & Competitions -->
+        <section class="content-section it-fest-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">BCA IT Fest & Competitions</h2>
+                <div class="fest-grid">
+                    <div class="fest-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="fest-icon"><i class='bx bx-code-alt'></i></div>
+                        <h3>Hackathons</h3>
+                        <p>24-hour coding marathons with real-world problem statements.</p>
+                    </div>
+                    <div class="fest-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="fest-icon"><i class='bx bx-bug-alt'></i></div>
+                        <h3>Debugging Contests</h3>
+                        <p>Find and fix bugs faster than anyone else.</p>
+                    </div>
+                    <div class="fest-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="fest-icon"><i class='bx bx-palette'></i></div>
+                        <h3>UI/UX Design Wars</h3>
+                        <p>Design the most intuitive and beautiful interfaces.</p>
+                    </div>
+                    <div class="fest-card" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="fest-icon"><i class='bx bx-rocket'></i></div>
+                        <h3>Startup Pitch</h3>
+                        <p>Pitch your tech idea to industry judges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Job Guidance -->
+        <section class="content-section job-guidance-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">BCA Job & Placement Guidance</h2>
+                <div class="guidance-grid">
+                    <div class="guidance-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="guidance-icon"><i class='bx bx-file-find'></i></div>
+                        <h3>Resume Building</h3>
+                        <p>Workshops on creating ATS-friendly resumes and LinkedIn profiles.</p>
+                    </div>
+                    <div class="guidance-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="guidance-icon"><i class='bx bx-microphone'></i></div>
+                        <h3>Mock Interviews</h3>
+                        <p>Practice with real HR professionals from IT companies.</p>
+                    </div>
+                    <div class="guidance-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="guidance-icon"><i class='bx bx-code-curly'></i></div>
+                        <h3>Coding Tests</h3>
+                        <p>Regular practice on HackerRank, LeetCode style problems.</p>
+                    </div>
+                    <div class="guidance-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="guidance-icon"><i class='bx bx-buildings'></i></div>
+                        <h3>Campus Drives</h3>
+                        <p>Direct recruitment from TCS, Infosys, Wipro, and startups.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Programs -->
+        <section class="content-section other-programs-section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Other Programs</h2>
+                <div class="card-grid">
+                    <div class="course-card bcom-card" data-aos="fade-up" data-aos-delay="100">
+                        <a href="#" class="card-link"></a>
+                        <div class="card-content">
+                            <h3>B.Com</h3>
+                            <p>Build a strong foundation in accounting, finance, and business management.</p>
+                            <span>Learn More</span>
+                        </div>
+                    </div>
+                    <div class="course-card ba-card" data-aos="fade-up" data-aos-delay="200">
+                        <a href="#" class="card-link"></a>
+                        <div class="card-content">
+                            <h3>BA</h3>
+                            <p>Explore diverse fields like history, economics, literature, and social sciences.</p>
+                            <span>Learn More</span>
                         </div>
                     </div>
                 </div>
