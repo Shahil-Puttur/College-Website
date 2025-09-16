@@ -11,7 +11,7 @@ overlay.addEventListener("click", closeMenu);
 // --- Initialize AOS (Animate on Scroll) Library ---
 AOS.init({ duration: 1000, once: true });
 
-// --- "Read More" Button Logic ---
+// --- "Read More" Button Logic (index.html only) ---
 const readMoreBtn = document.getElementById('readMoreBtn');
 const managementTextWrapper = document.getElementById('managementText');
 if (readMoreBtn) {
@@ -24,7 +24,7 @@ if (readMoreBtn) {
 // --- LOGIC THAT RUNS ON EVERY PAGE LOAD ---
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Typing Animation (runs only if the element exists on the page) ---
+    // --- Typing Animation (index.html only) ---
     const textElement = document.getElementById('leaderExperienceText');
     if (textElement) {
         const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(textElement);
     }
 
-    // --- Professor Carousel (runs only if the element exists on the page) ---
+    // --- Professor Carousel (index.html only) ---
     const track = document.querySelector('.carousel-track');
     if (track) {
         const professorData = [
@@ -84,15 +84,23 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(slideNext, 3000);
     }
 
-    // --- Custom Audio Player (runs only if the element exists on the page) ---
+    // --- Custom Audio Player (bca.html only) ---
     const audioPlayer = document.getElementById('bcaAudioPlayer');
     if (audioPlayer) {
         const audio = document.getElementById('bcaAudio');
         const playBtn = document.getElementById('playBtn');
         const pauseBtn = document.getElementById('pauseBtn');
-        const playAudioWithDelay = () => { audio.play(); playBtn.style.display = 'none'; pauseBtn.style.display = 'flex'; };
-        playBtn.addEventListener('click', playAudioWithDelay);
-        pauseBtn.addEventListener('click', () => { audio.pause(); playBtn.style.display = 'flex'; pauseBtn.style.display = 'none'; });
-        setTimeout(playAudioWithDelay, 2000);
+        const playAudio = () => { 
+            audio.play(); 
+            playBtn.style.display = 'none'; 
+            pauseBtn.style.display = 'flex'; 
+        };
+        const pauseAudio = () => { 
+            audio.pause(); 
+            playBtn.style.display = 'flex'; 
+            pauseBtn.style.display = 'none'; 
+        };
+        playBtn.addEventListener('click', playAudio);
+        pauseBtn.addEventListener('click', pauseAudio);
     }
 });
