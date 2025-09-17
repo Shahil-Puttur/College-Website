@@ -24,47 +24,7 @@ if (readMoreBtn) {
 // --- LOGIC THAT RUNS ON EVERY PAGE LOAD ---
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- START: PROFESSIONAL AUDIO ENGINE SETUP ---
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    function unlockAudio() {
-        if (audioContext.state === 'suspended') {
-            audioContext.resume();
-        }
-    }
-    document.body.addEventListener('click', unlockAudio, { once: true });
-    document.body.addEventListener('touchstart', unlockAudio, { once: true });
-
-    // --- NEW "1 LAKH WORTH" KEYBOARD SOUND ---
-    function playKeySound() {
-        if (audioContext.state !== 'running') return;
-
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        // 1. SOUND TYPE: Square wave is more percussive and less melodic.
-        oscillator.type = 'square';
-        
-        // 2. LOWER PITCH: A low thud, not a high beep.
-        const randomPitch = Math.random() * 100 + 150; // Range: 150Hz to 250Hz
-        oscillator.frequency.setValueAtTime(randomPitch, audioContext.currentTime);
-        
-        // 3. THE "TICK" EFFECT: A rapid pitch drop to simulate a physical click.
-        oscillator.frequency.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.03);
-
-        // 4. LOW VOLUME & SHORT DURATION: The sound is quiet and extremely short.
-        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01); // Peak volume is only 0.1
-        gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.03); // Total sound duration is 30ms
-
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.1);
-    }
-    // --- END: PROFESSIONAL AUDIO ENGINE SETUP ---
-
-
-    // --- Typing Animation (Uses the new sound) ---
+    // --- Typing Animation (SILENT VERSION) ---
     const textElement = document.getElementById('leaderExperienceText');
     if (textElement) {
         const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
@@ -76,17 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (i < fullText.length) {
                             const char = fullText.charAt(i);
                             textElement.innerHTML += char;
-                            
-                            if (char !== ' ') {
-                                playKeySound();
-                            }
-                            
                             i++;
                         } else {
                             clearInterval(typingInterval);
                             textElement.classList.add('typing-done');
                         }
-                    }, 50);
+                    }, 50); // Typing speed
                     observer.unobserve(textElement);
                 }
             });
