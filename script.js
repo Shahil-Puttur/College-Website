@@ -24,45 +24,53 @@ if (readMoreBtn) {
 // --- LOGIC THAT RUNS ON EVERY PAGE LOAD ---
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Typing Animation with DOPAMINE SOUND EFFECT (index.html only) ---
+    // --- START: PROFESSIONAL AUDIO ENGINE SETUP ---
+
+    // 1. Create a single, shared AudioContext. It starts 'suspended' by default.
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // 2. The Professional Audio Unlock Solution
+    // This function will be called ONLY ONCE on the first user click/tap.
+    function unlockAudio() {
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
+    }
+    // Listen for the first interaction anywhere on the page.
+    // The '{ once: true }' option is a professional touch - it automatically removes the listener after it runs once.
+    document.body.addEventListener('click', unlockAudio, { once: true });
+    document.body.addEventListener('touchstart', unlockAudio, { once: true });
+
+
+    // 3. The Keyboard Click Sound Designer
+    function playKeySound() {
+        // If the audio is not yet unlocked, do nothing.
+        if (audioContext.state !== 'running') return;
+
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        // Sound Design
+        oscillator.type = 'triangle';
+        const randomPitch = Math.random() * 400 + 600;
+        oscillator.frequency.setValueAtTime(randomPitch, audioContext.currentTime);
+
+        // "Click" Envelope
+        gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.01);
+        gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.05);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.1);
+    }
+    // --- END: PROFESSIONAL AUDIO ENGINE SETUP ---
+
+
+    // --- Typing Animation (Now uses the professional sound engine) ---
     const textElement = document.getElementById('leaderExperienceText');
     if (textElement) {
-        
-        // --- 1. SETUP THE SOUND ENGINE (Web Audio API) ---
-        // Create an AudioContext. This is the browser's sound engine.
-        // We create it once to be efficient.
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
-        // --- 2. DESIGN THE KEYBOARD CLICK SOUND ---
-        function playKeySound() {
-            // Create an oscillator - this is our sound wave generator
-            const oscillator = audioContext.createOscillator();
-            // Create a gain node - this is our volume control
-            const gainNode = audioContext.createGain();
-
-            // Connect the sound generator to the volume control, and the volume control to the speakers
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-
-            // Configure the sound to be a sharp, techy click
-            oscillator.type = 'triangle'; // 'triangle' wave sounds like a retro computer blip
-            
-            // RANDOMIZE PITCH FOR DOPAMINE HIT: Make each click sound slightly different
-            const randomPitch = Math.random() * 400 + 600; // A random frequency between 600 and 1000 Hz
-            oscillator.frequency.setValueAtTime(randomPitch, audioContext.currentTime);
-
-            // CREATE THE "CLICK" ENVELOPE (the most important part)
-            // This makes the sound extremely short and percussive
-            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-            gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.01); // Instant attack
-            gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.05); // Very fast decay
-
-            // Start the sound now and schedule it to stop in 0.1 seconds to clean up
-            oscillator.start(audioContext.currentTime);
-            oscillator.stop(audioContext.currentTime + 0.1);
-        }
-
-        // --- 3. INTEGRATE SOUND INTO THE TYPING ANIMATION ---
         const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -73,9 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             const char = fullText.charAt(i);
                             textElement.innerHTML += char;
                             
-                            // PLAY SOUND on every character EXCEPT spaces
                             if (char !== ' ') {
-                                playKeySound();
+                                playKeySound(); // This will now work correctly after the first click.
                             }
                             
                             i++;
@@ -83,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             clearInterval(typingInterval);
                             textElement.classList.add('typing-done');
                         }
-                    }, 50); // Typing speed
+                    }, 50);
                     observer.unobserve(textElement);
                 }
             });
