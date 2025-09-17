@@ -25,26 +25,17 @@ if (readMoreBtn) {
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- START: PROFESSIONAL AUDIO ENGINE SETUP ---
-
-    // 1. Create a single, shared AudioContext. It starts 'suspended' by default.
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // 2. The Professional Audio Unlock Solution
-    // This function will be called ONLY ONCE on the first user click/tap.
     function unlockAudio() {
         if (audioContext.state === 'suspended') {
             audioContext.resume();
         }
     }
-    // Listen for the first interaction anywhere on the page.
-    // The '{ once: true }' option is a professional touch - it automatically removes the listener after it runs once.
     document.body.addEventListener('click', unlockAudio, { once: true });
     document.body.addEventListener('touchstart', unlockAudio, { once: true });
 
-
-    // 3. The Keyboard Click Sound Designer
+    // --- NEW "1 LAKH WORTH" KEYBOARD SOUND ---
     function playKeySound() {
-        // If the audio is not yet unlocked, do nothing.
         if (audioContext.state !== 'running') return;
 
         const oscillator = audioContext.createOscillator();
@@ -52,15 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
 
-        // Sound Design
-        oscillator.type = 'triangle';
-        const randomPitch = Math.random() * 400 + 600;
+        // 1. SOUND TYPE: Square wave is more percussive and less melodic.
+        oscillator.type = 'square';
+        
+        // 2. LOWER PITCH: A low thud, not a high beep.
+        const randomPitch = Math.random() * 100 + 150; // Range: 150Hz to 250Hz
         oscillator.frequency.setValueAtTime(randomPitch, audioContext.currentTime);
+        
+        // 3. THE "TICK" EFFECT: A rapid pitch drop to simulate a physical click.
+        oscillator.frequency.exponentialRampToValueAtTime(1, audioContext.currentTime + 0.03);
 
-        // "Click" Envelope
+        // 4. LOW VOLUME & SHORT DURATION: The sound is quiet and extremely short.
         gainNode.gain.setValueAtTime(0, audioContext.currentTime);
-        gainNode.gain.linearRampToValueAtTime(0.4, audioContext.currentTime + 0.01);
-        gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.05);
+        gainNode.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.01); // Peak volume is only 0.1
+        gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.03); // Total sound duration is 30ms
 
         oscillator.start(audioContext.currentTime);
         oscillator.stop(audioContext.currentTime + 0.1);
@@ -68,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- END: PROFESSIONAL AUDIO ENGINE SETUP ---
 
 
-    // --- Typing Animation (Now uses the professional sound engine) ---
+    // --- Typing Animation (Uses the new sound) ---
     const textElement = document.getElementById('leaderExperienceText');
     if (textElement) {
         const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
@@ -82,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             textElement.innerHTML += char;
                             
                             if (char !== ' ') {
-                                playKeySound(); // This will now work correctly after the first click.
+                                playKeySound();
                             }
                             
                             i++;
