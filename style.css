@@ -100,10 +100,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .redcross-card { background-image: url('assets/images/redcross.png'); }
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
 
-/* --- START: 1 LAKH BCA PAGE ANIMATIONS --- */
-
-/* --- HERO VIDEO SECTION --- */
-.bca-video-hero {
+/* --- START: UNIVERSAL GRAND VIDEO HERO STYLES --- */
+.video-hero-section {
     position: relative;
     height: 100vh;
     display: flex;
@@ -113,7 +111,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     color: var(--white-color);
     overflow: hidden;
 }
-#heroVideo {
+.video-hero-section .hero-video {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -124,34 +122,35 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     height: auto;
     z-index: 1;
 }
-.bca-video-hero::after {
+.video-hero-section::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(10, 38, 71, 0.7); /* Dark blue overlay */
+    background: rgba(10, 38, 71, 0.7); /* Default Dark blue overlay */
     z-index: 2;
 }
-.bca-hero-content {
+.hero-video-content {
     position: relative;
     z-index: 3;
     padding: 0 1rem;
 }
-.bca-hero-content h1 {
+.hero-video-content h1 {
     font-size: 4rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
-.bca-hero-content p {
+.hero-video-content p {
     font-size: 1.5rem;
     font-weight: 300;
     max-width: 600px;
     margin: 0 auto;
 }
+/* --- END: UNIVERSAL GRAND VIDEO HERO STYLES --- */
 
-/* --- GLOWING BORDER FOR TOPIC CARDS --- */
+/* --- GLOWING BORDER FOR BCA TOPIC CARDS --- */
 .bca-learn-section { background-color: var(--white-color); }
 .topic-card {
     background: #fff;
@@ -169,7 +168,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .bca-icon { font-size: 3rem; color: var(--primary-blue); }
 .topic-card h3 { margin: 1rem 0 0.5rem 0; }
 
-/* --- INTERACTIVE TOOLS ICONS --- */
+/* --- INTERACTIVE BCA TOOLS ICONS --- */
 .bca-tools-section { background-color: var(--light-bg); }
 .tools-grid { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem; }
 .tool-icon { text-align: center; font-weight: 600; }
@@ -184,11 +183,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     transform: scale(1.1);
 }
 
-/* --- OTHER BCA PAGE STYLES --- */
-.course-hero-section.bcom-hero { background-color: var(--light-green-bg); background-image: url('assets/images/bcom1.png'); background-size: cover; background-position: center; }
-.course-hero-section.ba-hero { background-color: var(--light-orange-bg); background-image: url('assets/images/ba1.png'); background-size: cover; background-position: center; }
-.course-hero-section h1 { position: relative; z-index: 2; font-size: 3rem; color: var(--text-color-dark); }
-.course-hero-section p { position: relative; z-index: 2; color: var(--text-color-dark); font-size: 1.2rem; }
+/* --- OTHER COURSE PAGE STYLES --- */
 .bca-details-section { background-color: var(--creamy-purple); }
 .course-detail-layout { position: relative; display: flex; align-items: center; }
 .course-image-wrapper { flex: 1; z-index: 1; }
@@ -199,9 +194,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .audio-player { margin-top: 2rem; background: var(--light-bg); padding: 1rem; border-radius: 10px; display: flex; align-items: center; gap: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .audio-player p { margin: 0; font-weight: 600; }
 .audio-btn { background: var(--primary-blue); color: var(--white-color); border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.5rem; cursor: pointer; display: flex; justify-content: center; align-items: center; }
-.bcom-details-section, .ba-details-section { padding-top: 0; }
-.bcom-details-section { background: var(--light-green-bg); }
-.ba-details-section { background: var(--light-orange-bg); }
+.bcom-details-section, .ba-details-section { padding-top: 5rem; background-color: var(--light-bg); }
 .course-intro { text-align: center; font-size: 1.1rem; max-width: 800px; margin: 0 auto 4rem auto; }
 .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .feature-card { background: var(--white-color); padding: 2rem; text-align: center; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
@@ -213,7 +206,6 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .bca-extra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
 .bca-extra-card { display: flex; align-items: center; gap: 1.5rem; background: var(--white-color); padding: 2rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);}
 .bca-extra-icon { font-size: 3rem; color: var(--accent-pink); }
-/* --- END: 1 LAKH BCA PAGE ANIMATIONS --- */
 
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
 @media(max-width: 992px) { 
@@ -234,8 +226,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    .hero-content h1, .bca-hero-content h1 { font-size: 2.8rem; }
-    .hero-content p, .bca-hero-content p { font-size: 1.2rem; }
+    .hero-content h1, .hero-video-content h1 { font-size: 2.8rem; }
+    .hero-content p, .hero-video-content p { font-size: 1.2rem; }
     .content-section { padding: 3rem 0; }
     .section-title { font-size: 2rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
@@ -250,8 +242,6 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .slide-prev { transform: translate(-100%, -50%) scale(0.6); }
     .slide-next { transform: translate(0%, -50%) scale(0.6); }
     .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid { grid-template-columns: 1fr; }
-    .course-hero-section h1, .course-hero-section p { padding: 0 1rem; }
-    .course-hero-section h1 { font-size: 2rem; }
     .bca-details-section { padding-top: 3rem; }
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
-                    }
+                  }
