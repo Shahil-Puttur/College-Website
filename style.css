@@ -99,91 +99,18 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .nss-card { background-image: url('assets/images/nss.png'); }
 .redcross-card { background-image: url('assets/images/redcross.png'); }
 .footer { background-color: var(--secondary-blue); color: var(--white-color); text-align: center; padding: 3rem 0; }
-
-/* --- START: UNIVERSAL GRAND VIDEO HERO STYLES --- */
-.video-hero-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--white-color);
-    overflow: hidden;
-}
-.video-hero-section .hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 1;
-}
-.video-hero-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 38, 71, 0.7); /* Default Dark blue overlay */
-    z-index: 2;
-}
-.hero-video-content {
-    position: relative;
-    z-index: 3;
-    padding: 0 1rem;
-}
-.hero-video-content h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-.hero-video-content p {
-    font-size: 1.5rem;
-    font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto;
-}
-/* --- END: UNIVERSAL GRAND VIDEO HERO STYLES --- */
-
-/* --- GLOWING BORDER FOR BCA TOPIC CARDS --- */
+.video-hero-section { position: relative; height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; color: var(--white-color); overflow: hidden; }
+.video-hero-section .hero-video { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: 1; }
+.video-hero-section::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 38, 71, 0.7); z-index: 2; }
+.hero-video-content { position: relative; z-index: 3; padding: 0 1rem; }
+.hero-video-content h1 { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; }
+.hero-video-content p { font-size: 1.5rem; font-weight: 300; max-width: 600px; margin: 0 auto; }
 .bca-learn-section { background-color: var(--white-color); }
-.topic-card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 2px solid transparent;
-}
-.topic-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 25px rgba(74, 144, 226, 0.4);
-    border-color: var(--primary-blue);
-}
+.topic-card { background: #fff; padding: 2rem; border-radius: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 2px solid transparent; }
+.topic-card:hover { transform: translateY(-10px); box-shadow: 0 0 25px rgba(74, 144, 226, 0.4); border-color: var(--primary-blue); }
 .bca-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
 .bca-icon { font-size: 3rem; color: var(--primary-blue); }
 .topic-card h3 { margin: 1rem 0 0.5rem 0; }
-
-/* --- INTERACTIVE BCA TOOLS ICONS --- */
-.bca-tools-section { background-color: var(--light-bg); }
-.tools-grid { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem; }
-.tool-icon { text-align: center; font-weight: 600; }
-.tool-icon img {
-    display: block;
-    margin-bottom: 0.5rem;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease, transform 0.3s ease;
-}
-.tool-icon:hover img {
-    filter: grayscale(0%);
-    transform: scale(1.1);
-}
-
-/* --- OTHER COURSE PAGE STYLES --- */
 .bca-details-section { background-color: var(--creamy-purple); }
 .course-detail-layout { position: relative; display: flex; align-items: center; }
 .course-image-wrapper { flex: 1; z-index: 1; }
@@ -206,6 +133,48 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .bca-extra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
 .bca-extra-card { display: flex; align-items: center; gap: 1.5rem; background: var(--white-color); padding: 2rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);}
 .bca-extra-icon { font-size: 3rem; color: var(--accent-pink); }
+.bca-tools-section { background-color: var(--light-bg); }
+.tools-grid { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem; }
+.tool-icon { text-align: center; font-weight: 600; }
+
+/* --- START: NEW AUTOMATIC GLOW ANIMATION --- */
+@keyframes autoGlow {
+    0%, 100% {
+        filter: grayscale(100%);
+        transform: scale(1.0);
+    }
+    50% {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+    }
+}
+
+.tool-icon img {
+    display: block;
+    margin-bottom: 0.5rem;
+    filter: grayscale(100%);
+    /* Set up the animation properties */
+    animation-name: autoGlow;
+    animation-duration: 4s; /* Total cycle for all 4 icons */
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+/* This creates the "one by one" sequential effect */
+.tools-grid .tool-icon:nth-child(1) img { animation-delay: 0s; }
+.tools-grid .tool-icon:nth-child(2) img { animation-delay: 1s; }
+.tools-grid .tool-icon:nth-child(3) img { animation-delay: 2s; }
+.tools-grid .tool-icon:nth-child(4) img { animation-delay: 3s; }
+
+/* The hover effect still works and will override the animation */
+.tool-icon:hover img {
+    /* When you hover, kill the animation and apply hover styles instantly */
+    animation: none; 
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+/* --- END: NEW AUTOMATIC GLOW ANIMATION --- */
+
 
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
 @media(max-width: 992px) { 
@@ -244,4 +213,4 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid { grid-template-columns: 1fr; }
     .bca-details-section { padding-top: 3rem; }
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
-                  }
+               }
