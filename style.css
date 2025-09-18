@@ -215,37 +215,34 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
 }
 
-/* --- START: NEW LATEST EVENTS SLIDER STYLES --- */
+/* --- START: UPDATED LATEST EVENTS SLIDER STYLES --- */
 .event-slider-section {
-    background-color: var(--white-color); /* A clean background for the slider section */
+    background-color: var(--white-color);
 }
 .event-slider-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9; /* Perfect 16:9 ratio for your images */
+    aspect-ratio: 16 / 9;
     margin: auto;
-    overflow: hidden;
-    border-radius: 15px; /* Premium rounded corners */
-    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.25); /* Professional shadow */
+    overflow: hidden; /* This is crucial for the sliding effect */
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.25);
+}
+.event-slider-track {
+    display: flex; /* Aligns slides horizontally */
+    height: 100%;
+    transition: transform 0.8s ease-in-out; /* The smooth slide animation */
 }
 .event-slide {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: relative; /* For caption positioning */
     width: 100%;
     height: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out; /* Smooth fade transition */
-}
-.event-slide.active {
-    opacity: 1;
-    visibility: visible;
+    flex-shrink: 0; /* Prevents slides from shrinking */
 }
 .event-slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image covers the area, centered, without distortion */
+    object-fit: cover;
     object-position: center;
 }
 .event-slide-caption {
@@ -253,28 +250,44 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); /* Gradient for readable text */
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     color: var(--white-color);
     padding: 3rem 2rem 1.5rem 2rem;
     font-size: 1.25rem;
     font-weight: 600;
-    transform: translateY(100%); /* Start off-screen */
-    opacity: 0;
-    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-    transition-delay: 0.3s; /* Caption appears slightly after image fades in */
 }
-.event-slide.active .event-slide-caption {
-    transform: translateY(0); /* Animate caption into view */
-    opacity: 1;
+
+/* New Dot Navigation Styles */
+.event-slider-dots {
+    text-align: center;
+    padding-top: 1rem;
 }
+.dot {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.dot.active {
+    background-color: var(--primary-blue); /* Active color */
+    transform: scale(1.2); /* Make the active dot slightly bigger */
+}
+
 
 @media(max-width: 768px) {
     .event-slider-container {
-        aspect-ratio: 4 / 3; /* A better ratio for mobile screens */
+        aspect-ratio: 4 / 3;
     }
     .event-slide-caption {
         font-size: 1rem;
         padding: 2rem 1rem 1rem 1rem;
     }
+    .dot {
+        height: 10px;
+        width: 10px;
+    }
 }
-/* --- END: NEW LATEST EVENTS SLIDER STYLES --- */
+/* --- END: UPDATED LATEST EVENTS SLIDER STYLES --- */
