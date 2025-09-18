@@ -36,41 +36,37 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .content-section { padding: 5rem 0; }
 .section-title { text-align: center; font-size: 2.5rem; color: var(--text-color-dark); margin-bottom: 3rem; font-weight: 700; }
 
-/* --- START: 1 LAKH WORTH SLIDER STYLES --- */
-.latest-events-section {
-    background-color: var(--white-color);
-}
-.slider-container {
-    position: relative;
-    max-width: 900px;
-    margin: auto;
-    padding: 0 50px; /* Space for the nav arrows */
-}
+/* --- START: 1 LAKH WORTH SLIDER V2 (CSS SCROLL SNAP) --- */
+.latest-events-section { background-color: var(--white-color); }
+.slider-container { position: relative; max-width: 800px; margin: auto; }
 .slider-viewport {
-    width: 100%;
-    overflow: hidden;
-    perspective: 1000px; /* This enables the 3D effect */
-}
-.slider-track {
     display: flex;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-    transform-style: preserve-3d;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* The magic starts here */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
 }
+.slider-viewport::-webkit-scrollbar { display: none; /* Hide scrollbar for Chrome, Safari, Edge */ }
+.slider-track { display: flex; /* Keeps slides in a row */ }
 .slider-slide {
     width: 100%;
     flex-shrink: 0;
     position: relative;
-    opacity: 0.4;
-    transform: scale(0.8);
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+    scroll-snap-align: center; /* PERFECT CENTERING */
+    transform-origin: center center;
+    transform: scale(0.85); /* Non-active slides are smaller */
+    opacity: 0.5;
+    transition: transform 0.5s ease, opacity 0.5s ease;
 }
 .slider-slide.active {
+    transform: scale(1); /* Active slide is full size */
     opacity: 1;
-    transform: scale(1);
 }
 .slider-slide img {
     width: 100%;
-    height: 100%;
+    height: auto; /* Handles 16:9 ratio correctly */
+    aspect-ratio: 16 / 9; /* Enforces 16:9 ratio */
     display: block;
     object-fit: cover;
     border-radius: 15px;
@@ -92,10 +88,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     transform: translateY(20px);
     transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
 }
-.slider-slide.active .slide-caption {
-    opacity: 1;
-    transform: translateY(0);
-}
+.slider-slide.active .slide-caption { opacity: 1; transform: translateY(0); }
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -115,13 +108,10 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
-.slider-btn:hover {
-    background-color: var(--white-color);
-    transform: translateY(-50%) scale(1.1);
-}
-.slider-btn.prev { left: 0; }
-.slider-btn.next { right: 0; }
-/* --- END: 1 LAKH WORTH SLIDER STYLES --- */
+.slider-btn:hover { background-color: var(--white-color); transform: translateY(-50%) scale(1.1); }
+.slider-btn.prev { left: -25px; } /* Positioned outside the main container */
+.slider-btn.next { right: -25px; }
+/* --- END: 1 LAKH WORTH SLIDER V2 --- */
 
 .management-grid { display: grid; grid-template-columns: 2fr 1fr; align-items: center; gap: 3rem; }
 .management-text .text-wrapper { max-height: 125px; overflow: hidden; transition: max-height 0.5s ease-in-out; }
@@ -144,7 +134,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .typing-text::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; }
 .typing-text.typing-done::after { content: ''; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-.professors-section { /* background removed for premium feel */ }
+.professors-section { /* background removed */ }
 .carousel-container { position: relative; width: 100%; height: 500px; margin: auto; }
 .carousel-track { position: relative; width: 100%; height: 100%; }
 .professor-slide { position: absolute; top: 50%; left: 50%; width: 350px; text-align: center; transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; }
@@ -157,7 +147,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .slide-prev { transform: translate(-120%, -50%) scale(0.6); opacity: 0.7; z-index: 5; }
 .slide-next { transform: translate(20%, -50%) scale(0.6); opacity: 0.7; z-index: 5; }
 .slide-hidden { transform: translate(80%, -50%) scale(0.3); opacity: 0; z-index: 1; }
-.courses-section { /* background removed for premium feel */ }
+.courses-section { /* background removed */ }
 .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 .program-card { position: relative; background-size: cover; background-position: center; color: var(--white-color); border-radius: 10px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .program-card .card-link { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; }
@@ -170,7 +160,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .program-card h3 { font-size: 2rem; margin-bottom: 0.5rem; }
 .program-card p { margin-bottom: 1.5rem; }
 .program-card span { text-decoration: none; color: var(--white-color); font-weight: 600; background-color: var(--accent-pink); padding: 8px 18px; border-radius: 50px; transition: background-color 0.3s ease; align-self: flex-start; }
-.facilities-section { /* background removed for premium feel */ }
+.facilities-section { /* background removed */ }
 .pill-heading { display: inline-block; background-color: rgba(74, 144, 226, 0.1); color: var(--primary-blue); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
 .facilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; text-align: center; }
 .facility-card { background: var(--white-color); padding: 2rem; border-radius: 10px; border: 1px solid #e0e0e0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -274,4 +264,4 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid { grid-template-columns: 1fr; }
     .bca-details-section { padding-top: 3rem; }
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
-              }
+                }
