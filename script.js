@@ -47,90 +47,99 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { threshold: 0.5 });
         observer.observe(textElement);
     }
-
-    // --- Professor Carousel (Old) ---
-    const professorTrack = document.querySelector('.carousel-track-old');
-    if (professorTrack) {
-        // ... (professor carousel logic is unchanged and will work fine)
-    }
     
-    // --- START: 1 LAKH WORTH SLIDER SCRIPT V3 (SEAMLESS LOOP) ---
-    const eventCarousel = document.querySelector('.carousel-container');
+    // --- START: FINAL 1 LAKH WORTH SLIDER SCRIPT ---
+    const eventCarousel = document.querySelector('.events-carousel-container');
     if (eventCarousel) {
-        const track = eventCarousel.querySelector('.carousel-track');
+        const track = eventCarousel.querySelector('.events-carousel-track');
         const slides = Array.from(track.children);
         const nextButton = eventCarousel.querySelector('.carousel-btn.next');
         const prevButton = eventCarousel.querySelector('.carousel-btn.prev');
         
         // 1. CLONE SLIDES FOR SEAMLESS LOOP
-        const cloneCount = 1; // Number of clones on each side
-        for (let i = 0; i < cloneCount; i++) {
-            track.append(slides[i].cloneNode(true));
-        }
-        for (let i = slides.length - 1; i >= slides.length - cloneCount; i--) {
-            track.prepend(slides[i].cloneNode(true));
-        }
+        const firstClone = slides[0].cloneNode(true);
+        const lastClone = slides[slides.length - 1].cloneNode(true);
+        track.append(firstClone);
+        track.prepend(lastClone);
 
         const allSlides = Array.from(track.children);
-        let currentIndex = cloneCount;
+        let currentIndex = 1; // Start on the first real slide
         let isTransitioning = false;
         let autoPlayInterval;
         
-        const updatePosition = () => {
+        const updatePosition = (useTransition = true) => {
             const slideWidth = slides[0].clientWidth;
+            track.style.transition = useTransition ? 'transform 0.5s ease-in-out' : 'none';
             track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
         };
 
-        const moveTo = (index) => {
+        const moveToNext = () => {
+            if (isTransitioning) return;
             isTransitioning = true;
-            currentIndex = index;
-            track.style.transition = 'transform 0.5s ease-in-out';
+            currentIndex++;
+            updatePosition();
+        };
+
+        const moveToPrev = () => {
+            if (isTransitioning) return;
+            isTransitioning = true;
+            currentIndex--;
             updatePosition();
         };
 
         const resetAutoPlay = () => {
             clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(() => {
-                moveTo(currentIndex + 1);
-            }, 3000); // 3-second autoplay
+            autoPlayInterval = setInterval(moveToNext, 3000); // 3-second autoplay
         };
 
         track.addEventListener('transitionend', () => {
             isTransitioning = false;
-            if (currentIndex >= slides.length + cloneCount) {
-                currentIndex = cloneCount;
-                track.style.transition = 'none';
-                updatePosition();
-            }
-            if (currentIndex < cloneCount) {
-                currentIndex = slides.length + cloneCount - 1;
-                track.style.transition = 'none';
-                updatePosition();
+            // Handle the seamless loop
+            if (currentIndex === 0) { // If we're on the prepended clone
+                currentIndex = slides.length; // Jump to the real last slide
+                updatePosition(false); // Do it instantly
+            } else if (currentIndex === allSlides.length - 1) { // If we're on the appended clone
+                currentIndex = 1; // Jump to the real first slide
+                updatePosition(false);
             }
         });
         
         nextButton.addEventListener('click', () => {
-            if (isTransitioning) return;
-            moveTo(currentIndex + 1);
+            moveToNext();
             resetAutoPlay();
         });
 
         prevButton.addEventListener('click', () => {
-            if (isTransitioning) return;
-            moveTo(currentIndex - 1);
+            moveToPrev();
             resetAutoPlay();
         });
 
         // Initial setup
-        track.style.transition = 'none';
-        updatePosition();
+        updatePosition(false);
         resetAutoPlay();
+
+        // Recalculate on window resize to be fully responsive
+        window.addEventListener('resize', () => updatePosition(false));
     }
-    // --- END: SLIDER SCRIPT V3 ---
+    // --- END: FINAL SLIDER SCRIPT ---
 
     // --- Custom Audio Player (bca.html only) ---
     const audioPlayer = document.getElementById('bcaAudioPlayer');
     if (audioPlayer) {
-        // ... (audio player logic is unchanged)
+        const audio = document.getElementById('bcaAudio');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const playAudio = () => { 
+            audio.play(); 
+            playBtn.style.display = 'none'; 
+            pauseBtn.style.display = 'flex'; 
+        };
+        const pauseAudio = () => { 
+            audio.pause(); 
+            playBtn.style.display = 'flex'; 
+            pauseBtn.style.display = 'none'; 
+        };
+        playBtn.addEventListener('click', playAudio);
+        pauseBtn.addEventListener('click', pauseAudio);
     }
 });
