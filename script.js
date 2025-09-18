@@ -89,60 +89,73 @@ document.addEventListener('DOMContentLoaded', () => {
         setInterval(slideNext, 3000);
     }
     
-    // --- START: 1 LAKH WORTH LATEST EVENTS SLIDER SCRIPT ---
-    const slider = document.querySelector('.slider-container');
-    if (slider) {
-        const track = slider.querySelector('.slider-track');
-        const slides = Array.from(track.children);
-        const nextButton = slider.querySelector('.slider-btn.next');
-        const prevButton = slider.querySelector('.slider-btn.prev');
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        let currentIndex = 0;
+    // --- START: 1 LAKH WORTH SLIDER SCRIPT V2 (CSS SCROLL SNAP) ---
+    const sliderContainer = document.querySelector('.slider-container');
+    if (sliderContainer) {
+        const viewport = sliderContainer.querySelector('.slider-viewport');
+        const slides = sliderContainer.querySelectorAll('.slider-slide');
+        const nextButton = sliderContainer.querySelector('.slider-btn.next');
+        const prevButton = sliderContainer.querySelector('.slider-btn.prev');
         let autoPlayInterval;
+        let currentIndex = 0;
 
-        // Function to move to a specific slide
-        const moveToSlide = (targetIndex) => {
-            track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
-            
-            // Update classes for 3D effect
+        const updateActiveSlide = () => {
             slides.forEach((slide, index) => {
-                slide.classList.remove('active');
-                if (index === targetIndex) {
+                const slideRect = slide.getBoundingClientRect();
+                const viewportRect = viewport.getBoundingClientRect();
+                // Check if the slide is mostly centered in the viewport
+                if (slideRect.left >= viewportRect.left && slideRect.right <= viewportRect.right) {
                     slide.classList.add('active');
+                    currentIndex = index;
+                } else {
+                    slide.classList.remove('active');
                 }
             });
-
-            currentIndex = targetIndex;
         };
 
         const resetAutoPlay = () => {
             clearInterval(autoPlayInterval);
             autoPlayInterval = setInterval(() => {
                 const nextIndex = (currentIndex + 1) % slides.length;
-                moveToSlide(nextIndex);
-            }, 5000); // Autoplay every 5 seconds
+                const slideToScroll = slides[nextIndex];
+                viewport.scrollTo({
+                    left: slideToScroll.offsetLeft,
+                    behavior: 'smooth'
+                });
+            }, 5000);
         };
 
-        // Next button event
         nextButton.addEventListener('click', () => {
             const nextIndex = (currentIndex + 1) % slides.length;
-            moveToSlide(nextIndex);
+            const slideToScroll = slides[nextIndex];
+            viewport.scrollTo({ left: slideToScroll.offsetLeft, behavior: 'smooth' });
             resetAutoPlay();
         });
 
-        // Previous button event
         prevButton.addEventListener('click', () => {
             const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
-            moveToSlide(prevIndex);
+            const slideToScroll = slides[prevIndex];
+            viewport.scrollTo({ left: slideToScroll.offsetLeft, behavior: 'smooth' });
             resetAutoPlay();
         });
+
+        // Use an IntersectionObserver to update the active class when user swipes
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    slides.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+                    currentIndex = Array.from(slides).indexOf(entry.target);
+                }
+            });
+        }, { root: viewport, threshold: 0.5 });
+
+        slides.forEach(slide => observer.observe(slide));
         
         // Initial setup
-        moveToSlide(0);
         resetAutoPlay();
     }
     // --- END: LATEST EVENTS SLIDER SCRIPT ---
-
 
     // --- Custom Audio Player (bca.html only) ---
     const audioPlayer = document.getElementById('bcaAudioPlayer');
