@@ -218,7 +218,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 /* --- START: UPDATED LATEST EVENTS SLIDER STYLES --- */
 .event-slider-section {
     background-color: var(--white-color);
-    padding-bottom: 0; /* Remove bottom padding to connect with ticker */
+    padding-top: 5rem; /* Re-add top padding */
+    padding-bottom: 5rem; /* Re-add bottom padding */
 }
 .event-slider-container {
     position: relative;
@@ -261,7 +262,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 /* New Dot Navigation Styles */
 .event-slider-dots {
     text-align: center;
-    padding: 1rem 0; /* Give dots some space */
+    padding: 1rem 0 0 0; /* Give dots some space */
 }
 .dot {
     display: inline-block;
@@ -279,6 +280,10 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 
 
 @media(max-width: 768px) {
+    .event-slider-section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
     .event-slider-container {
         aspect-ratio: 4 / 3;
     }
