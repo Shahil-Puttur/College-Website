@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pauseBtn.addEventListener('click', pauseAudio);
     }
 
-    // --- START: NEW LATEST EVENTS SLIDER LOGIC ---
+    // --- START: UPDATED LATEST EVENTS SLIDER LOGIC ---
     const eventSliderContainer = document.getElementById('eventSlider');
     if (eventSliderContainer) {
         const events = [
@@ -123,39 +123,57 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/latest7.jpg', caption: 'Commerce Association Programme' }
         ];
 
-        // Create and add slides to the container
-        events.forEach(event => {
+        const dotsContainer = document.querySelector('.event-slider-dots');
+        
+        // Create a track for the slides to sit in
+        const track = document.createElement('div');
+        track.className = 'event-slider-track';
+        
+        // Create and add slides and dots
+        events.forEach((event, index) => {
+            // Create slide
             const slide = document.createElement('div');
             slide.className = 'event-slide';
             slide.innerHTML = `
                 <img src="${event.img}" alt="${event.caption}">
                 <div class="event-slide-caption">${event.caption}</div>
             `;
-            eventSliderContainer.appendChild(slide);
+            track.appendChild(slide);
+
+            // Create dot
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.dataset.index = index; // Store index for potential future click events
+            dotsContainer.appendChild(dot);
         });
 
-        const slides = document.querySelectorAll('.event-slide');
+        // Add the track to the main container
+        eventSliderContainer.appendChild(track);
+
+        const dots = document.querySelectorAll('.dot');
         let currentSlide = 0;
 
         function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                if (i === index) {
-                    slide.classList.add('active');
-                }
-            });
+            // Move the track
+            track.style.transform = `translateX(-${index * 100}%)`;
+            
+            // Update the active dot
+            dots.forEach(dot => dot.classList.remove('active'));
+            if(dots[index]) {
+                dots[index].classList.add('active');
+            }
         }
 
         function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
+            currentSlide = (currentSlide + 1) % events.length;
             showSlide(currentSlide);
         }
 
-        // Initialize the first slide and start the interval
-        if (slides.length > 0) {
+        // Initialize the slider and start the interval
+        if (events.length > 0) {
             showSlide(0);
             setInterval(nextSlide, 3000); // Change image every 3 seconds
         }
     }
-    // --- END: NEW LATEST EVENTS SLIDER LOGIC ---
+    // --- END: UPDATED LATEST EVENTS SLIDER LOGIC ---
 });
