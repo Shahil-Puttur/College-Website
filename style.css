@@ -218,8 +218,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 /* --- START: UPDATED LATEST EVENTS SLIDER STYLES --- */
 .event-slider-section {
     background-color: var(--white-color);
-    padding-top: 5rem; /* Re-add top padding */
-    padding-bottom: 5rem; /* Re-add bottom padding */
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 }
 .event-slider-container {
     position: relative;
@@ -234,6 +234,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     display: flex; /* Aligns slides horizontally */
     height: 100%;
     transition: transform 0.8s ease-in-out; /* The smooth slide animation */
+    will-change: transform; /* Performance optimization hint for the browser */
 }
 .event-slide {
     position: relative; /* For caption positioning */
