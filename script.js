@@ -109,4 +109,53 @@ document.addEventListener('DOMContentLoaded', () => {
         playBtn.addEventListener('click', playAudio);
         pauseBtn.addEventListener('click', pauseAudio);
     }
+
+    // --- START: NEW LATEST EVENTS SLIDER LOGIC ---
+    const eventSliderContainer = document.getElementById('eventSlider');
+    if (eventSliderContainer) {
+        const events = [
+            { img: 'assets/images/latest1.jpg', caption: 'Independence Day Cup' },
+            { img: 'assets/images/latest2.jpg', caption: 'Dasara Kabaddi Winners' },
+            { img: 'assets/images/latest3.jpg', caption: 'Aati Fest' },
+            { img: 'assets/images/latest4.jpg', caption: 'IT Association Programme' },
+            { img: 'assets/images/latest5.jpg', caption: 'Kannada Sahitya Programme' },
+            { img: 'assets/images/latest6.jpg', caption: 'Arts Association Programme' },
+            { img: 'assets/images/latest7.jpg', caption: 'Commerce Association Programme' }
+        ];
+
+        // Create and add slides to the container
+        events.forEach(event => {
+            const slide = document.createElement('div');
+            slide.className = 'event-slide';
+            slide.innerHTML = `
+                <img src="${event.img}" alt="${event.caption}">
+                <div class="event-slide-caption">${event.caption}</div>
+            `;
+            eventSliderContainer.appendChild(slide);
+        });
+
+        const slides = document.querySelectorAll('.event-slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Initialize the first slide and start the interval
+        if (slides.length > 0) {
+            showSlide(0);
+            setInterval(nextSlide, 3000); // Change image every 3 seconds
+        }
+    }
+    // --- END: NEW LATEST EVENTS SLIDER LOGIC ---
 });
