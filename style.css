@@ -218,6 +218,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 /* --- START: UPDATED LATEST EVENTS SLIDER STYLES --- */
 .event-slider-section {
     background-color: var(--white-color);
+    padding-bottom: 2rem; /* Reduced padding to bring ticker closer */
 }
 .event-slider-container {
     position: relative;
@@ -278,6 +279,9 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 
 
 @media(max-width: 768px) {
+    .event-slider-section {
+        padding-bottom: 1rem;
+    }
     .event-slider-container {
         aspect-ratio: 4 / 3;
     }
@@ -291,3 +295,44 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     }
 }
 /* --- END: UPDATED LATEST EVENTS SLIDER STYLES --- */
+
+/* --- START: NEW NEWS TICKER STYLES --- */
+.news-ticker-section {
+    background-color: var(--text-color-dark); /* Dark background */
+    padding: 0;
+    margin-top: -2rem; /* Pull it up slightly to overlap with the section above */
+    position: relative;
+    z-index: 10;
+}
+.news-ticker-container {
+    width: 100%;
+    overflow: hidden; /* Hides the text that scrolls off-screen */
+    padding: 1rem 0;
+    white-space: nowrap; /* Prevents the text from wrapping to a new line */
+}
+.scrolling-text {
+    display: inline-block;
+    color: var(--white-color); /* Light text */
+    font-weight: 600;
+    font-size: 1rem;
+    padding-left: 100%; /* Starts the animation from the right edge of the screen */
+    animation: scroll-left 20s linear infinite; /* The animation magic */
+}
+
+/* Keyframe animation for the continuous scroll */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-200%); /* Adjust this value if text is too long or short */
+    }
+}
+
+@media(max-width: 768px) {
+    .scrolling-text {
+        font-size: 0.9rem;
+        animation-duration: 15s; /* Scrolls a bit faster on smaller screens */
+    }
+}
+/* --- END: NEW NEWS TICKER STYLES --- */
