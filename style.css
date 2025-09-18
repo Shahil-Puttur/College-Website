@@ -36,47 +36,30 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .content-section { padding: 5rem 0; }
 .section-title { text-align: center; font-size: 2.5rem; color: var(--text-color-dark); margin-bottom: 3rem; font-weight: 700; }
 
-/* --- START: 1 LAKH WORTH SLIDER V2 (CSS SCROLL SNAP) --- */
+/* --- START: 1 LAKH WORTH SLIDER V3 (SEAMLESS LOOP) --- */
 .latest-events-section { background-color: var(--white-color); }
-.slider-container { position: relative; max-width: 800px; margin: auto; }
-.slider-viewport {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory; /* The magic starts here */
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-}
-.slider-viewport::-webkit-scrollbar { display: none; /* Hide scrollbar for Chrome, Safari, Edge */ }
-.slider-track { display: flex; /* Keeps slides in a row */ }
-.slider-slide {
-    width: 100%;
-    flex-shrink: 0;
+.carousel-container { position: relative; max-width: 800px; margin: auto; padding: 0 60px; }
+.carousel-track-wrapper { overflow: hidden; }
+.carousel-track { display: flex; }
+.carousel-slide {
+    min-width: 100%;
     position: relative;
-    scroll-snap-align: center; /* PERFECT CENTERING */
-    transform-origin: center center;
-    transform: scale(0.85); /* Non-active slides are smaller */
-    opacity: 0.5;
-    transition: transform 0.5s ease, opacity 0.5s ease;
+    box-sizing: border-box;
+    padding: 0 10px; /* Space between slides */
 }
-.slider-slide.active {
-    transform: scale(1); /* Active slide is full size */
-    opacity: 1;
-}
-.slider-slide img {
+.carousel-slide img {
     width: 100%;
-    height: auto; /* Handles 16:9 ratio correctly */
-    aspect-ratio: 16 / 9; /* Enforces 16:9 ratio */
     display: block;
-    object-fit: cover;
+    height: 450px; /* Fixed height for consistency */
+    object-fit: contain; /* THIS SHOWS THE FULL IMAGE, NO CROP */
+    background-color: #111; /* Black background for empty space */
     border-radius: 15px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 .slide-caption {
     position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 10px; right: 10px; /* Match slide padding */
     background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     color: var(--white-color);
     padding: 2.5rem 1.5rem 1.5rem;
@@ -84,12 +67,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     font-size: 1.25rem;
     font-weight: 600;
     border-radius: 0 0 15px 15px;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
 }
-.slider-slide.active .slide-caption { opacity: 1; transform: translateY(0); }
-.slider-btn {
+.carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -108,12 +87,13 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
-.slider-btn:hover { background-color: var(--white-color); transform: translateY(-50%) scale(1.1); }
-.slider-btn.prev { left: -25px; } /* Positioned outside the main container */
-.slider-btn.next { right: -25px; }
-/* --- END: 1 LAKH WORTH SLIDER V2 --- */
+.carousel-btn:hover { background-color: var(--white-color); transform: translateY(-50%) scale(1.1); }
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+/* --- END: SLIDER V3 --- */
 
 .management-grid { display: grid; grid-template-columns: 2fr 1fr; align-items: center; gap: 3rem; }
+/* ... (rest of your CSS is the same) ... */
 .management-text .text-wrapper { max-height: 125px; overflow: hidden; transition: max-height 0.5s ease-in-out; }
 .management-text .text-wrapper.expanded { max-height: 1000px; }
 .management-text .full-text { display: block; }
@@ -135,8 +115,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .typing-text.typing-done::after { content: ''; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 .professors-section { /* background removed */ }
-.carousel-container { position: relative; width: 100%; height: 500px; margin: auto; }
-.carousel-track { position: relative; width: 100%; height: 100%; }
+.carousel-container-old { position: relative; width: 100%; height: 500px; margin: auto; }
+.carousel-track-old { position: relative; width: 100%; height: 100%; }
 .professor-slide { position: absolute; top: 50%; left: 50%; width: 350px; text-align: center; transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out; }
 .professor-slide img { width: 100%; height: 350px; object-fit: cover; object-position: top center; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); border: 4px solid var(--white-color); }
 .professor-info { margin-top: 1rem; opacity: 0; transition: opacity 0.5s ease-in-out; }
@@ -222,16 +202,12 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .tools-grid .tool-icon:nth-child(4) img { animation-delay: 3s; }
 .tool-icon:hover img { animation: none; filter: grayscale(0%); transform: scale(1.1); }
 
-@media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
-@media(max-width: 992px) { 
-    .owner-image { display: none; } 
-    .management-grid { grid-template-columns: 1fr; } 
-    .management-images { order: -1; margin-bottom: 2rem; } 
-    .course-detail-layout { flex-direction: column; } 
-    .course-text-wrapper { margin-left: 0; margin-top: -50px; width: 100%; } 
-    .bca-grid { grid-template-columns: repeat(2, 1fr); } 
-}
 @media(max-width: 768px) {
+    .carousel-container { padding: 0; }
+    .carousel-btn { width: 40px; height: 40px; font-size: 2rem; }
+    .carousel-btn.prev { left: 5px; }
+    .carousel-btn.next { right: 5px; }
+    .slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem; }
     .nav-menu { position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--white-color); width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; }
     .nav-menu.active { right: 0; }
     .nav-item { width: 100%; }
@@ -245,23 +221,20 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hero-content p, .hero-video-content p { font-size: 1.2rem; }
     .content-section { padding: 3rem 0; }
     .section-title { font-size: 2rem; }
-    .slider-container { padding: 0; }
-    .slider-btn { width: 40px; height: 40px; font-size: 2rem; }
-    .slider-btn.prev { left: 5px; }
-    .slider-btn.next { right: 5px; }
-    .slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
     .principal-text { padding-left: 0; }
     .principal-text::before { display: none; }
     .principal-img img { width: 150px; height: 150px; }
     .principal-text p { font-size: 1rem; }
     .typing-text { font-size: 1.1rem; }
-    .carousel-container { height: 450px; }
+    .carousel-container-old { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
     .slide-prev { transform: translate(-100%, -50%) scale(0.6); }
     .slide-next { transform: translate(0%, -50%) scale(0.6); }
     .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid { grid-template-columns: 1fr; }
+    .course-detail-layout { flex-direction: column; }
+    .course-text-wrapper { margin-left: 0; margin-top: -50px; width: 100%; }
     .bca-details-section { padding-top: 3rem; }
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
-                }
+                  }
