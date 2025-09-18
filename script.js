@@ -11,10 +11,10 @@ overlay.addEventListener("click", closeMenu);
 // --- Initialize AOS (Animate on Scroll) Library ---
 AOS.init({ duration: 1000, once: true });
 
-// --- "Read More" Button Logic ---
+// --- "Read More" Button Logic (index.html only) ---
 const readMoreBtn = document.getElementById('readMoreBtn');
+const managementTextWrapper = document.getElementById('managementText');
 if (readMoreBtn) {
-    const managementTextWrapper = document.getElementById('managementText');
     readMoreBtn.addEventListener('click', () => {
         managementTextWrapper.classList.toggle('expanded');
         readMoreBtn.textContent = managementTextWrapper.classList.contains('expanded') ? 'Read Less' : 'Read More';
@@ -34,94 +34,61 @@ document.addEventListener('DOMContentLoaded', () => {
                     let i = 0; textElement.innerHTML = '';
                     const typingInterval = setInterval(() => {
                         if (i < fullText.length) {
-                            textElement.innerHTML += fullText.charAt(i);
+                            const char = fullText.charAt(i);
+                            textElement.innerHTML += char;
                             i++;
                         } else {
                             clearInterval(typingInterval);
                             textElement.classList.add('typing-done');
                         }
-                    }, 50);
+                    }, 50); // Typing speed
                     observer.unobserve(textElement);
                 }
             });
         }, { threshold: 0.5 });
         observer.observe(textElement);
     }
-    
-    // --- START: FINAL 1 LAKH WORTH SLIDER SCRIPT ---
-    const eventCarousel = document.querySelector('.events-carousel-container');
-    if (eventCarousel) {
-        const track = eventCarousel.querySelector('.events-carousel-track');
+
+    // --- Professor Carousel (index.html only) ---
+    const track = document.querySelector('.carousel-track');
+    if (track) {
+        const professorData = [
+            { img: 'assets/images/A-mam1.jpg', name: 'Prathibha', qual: 'MCA', desc: 'HOD of Bachelor of Computer Application' },
+            { img: 'assets/images/A-mam2.jpg', name: 'Kaushalya S', qual: 'MSc', desc: 'Assistant Professor, IQAC Coordinator' },
+            { img: 'assets/images/A-sir1.png', name: 'Venkaataramana', qual: '', desc: 'IC Professor' },
+            { img: 'assets/images/A-mam3.jpg', name: 'Vagdevi G', qual: 'MA in English', desc: '' },
+            { img: 'assets/images/A-mam4.png', name: 'Harshitha A', qual: 'MSc CS', desc: 'Assistant Lecturer, Computer Science' },
+            { img: 'assets/images/B-mam5.png', name: 'Nireeshma N Suvarna', qual: 'MCom, KSET', desc: 'Asst. Professor, Dept of Commerce' },
+            { img: 'assets/images/B-mam6.jpg', name: 'Prathibha S', qual: 'M.A, M.Ed', desc: 'Lecturer in History' },
+            { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'HOD, Dept of Commerce' }
+        ];
+
+        professorData.forEach(prof => {
+            const slide = document.createElement('div');
+            slide.className = 'professor-slide';
+            const qualText = prof.qual ? prof.qual : '';
+            const descText = prof.desc ? prof.desc : '';
+            const separator = qualText && descText ? ', ' : '';
+            slide.innerHTML = `<img src="${prof.img}" alt="${prof.name}"><div class="professor-info"><h3>${prof.name}</h3><p>${qualText}${separator}${descText}</p></div>`;
+            track.appendChild(slide);
+        });
+
         const slides = Array.from(track.children);
-        const nextButton = eventCarousel.querySelector('.carousel-btn.next');
-        const prevButton = eventCarousel.querySelector('.carousel-btn.prev');
-        
-        // 1. CLONE SLIDES FOR SEAMLESS LOOP
-        const firstClone = slides[0].cloneNode(true);
-        const lastClone = slides[slides.length - 1].cloneNode(true);
-        track.append(firstClone);
-        track.prepend(lastClone);
-
-        const allSlides = Array.from(track.children);
-        let currentIndex = 1; // Start on the first real slide
-        let isTransitioning = false;
-        let autoPlayInterval;
-        
-        const updatePosition = (useTransition = true) => {
-            const slideWidth = slides[0].clientWidth;
-            track.style.transition = useTransition ? 'transform 0.5s ease-in-out' : 'none';
-            track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        };
-
-        const moveToNext = () => {
-            if (isTransitioning) return;
-            isTransitioning = true;
-            currentIndex++;
-            updatePosition();
-        };
-
-        const moveToPrev = () => {
-            if (isTransitioning) return;
-            isTransitioning = true;
-            currentIndex--;
-            updatePosition();
-        };
-
-        const resetAutoPlay = () => {
-            clearInterval(autoPlayInterval);
-            autoPlayInterval = setInterval(moveToNext, 3000); // 3-second autoplay
-        };
-
-        track.addEventListener('transitionend', () => {
-            isTransitioning = false;
-            // Handle the seamless loop
-            if (currentIndex === 0) { // If we're on the prepended clone
-                currentIndex = slides.length; // Jump to the real last slide
-                updatePosition(false); // Do it instantly
-            } else if (currentIndex === allSlides.length - 1) { // If we're on the appended clone
-                currentIndex = 1; // Jump to the real first slide
-                updatePosition(false);
-            }
-        });
-        
-        nextButton.addEventListener('click', () => {
-            moveToNext();
-            resetAutoPlay();
-        });
-
-        prevButton.addEventListener('click', () => {
-            moveToPrev();
-            resetAutoPlay();
-        });
-
-        // Initial setup
-        updatePosition(false);
-        resetAutoPlay();
-
-        // Recalculate on window resize to be fully responsive
-        window.addEventListener('resize', () => updatePosition(false));
+        let currentIndex = 0;
+        function updateCarousel() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('slide-active', 'slide-prev', 'slide-next', 'slide-hidden');
+                let newIndex = (index - currentIndex + slides.length) % slides.length;
+                if (newIndex === 0) { slide.classList.add('slide-active'); } 
+                else if (newIndex === 1) { slide.classList.add('slide-next'); } 
+                else if (newIndex === slides.length - 1) { slide.classList.add('slide-prev'); } 
+                else { slide.classList.add('slide-hidden'); }
+            });
+        }
+        function slideNext() { currentIndex = (currentIndex + 1) % slides.length; updateCarousel(); }
+        updateCarousel();
+        setInterval(slideNext, 3000);
     }
-    // --- END: FINAL SLIDER SCRIPT ---
 
     // --- Custom Audio Player (bca.html only) ---
     const audioPlayer = document.getElementById('bcaAudioPlayer');
