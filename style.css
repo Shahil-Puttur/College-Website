@@ -35,6 +35,94 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); }
 .content-section { padding: 5rem 0; }
 .section-title { text-align: center; font-size: 2.5rem; color: var(--text-color-dark); margin-bottom: 3rem; font-weight: 700; }
+
+/* --- START: 1 LAKH WORTH SLIDER STYLES --- */
+.latest-events-section {
+    background-color: var(--white-color);
+}
+.slider-container {
+    position: relative;
+    max-width: 900px;
+    margin: auto;
+    padding: 0 50px; /* Space for the nav arrows */
+}
+.slider-viewport {
+    width: 100%;
+    overflow: hidden;
+    perspective: 1000px; /* This enables the 3D effect */
+}
+.slider-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-style: preserve-3d;
+}
+.slider-slide {
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+    opacity: 0.4;
+    transform: scale(0.8);
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+}
+.slider-slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+.slider-slide img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+.slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: var(--white-color);
+    padding: 2.5rem 1.5rem 1.5rem;
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border-radius: 0 0 15px 15px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+}
+.slider-slide.active .slide-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 2.5rem;
+    color: var(--text-color-dark);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.slider-btn:hover {
+    background-color: var(--white-color);
+    transform: translateY(-50%) scale(1.1);
+}
+.slider-btn.prev { left: 0; }
+.slider-btn.next { right: 0; }
+/* --- END: 1 LAKH WORTH SLIDER STYLES --- */
+
 .management-grid { display: grid; grid-template-columns: 2fr 1fr; align-items: center; gap: 3rem; }
 .management-text .text-wrapper { max-height: 125px; overflow: hidden; transition: max-height 0.5s ease-in-out; }
 .management-text .text-wrapper.expanded { max-height: 1000px; }
@@ -136,45 +224,13 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .bca-tools-section { background-color: var(--light-bg); }
 .tools-grid { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem; }
 .tool-icon { text-align: center; font-weight: 600; }
-
-/* --- START: NEW AUTOMATIC GLOW ANIMATION --- */
-@keyframes autoGlow {
-    0%, 100% {
-        filter: grayscale(100%);
-        transform: scale(1.0);
-    }
-    50% {
-        filter: grayscale(0%);
-        transform: scale(1.1);
-    }
-}
-
-.tool-icon img {
-    display: block;
-    margin-bottom: 0.5rem;
-    filter: grayscale(100%);
-    /* Set up the animation properties */
-    animation-name: autoGlow;
-    animation-duration: 4s; /* Total cycle for all 4 icons */
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-}
-
-/* This creates the "one by one" sequential effect */
+@keyframes autoGlow { 0%, 100% { filter: grayscale(100%); transform: scale(1.0); } 50% { filter: grayscale(0%); transform: scale(1.1); } }
+.tool-icon img { display: block; margin-bottom: 0.5rem; filter: grayscale(100%); animation-name: autoGlow; animation-duration: 4s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
 .tools-grid .tool-icon:nth-child(1) img { animation-delay: 0s; }
 .tools-grid .tool-icon:nth-child(2) img { animation-delay: 1s; }
 .tools-grid .tool-icon:nth-child(3) img { animation-delay: 2s; }
 .tools-grid .tool-icon:nth-child(4) img { animation-delay: 3s; }
-
-/* The hover effect still works and will override the animation */
-.tool-icon:hover img {
-    /* When you hover, kill the animation and apply hover styles instantly */
-    animation: none; 
-    filter: grayscale(0%);
-    transform: scale(1.1);
-}
-/* --- END: NEW AUTOMATIC GLOW ANIMATION --- */
-
+.tool-icon:hover img { animation: none; filter: grayscale(0%); transform: scale(1.1); }
 
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
 @media(max-width: 992px) { 
@@ -199,6 +255,11 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .hero-content p, .hero-video-content p { font-size: 1.2rem; }
     .content-section { padding: 3rem 0; }
     .section-title { font-size: 2rem; }
+    .slider-container { padding: 0; }
+    .slider-btn { width: 40px; height: 40px; font-size: 2rem; }
+    .slider-btn.prev { left: 5px; }
+    .slider-btn.next { right: 5px; }
+    .slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
     .principal-text { padding-left: 0; }
     .principal-text::before { display: none; }
@@ -213,4 +274,4 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid { grid-template-columns: 1fr; }
     .bca-details-section { padding-top: 3rem; }
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
-               }
+              }
