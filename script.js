@@ -34,14 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     let i = 0; textElement.innerHTML = '';
                     const typingInterval = setInterval(() => {
                         if (i < fullText.length) {
-                            const char = fullText.charAt(i);
-                            textElement.innerHTML += char;
+                            textElement.innerHTML += fullText.charAt(i);
                             i++;
                         } else {
                             clearInterval(typingInterval);
                             textElement.classList.add('typing-done');
                         }
-                    }, 50); // Typing speed
+                    }, 50);
                     observer.unobserve(textElement);
                 }
             });
@@ -89,6 +88,61 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCarousel();
         setInterval(slideNext, 3000);
     }
+    
+    // --- START: 1 LAKH WORTH LATEST EVENTS SLIDER SCRIPT ---
+    const slider = document.querySelector('.slider-container');
+    if (slider) {
+        const track = slider.querySelector('.slider-track');
+        const slides = Array.from(track.children);
+        const nextButton = slider.querySelector('.slider-btn.next');
+        const prevButton = slider.querySelector('.slider-btn.prev');
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        let currentIndex = 0;
+        let autoPlayInterval;
+
+        // Function to move to a specific slide
+        const moveToSlide = (targetIndex) => {
+            track.style.transform = 'translateX(-' + slideWidth * targetIndex + 'px)';
+            
+            // Update classes for 3D effect
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === targetIndex) {
+                    slide.classList.add('active');
+                }
+            });
+
+            currentIndex = targetIndex;
+        };
+
+        const resetAutoPlay = () => {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(() => {
+                const nextIndex = (currentIndex + 1) % slides.length;
+                moveToSlide(nextIndex);
+            }, 5000); // Autoplay every 5 seconds
+        };
+
+        // Next button event
+        nextButton.addEventListener('click', () => {
+            const nextIndex = (currentIndex + 1) % slides.length;
+            moveToSlide(nextIndex);
+            resetAutoPlay();
+        });
+
+        // Previous button event
+        prevButton.addEventListener('click', () => {
+            const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
+            moveToSlide(prevIndex);
+            resetAutoPlay();
+        });
+        
+        // Initial setup
+        moveToSlide(0);
+        resetAutoPlay();
+    }
+    // --- END: LATEST EVENTS SLIDER SCRIPT ---
+
 
     // --- Custom Audio Player (bca.html only) ---
     const audioPlayer = document.getElementById('bcaAudioPlayer');
