@@ -85,7 +85,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .facilities-section { /* background removed for premium feel */ }
 .pill-heading { display: inline-block; background-color: rgba(74, 144, 226, 0.1); color: var(--primary-blue); padding: 8px 20px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; }
 .facilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem; text-align: center; }
-.facility-card { background: var(--white-color); padding: 2rem; border-radius: 10px; border: 1px solid #e0e0e0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.facility-card { position: relative; background: var(--white-color); padding: 2rem; border-radius: 10px; border: 1px solid #e0e0e0; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.facility-card .facility-link { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3; }
 .facility-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(74, 144, 226, 0.15); }
 .facility-icon { font-size: 2.5rem; color: var(--white-color); background: var(--primary-blue); width: 70px; height: 70px; border-radius: 50%; margin: 0 auto 1.5rem auto; display: flex; justify-content: center; align-items: center; }
 .facility-card h3 { font-size: 1.25rem; color: var(--text-color-dark); }
@@ -343,3 +344,65 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     }
 }
 /* --- END: UPDATED NEWS TICKER STYLES --- */
+
+/* --- START: NEW FACILITY PAGE STYLES --- */
+.facility-page-section {
+    padding: 5rem 0;
+}
+.facility-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+.facility-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2);
+}
+.facility-text h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-blue);
+    font-weight: 700;
+}
+.facility-text p {
+    line-height: 1.8;
+}
+.amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    text-align: center;
+}
+.amenity-card {
+    background: var(--white-color);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.amenity-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(74, 144, 226, 0.2);
+}
+.amenity-icon {
+    font-size: 3rem;
+    color: var(--accent-pink);
+    margin-bottom: 1rem;
+}
+.amenity-card h3 {
+    font-size: 1.2rem;
+    color: var(--text-color-dark);
+}
+@media (max-width: 768px) {
+    .facility-layout {
+        grid-template-columns: 1fr;
+    }
+    /* Reverse order for second layout on mobile */
+    .facility-layout:nth-child(2) .facility-image {
+        order: -1;
+    }
+}
+/* --- END: NEW FACILITY PAGE STYLES --- */```
