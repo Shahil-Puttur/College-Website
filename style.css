@@ -212,8 +212,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .professor-slide img { height: 280px; }
     .slide-prev { transform: translate(-100%, -50%) scale(0.6); }
     .slide-next { transform: translate(0%, -50%) scale(0.6); }
-    .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid { grid-template-columns: 1fr; }
-    .mentors-grid, .contact-grid-home { grid-template-columns: 1fr; } /* THIS IS THE FIX */
+    .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid, .mentors-grid, .contact-grid-home { grid-template-columns: 1fr; }
     .bca-details-section { padding-top: 3rem; }
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
 }
