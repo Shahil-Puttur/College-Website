@@ -38,8 +38,8 @@
     <main>
         <!-- GRAND VIDEO HERO SECTION -->
         <section class="video-hero-section">
-            <video autoplay muted loop playsinline class="hero-video" poster="assets/images/bca_poster.jpg">
-                <source src="assets/videos/bca_video.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline class="hero-video" preload="metadata">
+                <source src="assets/videos/coding_video.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="hero-video-content">
@@ -51,13 +51,13 @@
         <section class="content-section bca-details-section">
             <div class="container">
                 <div class="course-detail-layout">
-                    <div class="course-image-wrapper" data-aos="zoom-in-up"><img src="assets/images/lab.jpg" alt="BCA Computer Lab"></div>
+                    <div class="course-image-wrapper" data-aos="zoom-in-up"><img src="assets/images/lab.jpg" alt="BCA Computer Lab" loading="lazy" decoding="async"></div>
                     <div class="course-text-wrapper" data-aos="fade-left">
                         <h2>Vidyarashmi First Grade College</h2>
                         <p>Our 3-year BCA program is an immersive journey into computer science. We go beyond textbooks to focus on programming, software development, and real-world applications. With expert faculty and state-of-the-art labs, we transform students into skilled software professionals, ready to conquer the IT world.</p>
                         <div class="audio-player" id="bcaAudioPlayer">
                             <p>An introduction from our department:</p>
-                            <audio id="bcaAudio" src="assets/audio/bca1.mp3"></audio>
+                            <audio id="bcaAudio" src="assets/audio/bca1.mp3" preload="metadata"></audio>
                             <button id="playBtn" class="audio-btn"><i class='bx bx-play'></i></button>
                             <button id="pauseBtn" class="audio-btn" style="display: none;"><i class='bx bx-pause'></i></button>
                         </div>
@@ -66,6 +66,22 @@
             </div>
         </section>
         
+        <!-- START: NEW BCA IMAGE GALLERY SECTION -->
+        <section class="content-section course-gallery-section">
+            <div class="container">
+                 <h2 class="section-title" data-aos="fade-up">Glimpses of BCA Life</h2>
+                 <div class="course-image-grid" data-aos="fade-up" data-aos-delay="100">
+                    <div class="course-gallery-image">
+                        <img src="assets/images/bca2.jpg" alt="BCA students in a workshop" loading="lazy" decoding="async">
+                    </div>
+                    <div class="course-gallery-image">
+                        <img src="assets/images/bca3.jpg" alt="BCA students presenting a project" loading="lazy" decoding="async">
+                    </div>
+                 </div>
+            </div>
+        </section>
+        <!-- END: NEW BCA IMAGE GALLERY SECTION -->
+
         <section class="content-section bca-learn-section">
             <div class="container">
                 <h2 class="section-title" data-aos="fade-up">What You Will Master</h2>
@@ -91,10 +107,10 @@
              <div class="container">
                 <h2 class="section-title" data-aos="fade-up">Master Professional Tools</h2>
                 <div class="tools-grid" data-aos="fade-up" data-aos-delay="200">
-                    <div class="tool-icon"><img src="https://img.icons8.com/color/96/000000/ms-word.png" alt="MS Word"/><span>MS Word</span></div>
-                    <div class="tool-icon"><img src="https://img.icons8.com/color/96/000000/ms-excel.png" alt="MS Excel"/><span>MS Excel</span></div>
-                    <div class="tool-icon"><img src="https://img.icons8.com/color/96/000000/ms-powerpoint.png" alt="MS Powerpoint"/><span>MS PowerPoint</span></div>
-                    <div class="tool-icon"><img src="https://img.icons8.com/color/96/000000/ms-access.png" alt="MS Access"/><span>MS Access</span></div>
+                    <div class="tool-icon"><img src="https://img.icons8.com/color/96/000000/ms-word.png" alt="MS Word" loading="lazy" decoding="async"/><span>MS Word</span></div>
+                    <div class="tool-icon"><img src="https://img.icons8.com/color/96/000000/ms-excel.png" alt="MS Excel" loading="lazy" decoding="async"/><span>MS Excel</span></div>
+                    <div class="tool-icon"><img src="https://img.icons8.com/color/96/000000/ms-powerpoint.png" alt="MS Powerpoint" loading="lazy" decoding="async"/><span>MS PowerPoint</span></div>
+                    <div class="tool-icon"><img src="https://img.icons8.com/color/96/000000/ms-access.png" alt="MS Access" loading="lazy" decoding="async"/><span>MS Access</span></div>
                 </div>
             </div>
         </section>
@@ -109,4 +125,4 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
-            </html>
+                    </html>
