@@ -5,11 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vidyarashmi College - Home</title>
     
-    <!-- PERFORMANCE: Preload critical assets for faster initial load -->
-    <link rel="preload" href="assets/images/hero-bg.jpg" as="image">
-    <link rel="prerender" href="bca.html">
-    <link rel="prerender" href="bcom.html">
-    <link rel="prerender" href="ba.html">
+    <!-- =================================================================== -->
+    <!-- START: HIGH-PERFORMANCE ASSET PRELOADING (ORIGINAL FORMATS) -->
+    <!-- This preloads your original MP4, JPG, and PNG files for instant navigation.
+         No file conversions are needed. -->
+
+    <!-- Preload Background Videos (MP4 format) -->
+    <link rel="preload" href="assets/videos/bca_video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/videos/bcom_video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/videos/ba_video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/videos/lab_video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/videos/library_video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/videos/sports_video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/videos/nss_video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="assets/videos/redcross_video.mp4" as="video" type="video/mp4">
+
+    <!-- Preload Key Images (JPG/PNG formats) -->
+    <link rel="preload" href="assets/images/lab2.jpg" as="image">
+    <link rel="preload" href="assets/images/lab3.jpg" as="image">
+    <link rel="preload" href="assets/images/lib1.jpg" as="image">
+    <link rel="preload" href="assets/images/lib2.jpg" as="image">
+    <link rel="preload" href="assets/images/sports1.jpg" as="image">
+    <link rel="preload" href="assets/images/sports2.jpg" as="image">
+    <link rel="preload" href="assets/images/nss2.jpg" as="image">
+    <link rel="preload" href="assets/images/nss3.jpg" as="image">
+    <link rel="preload" href="assets/images/red-cross2.jpg" as="image">
+    <link rel="preload" href="assets/images/red-cross3.jpg" as="image">
+    <!-- END: HIGH-PERFORMANCE ASSET PRELOADING -->
+    <!-- =================================================================== -->
     
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
@@ -20,7 +43,7 @@
     <header class="header">
         <nav class="navbar">
             <a href="index.html" class="nav-logo">
-                <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo" width="150" height="50">
+                <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo">
             </a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
@@ -44,8 +67,8 @@
     <main>
         <section class="hero-section">
             <div class="hero-background"></div>
-            <img src="assets/images/owner2.png" alt="College Founder" class="owner-image owner-left" data-aos="fade-down" data-aos-delay="400" loading="lazy" decoding="async">
-            <img src="assets/images/owner1.png" alt="College Chairman" class="owner-image owner-right" data-aos="fade-down" data-aos-delay="400" loading="lazy" decoding="async">
+            <img src="assets/images/owner2.png" alt="College Founder" class="owner-image owner-left" data-aos="fade-down" data-aos-delay="400">
+            <img src="assets/images/owner1.png" alt="College Chairman" class="owner-image owner-right" data-aos="fade-down" data-aos-delay="400">
             <div class="hero-content" data-aos="fade-up">
                 <h1>Welcome to Vidyarashmi College</h1>
                 <p>Excellence in Education, Foundation for Life.</p>
@@ -88,8 +111,8 @@
                         <button id="readMoreBtn" class="btn-secondary">Read More</button>
                     </div>
                     <div class="management-images" data-aos="fade-left" data-aos-delay="200">
-                        <img src="assets/images/owner2.png" alt="Founder" loading="lazy" decoding="async">
-                        <img src="assets/images/owner1.png" alt="Chairman" loading="lazy" decoding="async">
+                        <img src="assets/images/owner2.png" alt="Founder">
+                        <img src="assets/images/owner1.png" alt="Chairman">
                     </div>
                 </div>
             </div>
@@ -100,7 +123,7 @@
                 <h2 class="section-title">From the Principal's Desk</h2>
                 <div class="principal-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="principal-img">
-                        <img src="assets/images/principal.png" alt="College Principal" loading="lazy" decoding="async">
+                        <img src="assets/images/principal.png" alt="College Principal">
                     </div>
                     <div class="principal-text">
                         <p>It gives me immense pleasure to welcome you to the creative world of Vidyarashmi College. Our commitment is to provide a safe and intellectually challenging environment that will empower students to become innovative thinkers, creative problem solvers, and inspired learners prepared to thrive in the twenty-first century.</p>
@@ -112,7 +135,7 @@
 
         <section class="content-section leader-photo-section">
             <div class="container" data-aos="zoom-in-up">
-                <img src="assets/images/Leader.jpg" alt="Esteemed Leader" class="leader-photo" loading="lazy" decoding="async">
+                <img src="assets/images/Leader.jpg" alt="Esteemed Leader" class="leader-photo">
             </div>
         </section>
 
@@ -158,45 +181,20 @@
                 <div class="pill-heading">AMENITIES</div>
                 <h2 class="section-title">Facilities & Infrastructure</h2>
                 <div class="facilities-grid">
-                    <!-- UPDATED FACILITY CARD STRUCTURE FOR FLIP ANIMATION -->
                     <div class="facility-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="facility-card-inner">
-                            <div class="facility-card-front">
-                                <div class="facility-icon"><i class='bx bx-desktop'></i></div>
-                                <h3>Laboratory</h3>
-                            </div>
-                            <div class="facility-card-back">
-                                <h3>State-of-the-Art Labs</h3>
-                                <p>Hands-on experience with the latest technology and software.</p>
-                                <a href="laboratory.html" class="facility-link"></a>
-                            </div>
-                        </div>
+                        <a href="laboratory.html" class="facility-link"></a>
+                        <div class="facility-icon"><i class='bx bx-desktop'></i></div>
+                        <h3>Laboratory</h3>
                     </div>
                     <div class="facility-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="facility-card-inner">
-                            <div class="facility-card-front">
-                                <div class="facility-icon"><i class='bx bx-book-open'></i></div>
-                                <h3>Library</h3>
-                            </div>
-                            <div class="facility-card-back">
-                                <h3>Knowledge Hub</h3>
-                                <p>A vast collection of books, journals, and digital resources.</p>
-                                <a href="library.html" class="facility-link"></a>
-                            </div>
-                        </div>
+                        <a href="library.html" class="facility-link"></a>
+                        <div class="facility-icon"><i class='bx bx-book-open'></i></div>
+                        <h3>Library</h3>
                     </div>
                     <div class="facility-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="facility-card-inner">
-                            <div class="facility-card-front">
-                                <div class="facility-icon"><i class='bx bx-run'></i></div>
-                                <h3>Track and Field</h3>
-                            </div>
-                            <div class="facility-card-back">
-                                <h3>Sports Excellence</h3>
-                                <p>Nurturing athletic talent with top-tier sports facilities.</p>
-                                <a href="track-and-field.html" class="facility-link"></a>
-                            </div>
-                        </div>
+                        <a href="track-and-field.html" class="facility-link"></a>
+                        <div class="facility-icon"><i class='bx bx-run'></i></div>
+                        <h3>Track and Field</h3>
                     </div>
                 </div>
             </div>
@@ -229,10 +227,10 @@
                 <p class="mentors-quote">“The lecturers of Vidyarashmi First Grade College, Savanoor are friendly, supportive, and highly knowledgeable. They not only teach with clarity but also motivate students to take part in NSS, Red Cross, sports, and cultural activities. Always approachable, they guide us like mentors and help us grow in both academics and life.”</p>
                 <div class="mentors-grid">
                     <div class="mentor-image-wrapper" data-aos="fade-right" data-aos-delay="100">
-                        <img src="assets/images/pic2.jpg" alt="Vidyarashmi College Lecturers" loading="lazy" decoding="async">
+                        <img src="assets/images/pic2.jpg" alt="Vidyarashmi College Lecturers">
                     </div>
                     <div class="mentor-image-wrapper" data-aos="fade-left" data-aos-delay="200">
-                        <img src="assets/images/pic3.jpg" alt="Supportive Faculty at Vidyarashmi" loading="lazy" decoding="async">
+                        <img src="assets/images/pic3.jpg" alt="Supportive Faculty at Vidyarashmi">
                     </div>
                 </div>
             </div>
@@ -244,7 +242,6 @@
             <div class="container">
                 <h2 class="section-title">Contact ☎️</h2>
                 <div class="contact-grid-home">
-                    <!-- Corrected Order: Phone Number is now first -->
                     <div class="contact-card-home" data-aos="fade-up" data-aos-delay="100">
                         <a href="tel:8951932313">
                             <div class="contact-icon-home"><i class='bx bx-phone-call'></i></div>
@@ -252,7 +249,6 @@
                             <p>8951932313<br>9880627330</p>
                         </a>
                     </div>
-                    <!-- Corrected Order: Gmail is now second -->
                     <div class="contact-card-home" data-aos="fade-up" data-aos-delay="200">
                         <a href="mailto:vidyarashmifgc@gmail.com">
                             <div class="contact-icon-home"><i class='bx bxl-gmail'></i></div>
@@ -273,13 +269,13 @@
                     <div class="social-slider-track">
                         <!-- Slide 1: Instagram -->
                         <div class="social-slide">
-                            <img src="assets/images/ig-logo.png" alt="Instagram Logo" class="social-logo" loading="lazy" decoding="async">
+                            <img src="assets/images/ig-logo.png" alt="Instagram Logo" class="social-logo">
                             <h3 class="social-platform-name">Instagram</h3>
                             <a href="https://www.instagram.com/vrfgc_modern_family?igsh=eTJkYzIyNnNlMTRl" target="_blank" class="btn-social btn-instagram">Follow</a>
                         </div>
                         <!-- Slide 2: YouTube -->
                         <div class="social-slide">
-                            <img src="assets/images/yt-logo.png" alt="YouTube Logo" class="social-logo" loading="lazy" decoding="async">
+                            <img src="assets/images/yt-logo.png" alt="YouTube Logo" class="social-logo">
                             <h3 class="social-platform-name">YouTube</h3>
                             <a href="https://www.youtube.com" target="_blank" class="btn-social btn-youtube">Subscribe</a>
                         </div>
@@ -301,4 +297,4 @@
     <script src="script.js"></script>
 
 </body>
-                </html>
+    </html>
