@@ -155,21 +155,28 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     display: block;
     margin-bottom: 0.5rem;
     filter: grayscale(100%);
+    /* Set up the animation properties */
     animation-name: autoGlow;
-    animation-duration: 4s;
+    animation-duration: 4s; /* Total cycle for all 4 icons */
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
 }
+
+/* This creates the "one by one" sequential effect */
 .tools-grid .tool-icon:nth-child(1) img { animation-delay: 0s; }
 .tools-grid .tool-icon:nth-child(2) img { animation-delay: 1s; }
 .tools-grid .tool-icon:nth-child(3) img { animation-delay: 2s; }
 .tools-grid .tool-icon:nth-child(4) img { animation-delay: 3s; }
+
+/* The hover effect still works and will override the animation */
 .tool-icon:hover img {
+    /* When you hover, kill the animation and apply hover styles instantly */
     animation: none; 
     filter: grayscale(0%);
     transform: scale(1.1);
 }
 /* --- END: NEW AUTOMATIC GLOW ANIMATION --- */
+
 
 @media(max-width: 1200px) { .owner-left { left: 10%; } .owner-right { right: 10%; } }
 @media(max-width: 992px) { 
@@ -221,21 +228,21 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     width: 100%;
     aspect-ratio: 16 / 9;
     margin: auto;
-    overflow: hidden;
+    overflow: hidden; /* This is crucial for the sliding effect */
     border-radius: 15px;
     box-shadow: 0 15px 40px rgba(74, 144, 226, 0.25);
 }
 .event-slider-track {
-    display: flex;
+    display: flex; /* Aligns slides horizontally */
     height: 100%;
-    transition: transform 0.8s ease-in-out;
-    will-change: transform;
+    transition: transform 0.8s ease-in-out; /* The smooth slide animation */
+    will-change: transform; /* Performance optimization hint for the browser */
 }
 .event-slide {
-    position: relative;
+    position: relative; /* For caption positioning */
     width: 100%;
     height: 100%;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Prevents slides from shrinking */
 }
 .event-slide img {
     width: 100%;
@@ -254,9 +261,11 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     font-size: 1.25rem;
     font-weight: 600;
 }
+
+/* New Dot Navigation Styles */
 .event-slider-dots {
     text-align: center;
-    padding: 1rem 0 0 0;
+    padding: 1rem 0 0 0; /* Give dots some space */
 }
 .dot {
     display: inline-block;
@@ -268,9 +277,11 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .dot.active {
-    background-color: var(--primary-blue);
-    transform: scale(1.2);
+    background-color: var(--primary-blue); /* Active color */
+    transform: scale(1.2); /* Make the active dot slightly bigger */
 }
+
+
 @media(max-width: 768px) {
     .event-slider-section {
         padding-top: 3rem;
@@ -292,38 +303,45 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 
 /* --- START: UPDATED NEWS TICKER STYLES --- */
 .news-ticker-section {
-    background-color: var(--text-color-dark);
+    background-color: var(--text-color-dark); /* Dark background */
     width: 100%;
-    padding: 0;
+    padding: 0; /* Remove padding */
     position: relative;
     z-index: 10;
 }
 .news-ticker-container {
     width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
+    overflow: hidden; /* Hides the text that scrolls off-screen */
+    white-space: nowrap; /* Prevents the text from wrapping */
 }
 .scrolling-text-wrapper {
-    display: inline-block;
-    animation: scroll-left 30s linear infinite;
+    display: inline-block; /* Allows the wrapper to be animated */
+    animation: scroll-left 30s linear infinite; /* SLOWER and continuous animation */
 }
 .scrolling-text-item {
-    display: inline-block;
-    padding: 1rem 0;
-    color: var(--white-color);
+    display: inline-block; /* Ensures items are on the same line */
+    padding: 1rem 0; /* Vertical padding */
+    color: var(--white-color); /* Light text */
     font-weight: 600;
     font-size: 1rem;
 }
+
+/* Updated keyframe animation for a seamless loop */
 @keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Moves exactly one copy of the text */
+    }
 }
+
 @media(max-width: 768px) {
     .scrolling-text-item {
         font-size: 0.9rem;
     }
     .scrolling-text-wrapper {
-        animation-duration: 25s;
+        animation-duration: 25s; /* Adjusts speed for mobile if needed */
     }
 }
 /* --- END: UPDATED NEWS TICKER STYLES --- */
@@ -383,6 +401,7 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .facility-layout {
         grid-template-columns: 1fr;
     }
+    /* Reverse order for second layout on mobile */
     .facility-layout:nth-child(2) .facility-image {
         order: -1;
     }
@@ -416,8 +435,10 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 }
 .contact-grid-home {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr; /* UPDATED: Changed from 1fr 1fr to 1fr */
     gap: 2rem;
+    max-width: 500px; /* ADDED: To constrain the width on large screens */
+    margin: 0 auto; /* ADDED: To center the single column grid */
 }
 .contact-card-home {
     background: var(--white-color);
