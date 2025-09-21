@@ -213,7 +213,6 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .slide-prev { transform: translate(-100%, -50%) scale(0.6); }
     .slide-next { transform: translate(0%, -50%) scale(0.6); }
     .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid, .mentors-grid { grid-template-columns: 1fr; }
-    .contact-grid-home { grid-template-columns: 1fr; } /* Added from previous request for consistency */
     .bca-details-section { padding-top: 3rem; }
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
 }
@@ -434,10 +433,13 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 .contact-section-home {
     background-color: var(--creamy-purple);
 }
+/* UPDATED: Enforcing a single-column layout for the contact grid */
 .contact-grid-home {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 2rem;
+    max-width: 500px; /* Constrain width for a cleaner look */
+    margin: 0 auto; /* Center the column */
 }
 .contact-card-home {
     background: var(--white-color);
@@ -507,10 +509,17 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     padding: 0 1.5rem;
 }
 .social-logo {
-    height: 90px;
+    height: 80px; /* Adjusted for new text */
     width: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Adjusted for new text */
     object-fit: contain;
+}
+/* UPDATED: Added styles for the platform name */
+.social-platform-name {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color-dark);
+    margin-bottom: 1.5rem;
 }
 .btn-social {
     display: inline-block;
@@ -557,7 +566,10 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
         padding: 2rem;
     }
     .social-logo {
-        height: 70px;
+        height: 60px;
+    }
+    .social-platform-name {
+        font-size: 1.5rem;
     }
     .btn-social {
         padding: 12px 35px;
