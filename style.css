@@ -212,7 +212,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     .professor-slide img { height: 280px; }
     .slide-prev { transform: translate(-100%, -50%) scale(0.6); }
     .slide-next { transform: translate(0%, -50%) scale(0.6); }
-    .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid, .mentors-grid, .contact-grid-home { grid-template-columns: 1fr; }
+    .card-grid, .facilities-grid, .cocurricular-grid, .feature-grid, .bca-grid, .bca-extra-grid, .mentors-grid { grid-template-columns: 1fr; }
+    .contact-grid-home { grid-template-columns: 1fr; } /* Added from previous request for consistency */
     .bca-details-section { padding-top: 3rem; }
     .course-text-wrapper { margin-top: 2rem; padding: 2rem; }
 }
@@ -435,10 +436,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 }
 .contact-grid-home {
     display: grid;
-    grid-template-columns: 1fr; /* UPDATED: Changed from 1fr 1fr to 1fr */
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    max-width: 500px; /* ADDED: To constrain the width on large screens */
-    margin: 0 auto; /* ADDED: To center the single column grid */
 }
 .contact-card-home {
     background: var(--white-color);
@@ -478,3 +477,91 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
     line-height: 1.8;
 }
 /* --- END: NEW MENTORS & CONTACT SECTION STYLES --- */
+
+
+/* --- START: NEW SOCIAL MEDIA SLIDER STYLES --- */
+.social-section {
+    background-color: var(--white-color);
+}
+.social-slider-container {
+    max-width: 550px;
+    margin: auto;
+    background: var(--creamy-purple);
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2);
+    overflow: hidden;
+}
+.social-slider-track {
+    display: flex;
+    width: 200%; /* 100% for each of the 2 slides */
+    animation: slide-social 6s ease-in-out infinite;
+}
+.social-slide {
+    width: 50%; /* Each slide takes up half of the track's width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 1.5rem;
+}
+.social-logo {
+    height: 90px;
+    width: auto;
+    margin-bottom: 2rem;
+    object-fit: contain;
+}
+.btn-social {
+    display: inline-block;
+    color: var(--white-color);
+    padding: 14px 45px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: none;
+    letter-spacing: 0.5px;
+}
+.btn-social:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.btn-instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+}
+.btn-youtube {
+    background-color: #FF0000;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+}
+
+/* Keyframe animation for the slider */
+@keyframes slide-social {
+    /* Wait on Instagram slide */
+    0%, 45% {
+        transform: translateX(0%);
+    }
+    /* Transition and wait on YouTube slide */
+    50%, 95% {
+        transform: translateX(-50%);
+    }
+    /* Loop back to the start */
+    100% {
+        transform: translateX(0%);
+    }
+}
+@media (max-width: 768px) {
+    .social-slider-container {
+        padding: 2rem;
+    }
+    .social-logo {
+        height: 70px;
+    }
+    .btn-social {
+        padding: 12px 35px;
+        font-size: 0.9rem;
+    }
+}
+/* --- END: NEW SOCIAL MEDIA SLIDER STYLES --- */
