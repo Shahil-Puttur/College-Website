@@ -15,7 +15,12 @@
     <div id="preloader">
         <div class="loader-content">
             <div id="countdown-container">
-                <h2 id="countdown">5</h2>
+                <!-- UPDATED: Circular Countdown -->
+                <svg id="countdown-svg" width="150" height="150" viewBox="0 0 150 150">
+                    <circle class="countdown-bg" cx="75" cy="75" r="70"></circle>
+                    <circle class="countdown-progress" cx="75" cy="75" r="70"></circle>
+                    <text id="countdown-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">5</text>
+                </svg>
                 <p id="loader-text">Checking 💻</p>
             </div>
             <div id="checkmark-container">
@@ -310,4 +315,4 @@
     <script src="script.js"></script>
 
 </body>
-                </html>
+                        </html>
