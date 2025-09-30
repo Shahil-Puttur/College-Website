@@ -5,40 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vidyarashmi College - Home</title>
     
-    <!-- =================================================================== -->
-    <!-- START: HIGH-PERFORMANCE ASSET PRELOADING (ORIGINAL FORMATS) -->
-    <!-- This preloads your original MP4, JPG, and PNG files for instant navigation.
-         No file conversions are needed. -->
-
-    <!-- Preload Background Videos (MP4 format) -->
-    <link rel="preload" href="assets/videos/bca_video.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="assets/videos/bcom_video.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="assets/videos/ba_video.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="assets/videos/lab_video.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="assets/videos/library_video.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="assets/videos/sports_video.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="assets/videos/nss_video.mp4" as="video" type="video/mp4">
-    <link rel="preload" href="assets/videos/redcross_video.mp4" as="video" type="video/mp4">
-
-    <!-- Preload Key Images (JPG/PNG formats) -->
-    <link rel="preload" href="assets/images/lab2.jpg" as="image">
-    <link rel="preload" href="assets/images/lab3.jpg" as="image">
-    <link rel="preload" href="assets/images/lib1.jpg" as="image">
-    <link rel="preload" href="assets/images/lib2.jpg" as="image">
-    <link rel="preload" href="assets/images/sports1.jpg" as="image">
-    <link rel="preload" href="assets/images/sports2.jpg" as="image">
-    <link rel="preload" href="assets/images/nss2.jpg" as="image">
-    <link rel="preload" href="assets/images/nss3.jpg" as="image">
-    <link rel="preload" href="assets/images/red-cross2.jpg" as="image">
-    <link rel="preload" href="assets/images/red-cross3.jpg" as="image">
-    <!-- END: HIGH-PERFORMANCE ASSET PRELOADING -->
-    <!-- =================================================================== -->
-    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
+
+    <!-- START: PRELOADER / FAKE VERIFICATION -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div id="countdown-container">
+                <h2 id="countdown">5</h2>
+                <p id="loader-text">Checking 💻</p>
+            </div>
+            <div id="checkmark-container">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <audio id="success-sound" src="assets/audio/success.mp3" preload="auto"></audio>
+    <!-- END: PRELOADER -->
 
     <header class="header">
         <nav class="navbar">
@@ -183,18 +172,42 @@
                 <div class="facilities-grid">
                     <div class="facility-card" data-aos="fade-up" data-aos-delay="100">
                         <a href="laboratory.html" class="facility-link"></a>
-                        <div class="facility-icon"><i class='bx bx-desktop'></i></div>
-                        <h3>Laboratory</h3>
+                        <div class="facility-card-inner">
+                            <div class="facility-card-front">
+                                <div class="facility-icon"><i class='bx bx-desktop'></i></div>
+                                <h3>Laboratory</h3>
+                            </div>
+                            <div class="facility-card-back">
+                                <h3>Advanced Labs</h3>
+                                <p>Hands-on experience with the latest technology and software.</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="facility-card" data-aos="fade-up" data-aos-delay="200">
                         <a href="library.html" class="facility-link"></a>
-                        <div class="facility-icon"><i class='bx bx-book-open'></i></div>
-                        <h3>Library</h3>
+                        <div class="facility-card-inner">
+                            <div class="facility-card-front">
+                                <div class="facility-icon"><i class='bx bx-book-open'></i></div>
+                                <h3>Library</h3>
+                            </div>
+                             <div class="facility-card-back">
+                                <h3>Knowledge Hub</h3>
+                                <p>A vast collection of books, journals, and digital resources.</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="facility-card" data-aos="fade-up" data-aos-delay="300">
                         <a href="track-and-field.html" class="facility-link"></a>
-                        <div class="facility-icon"><i class='bx bx-run'></i></div>
-                        <h3>Track and Field</h3>
+                        <div class="facility-card-inner">
+                            <div class="facility-card-front">
+                                <div class="facility-icon"><i class='bx bx-run'></i></div>
+                                <h3>Track and Field</h3>
+                            </div>
+                             <div class="facility-card-back">
+                                <h3>Stay Active</h3>
+                                <p>Promoting sportsmanship and physical well-being on campus.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -297,4 +310,4 @@
     <script src="script.js"></script>
 
 </body>
-    </html>
+                </html>
