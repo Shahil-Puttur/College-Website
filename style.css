@@ -251,9 +251,8 @@ body { font-family: var(--font-family); line-height: 1.6; background-color: var(
 
 /* --- START: PRELOADER / FAKE VERIFICATION STYLES --- */
 body.loading {
-    overflow: hidden; /* Prevent scrolling while preloader is active */
+    overflow: hidden;
 }
-/* Hide main content initially to prevent flash */
 body.loading > header,
 body.loading > main,
 body.loading > footer,
@@ -281,21 +280,50 @@ body.loading > .overlay {
 .loader-content {
     text-align: center;
 }
-#countdown {
-    font-size: 6rem;
+
+/* UPDATED: Circular Countdown Styles */
+#countdown-svg {
+    transform: rotate(-90deg); /* Start the circle from the top */
+}
+.countdown-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.2);
+    stroke-width: 5;
+}
+.countdown-progress {
+    fill: none;
+    stroke: var(--accent-green);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 440; /* Circumference (2 * pi * 70) */
+    stroke-dashoffset: 440;
+    animation: countdown-anim 5s linear forwards;
+}
+@keyframes countdown-anim {
+    from {
+        stroke-dashoffset: 440;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+#countdown-text {
+    font-size: 4rem;
     font-weight: 700;
-    margin: 0;
-    line-height: 1;
+    fill: var(--white-color);
+    transform: rotate(90deg); /* Counter-rotate the text */
+    transform-origin: center;
 }
 #loader-text {
     font-size: 1.25rem;
     font-family: var(--mono-font);
     margin-top: 1rem;
-    min-height: 25px; /* Reserve space to prevent layout shift */
+    min-height: 25px;
 }
+
 /* Green Checkmark Animation */
 #checkmark-container {
-    display: none; /* Hidden by default */
+    display: none;
     width: 150px;
     height: 150px;
 }
