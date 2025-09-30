@@ -60,7 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/A-mam4.png', name: 'Harshitha A', qual: 'MSc CS', desc: 'Assistant Lecturer, Computer Science' },
             { img: 'assets/images/B-mam5.png', name: 'Nireeshma N Suvarna', qual: 'MCom, KSET', desc: 'Asst. Professor, Dept of Commerce' },
             { img: 'assets/images/B-mam6.jpg', name: 'Prathibha S', qual: 'M.A, M.Ed', desc: 'Lecturer in History' },
-            { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'HOD, Dept of Commerce' }
+            { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'HOD, Dept of Commerce' },
+            // START: NEW PROFESSORS ADDED
+            { img: 'assets/images/d1.jpg', name: 'Shivaprasad K R', qual: 'M.Com, B.Ed', desc: 'Asst. Prof. in Commerce' },
+            { img: 'assets/images/d2.jpg', name: 'Sheshagiri', qual: 'Kannada Professor', desc: 'Vice Principal' },
+            { img: 'assets/images/d3.png', name: 'Suma', qual: 'MA (Economics) B.Ed, KSET, MCom', desc: '' },
+            { img: 'assets/images/d4.jpg', name: 'Girisha Bhat.k', qual: '', desc: 'Assistant professor' },
+            { img: 'assets/images/d5.jpg', name: 'Dr Kiranachandra Rai B', qual: 'M.A, Mphil, PhD', desc: 'Dept of political science' },
+            { img: 'assets/images/d6.jpg', name: 'Sahana', qual: '', desc: 'Office Staff' },
+            { img: 'assets/images/d7.jpg', name: 'Bharath', qual: '', desc: 'Non-Teaching Staff' },
+            { img: 'assets/images/d8.jpg', name: 'Bharath.S', qual: '', desc: 'Pt.Lecturer' },
+            { img: 'assets/images/d9.jpg', name: 'Shreya', qual: '', desc: 'Liabrary Staff' },
+            { img: 'assets/images/d10.jpg', name: 'Dr. Rajalakshmi Rai', qual: '', desc: 'Principal' }
+            // END: NEW PROFESSORS ADDED
         ];
 
         professorData.forEach(prof => {
