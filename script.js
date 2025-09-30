@@ -1,10 +1,9 @@
 // --- PRELOADER / FAKE VERIFICATION LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Add loading class to body to hide content until preloader is done
     document.body.classList.add('loading');
 
     const preloader = document.getElementById('preloader');
-    const countdownElement = document.getElementById('countdown');
+    const countdownElement = document.getElementById('countdown-text'); // UPDATED: Target SVG text
     const loaderTextElement = document.getElementById('loader-text');
     const countdownContainer = document.getElementById('countdown-container');
     const checkmarkContainer = document.getElementById('checkmark-container');
@@ -13,39 +12,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (preloader) {
         let countdown = 5;
         const messages = {
-            5: "Checking 💻",
-            4: "Analyzing 🌐",
-            3: "Robot Detection 🤖",
-            2: "Human Verification 👨🏻‍💻",
+            5: "Checking... 💻",
+            4: "Analyzing... 🌐",
+            3: "Robot Detection... 🤖",
+            2: "Human Verification... 👨🏻‍💻",
             1: "Almost Done..."
         };
 
         const interval = setInterval(() => {
             countdown--;
             if (countdown >= 1) {
-                countdownElement.innerText = countdown;
-                loaderTextElement.innerText = messages[countdown];
+                countdownElement.textContent = countdown; // Use textContent for SVG text
+                loaderTextElement.textContent = messages[countdown];
             } else {
                 clearInterval(interval);
                 
-                // Hide countdown and text
                 countdownContainer.style.display = 'none';
-
-                // Show and animate checkmark
                 checkmarkContainer.style.display = 'block';
                 
-                // Play sound
                 if (successSound) {
                     successSound.play().catch(error => console.log("Audio play failed:", error));
                 }
 
-                // Wait for animation to finish, then hide preloader
                 setTimeout(() => {
                     preloader.classList.add('preloader-hidden');
                     document.body.classList.remove('loading');
-                }, 1500); // 1.5 seconds for checkmark animation
+                }, 1500);
             }
-        }, 1000); // 1 second interval
+        }, 1000);
     }
 });
 
@@ -113,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/B-mam5.png', name: 'Nireeshma N Suvarna', qual: 'MCom, KSET', desc: 'Asst. Professor, Dept of Commerce' },
             { img: 'assets/images/B-mam6.jpg', name: 'Prathibha S', qual: 'M.A, M.Ed', desc: 'Lecturer in History' },
             { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'HOD, Dept of Commerce' },
-            // START: NEW PROFESSORS ADDED
             { img: 'assets/images/d1.jpg', name: 'Shivaprasad K R', qual: 'M.Com, B.Ed', desc: 'Asst. Prof. in Commerce' },
             { img: 'assets/images/d2.jpg', name: 'Sheshagiri', qual: 'Kannada Professor', desc: 'Vice Principal' },
             { img: 'assets/images/d3.png', name: 'Suma', qual: 'MA (Economics) B.Ed, KSET, MCom', desc: '' },
@@ -124,7 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/d8.jpg', name: 'Bharath.S', qual: '', desc: 'Pt.Lecturer' },
             { img: 'assets/images/d9.jpg', name: 'Shreya', qual: '', desc: 'Liabrary Staff' },
             { img: 'assets/images/d10.jpg', name: 'Dr. Rajalakshmi Rai', qual: '', desc: 'Principal' }
-            // END: NEW PROFESSORS ADDED
         ];
 
         professorData.forEach(prof => {
