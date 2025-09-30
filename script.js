@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (preloader) {
         let countdown = 5;
         const messages = {
-            5: "Checking... 💻",
-            4: "Analyzing... 🌐",
-            3: "Robot Detection... 🤖",
-            2: "Human Verification... 👨🏻‍💻",
+            5: "Checking 💻",
+            4: "Analyzing 🌐",
+            3: "Robot Detection 🤖",
+            2: "Human Verification 👨🏻‍💻",
             1: "Almost Done..."
         };
 
