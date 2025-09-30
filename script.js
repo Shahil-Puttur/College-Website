@@ -1,3 +1,55 @@
+// --- PRELOADER / FAKE VERIFICATION LOGIC ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Add loading class to body to hide content until preloader is done
+    document.body.classList.add('loading');
+
+    const preloader = document.getElementById('preloader');
+    const countdownElement = document.getElementById('countdown');
+    const loaderTextElement = document.getElementById('loader-text');
+    const countdownContainer = document.getElementById('countdown-container');
+    const checkmarkContainer = document.getElementById('checkmark-container');
+    const successSound = document.getElementById('success-sound');
+
+    if (preloader) {
+        let countdown = 5;
+        const messages = {
+            5: "Checking 💻",
+            4: "Analyzing 🌐",
+            3: "Robot Detection 🤖",
+            2: "Human Verification 👨🏻‍💻",
+            1: "Almost Done..."
+        };
+
+        const interval = setInterval(() => {
+            countdown--;
+            if (countdown >= 1) {
+                countdownElement.innerText = countdown;
+                loaderTextElement.innerText = messages[countdown];
+            } else {
+                clearInterval(interval);
+                
+                // Hide countdown and text
+                countdownContainer.style.display = 'none';
+
+                // Show and animate checkmark
+                checkmarkContainer.style.display = 'block';
+                
+                // Play sound
+                if (successSound) {
+                    successSound.play().catch(error => console.log("Audio play failed:", error));
+                }
+
+                // Wait for animation to finish, then hide preloader
+                setTimeout(() => {
+                    preloader.classList.add('preloader-hidden');
+                    document.body.classList.remove('loading');
+                }, 1500); // 1.5 seconds for checkmark animation
+            }
+        }, 1000); // 1 second interval
+    }
+});
+
+
 // --- Pro Mobile Navigation Menu ---
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
@@ -137,13 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dotsContainer = document.querySelector('.event-slider-dots');
         
-        // Create a track for the slides to sit in
         const track = document.createElement('div');
         track.className = 'event-slider-track';
         
-        // Create and add slides and dots
         events.forEach((event, index) => {
-            // Create slide
             const slide = document.createElement('div');
             slide.className = 'event-slide';
             slide.innerHTML = `
@@ -152,24 +201,21 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             track.appendChild(slide);
 
-            // Create dot
             const dot = document.createElement('div');
             dot.className = 'dot';
-            dot.dataset.index = index; // Store index for potential future click events
-            dotsContainer.appendChild(dot);
+            dot.dataset.index = index;
+            if (dotsContainer) {
+                dotsContainer.appendChild(dot);
+            }
         });
 
-        // Add the track to the main container
         eventSliderContainer.appendChild(track);
 
         const dots = document.querySelectorAll('.dot');
         let currentSlide = 0;
 
         function showSlide(index) {
-            // Move the track
             track.style.transform = `translateX(-${index * 100}%)`;
-            
-            // Update the active dot
             dots.forEach(dot => dot.classList.remove('active'));
             if(dots[index]) {
                 dots[index].classList.add('active');
@@ -181,10 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
             showSlide(currentSlide);
         }
 
-        // Initialize the slider and start the interval
         if (events.length > 0) {
             showSlide(0);
-            setInterval(nextSlide, 3000); // Change image every 3 seconds
+            setInterval(nextSlide, 3000);
         }
     }
     // --- END: UPDATED LATEST EVENTS SLIDER LOGIC ---
