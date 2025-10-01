@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Vidyarashmi College</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Admin-specific styles */
+        body { background-color: #f0f4f8; }
+        .admin-container { max-width: 900px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .login-form { text-align: center; }
+        .login-form h1 { margin-bottom: 1.5rem; color: var(--text-color-dark); }
+        .admin-input { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; }
+        .admin-btn { background-color: var(--primary-blue); color: #fff; padding: 12px 25px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; }
+        .admin-btn:hover { background-color: var(--secondary-blue); }
+        #admin-panel { display: none; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 2rem; }
+        .admin-section { margin-bottom: 3rem; border: 1px solid #eee; padding: 1.5rem; border-radius: 8px; }
+        .admin-section h2 { margin-top: 0; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        textarea.admin-input { min-height: 120px; resize: vertical; }
+        .item-list { margin-top: 1.5rem; }
+        .list-item { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem; border-bottom: 1px solid #eee; }
+        .list-item:last-child { border-bottom: none; }
+        .delete-btn { background: #e74c3c; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <!-- LOGIN FORM -->
+        <div id="login-container" class="login-form">
+            <h1>Admin Login</h1>
+            <form id="login-form">
+                <input type="text" id="username" class="admin-input" placeholder="Username" required>
+                <input type="password" id="password" class="admin-input" placeholder="Password" required>
+                <button type="submit" class="admin-btn">Login</button>
+            </form>
+            <p id="login-error" style="color: red; margin-top: 1rem; display: none;">Invalid credentials!</p>
+        </div>
+
+        <!-- ADMIN DASHBOARD -->
+        <div id="admin-panel">
+            <div class="admin-header">
+                <h1>Admin Dashboard</h1>
+                <button id="logout-btn" class="admin-btn">Logout</button>
+            </div>
+
+            <!-- Ticker Section -->
+            <div class="admin-section">
+                <h2>Manage Ticker</h2>
+                <form id="ticker-form">
+                    <div class="form-group">
+                        <label for="ticker-message">New Ticker Message:</label>
+                        <input type="text" id="ticker-message" class="admin-input" required>
+                    </div>
+                    <button type="submit" class="admin-btn">Update Ticker</button>
+                </form>
+                <div class="item-list" id="ticker-list">
+                    <p>Loading current ticker...</p>
+                </div>
+            </div>
+
+            <!-- Notice Section -->
+            <div class="admin-section">
+                <h2>Manage Notices</h2>
+                <form id="notice-form">
+                    <div class="form-group">
+                        <label for="notice-heading">Heading:</label>
+                        <input type="text" id="notice-heading" class="admin-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="notice-description">Description:</label>
+                        <textarea id="notice-description" class="admin-input" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="notice-image">Image (Optional):</label>
+                        <input type="file" id="notice-image" class="admin-input" accept="image/*">
+                    </div>
+                    <button type="submit" class="admin-btn">Add Notice</button>
+                </form>
+                <div class="item-list" id="notice-list">
+                    <p>Loading notices...</p>
+                </div>
+            </div>
+            
+            <!-- Gallery Section -->
+            <div class="admin-section">
+                <h2>Manage Gallery</h2>
+                <form id="gallery-form">
+                    <div class="form-group">
+                        <label for="gallery-caption">Caption (Optional):</label>
+                        <input type="text" id="gallery-caption" class="admin-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="gallery-image">Image:</label>
+                        <input type="file" id="gallery-image" class="admin-input" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="admin-btn">Add to Gallery</button>
+                </form>
+                <div class="item-list" id="gallery-list">
+                     <p>Loading gallery items...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase JS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+    <script src="admin.js"></script>
+
+</body>
+  </html>
