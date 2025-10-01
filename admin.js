@@ -1,3 +1,12 @@
+
+---
+
+### Step 2: Replace `admin.js`
+
+This file needs to be updated to use our new `supaClient` variable instead of the old `supabase` variable.
+
+#### File: `admin.js` (Corrected)
+```javascript
 // --- SECURE LOGIN LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
     if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
@@ -67,7 +76,8 @@ const tickerList = document.getElementById('ticker-list');
 
 async function loadTicker() {
     try {
-        const { data, error } = await supabase.from('ticker').select('*').order('created_at', { ascending: false });
+        // THE FIX: Use supaClient instead of supabase
+        const { data, error } = await supaClient.from('ticker').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         tickerList.innerHTML = '';
         if (data && data.length > 0) {
@@ -92,7 +102,8 @@ async function loadTicker() {
 tickerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const message = document.getElementById('ticker-message').value;
-    const { error } = await supabase.from('ticker').insert({ message: message });
+    // THE FIX: Use supaClient instead of supabase
+    const { error } = await supaClient.from('ticker').insert({ message: message });
     if (error) {
         alert('Error adding ticker: ' + error.message);
     } else {
@@ -104,7 +115,8 @@ tickerForm.addEventListener('submit', async (e) => {
 
 async function deleteTicker(id) {
     if (confirm('Are you sure you want to delete this ticker message?')) {
-        const { error } = await supabase.from('ticker').delete().eq('id', id);
+        // THE FIX: Use supaClient instead of supabase
+        const { error } = await supaClient.from('ticker').delete().eq('id', id);
         if (error) alert('Error deleting ticker: ' + error.message);
         else loadTicker();
     }
@@ -116,7 +128,8 @@ const noticeList = document.getElementById('notice-list');
 
 async function loadNotices() {
     try {
-        const { data, error } = await supabase.from('notices').select('*').order('created_at', { ascending: false });
+        // THE FIX: Use supaClient instead of supabase
+        const { data, error } = await supaClient.from('notices').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         noticeList.innerHTML = '';
         if (data && data.length > 0) {
@@ -148,14 +161,17 @@ noticeForm.addEventListener('submit', async (e) => {
     try {
         if (imageFile) {
             const filePath = `public/${Date.now()}-${imageFile.name}`;
-            const { error: uploadError } = await supabase.storage.from('notice-images').upload(filePath, imageFile);
+            // THE FIX: Use supaClient instead of supabase
+            const { error: uploadError } = await supaClient.storage.from('notice-images').upload(filePath, imageFile);
             if (uploadError) throw uploadError;
             
-            const { data } = supabase.storage.from('notice-images').getPublicUrl(filePath);
+            // THE FIX: Use supaClient instead of supabase
+            const { data } = supaClient.storage.from('notice-images').getPublicUrl(filePath);
             imageUrl = data.publicUrl;
         }
 
-        const { error: insertError } = await supabase.from('notices').insert({ heading, description, image_url: imageUrl });
+        // THE FIX: Use supaClient instead of supabase
+        const { error: insertError } = await supaClient.from('notices').insert({ heading, description, image_url: imageUrl });
         if (insertError) throw insertError;
 
         alert('Notice added successfully!');
@@ -168,14 +184,16 @@ noticeForm.addEventListener('submit', async (e) => {
 
 async function deleteNotice(id, imageUrl) {
     if (confirm('Are you sure you want to delete this notice?')) {
-        const { error: dbError } = await supabase.from('notices').delete().eq('id', id);
+        // THE FIX: Use supaClient instead of supabase
+        const { error: dbError } = await supaClient.from('notices').delete().eq('id', id);
         if (dbError) {
             alert('Error deleting notice from database: ' + dbError.message);
             return;
         }
         if (imageUrl && imageUrl !== 'null') {
             const fileName = imageUrl.split('/').pop();
-            await supabase.storage.from('notice-images').remove([`public/${fileName}`]);
+            // THE FIX: Use supaClient instead of supabase
+            await supaClient.storage.from('notice-images').remove([`public/${fileName}`]);
         }
         loadNotices();
     }
@@ -187,7 +205,8 @@ const galleryList = document.getElementById('gallery-list');
 
 async function loadGalleryItems() {
     try {
-        const { data, error } = await supabase.from('gallery').select('*').order('created_at', { ascending: false });
+        // THE FIX: Use supaClient instead of supabase
+        const { data, error } = await supaClient.from('gallery').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         galleryList.innerHTML = '';
         if (data && data.length > 0) {
@@ -220,13 +239,16 @@ galleryForm.addEventListener('submit', async (e) => {
 
     try {
         const filePath = `public/${Date.now()}-${imageFile.name}`;
-        const { error: uploadError } = await supabase.storage.from('gallery-images').upload(filePath, imageFile);
+        // THE FIX: Use supaClient instead of supabase
+        const { error: uploadError } = await supaClient.storage.from('gallery-images').upload(filePath, imageFile);
         if (uploadError) throw uploadError;
 
-        const { data } = supabase.storage.from('gallery-images').getPublicUrl(filePath);
+        // THE FIX: Use supaClient instead of supabase
+        const { data } = supaClient.storage.from('gallery-images').getPublicUrl(filePath);
         const imageUrl = data.publicUrl;
 
-        const { error: insertError } = await supabase.from('gallery').insert({ caption, image_url: imageUrl });
+        // THE FIX: Use supaClient instead of supabase
+        const { error: insertError } = await supaClient.from('gallery').insert({ caption, image_url: imageUrl });
         if (insertError) throw insertError;
 
         alert('Image added to gallery!');
@@ -239,15 +261,17 @@ galleryForm.addEventListener('submit', async (e) => {
 
 async function deleteGalleryItem(id, imageUrl) {
      if (confirm('Are you sure you want to delete this gallery item?')) {
-        const { error: dbError } = await supabase.from('gallery').delete().eq('id', id);
+        // THE FIX: Use supaClient instead of supabase
+        const { error: dbError } = await supaClient.from('gallery').delete().eq('id', id);
         if (dbError) {
             alert('Error deleting item: ' + dbError.message);
             return;
         }
         if (imageUrl && imageUrl !== 'null') {
             const fileName = imageUrl.split('/').pop();
-            await supabase.storage.from('gallery-images').remove([`public/${fileName}`]);
+            // THE FIX: Use supaClient instead of supabase
+            await supaClient.storage.from('gallery-images').remove([`public/${fileName}`]);
         }
         loadGalleryItems();
     }
-                           }
+    }
