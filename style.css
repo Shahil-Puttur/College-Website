@@ -916,7 +916,7 @@ body {
 .bca-details-section { background-color: var(--creamy-purple); }
 .course-detail-layout { position: relative; display: flex; align-items: center; }
 .course-image-wrapper { flex: 1; z-index: 1; }
-.course-image-wrapper img { width: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+.course-image-wrapper img { width: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); display: block; }
 .course-text-wrapper { flex: 1.2; background: var(--white-color); padding: 3rem; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-left: -50px; z-index: 2; }
 .course-text-wrapper h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--secondary-blue); }
 .course-text-wrapper p { margin-bottom: 1.5rem; line-height: 1.8; }
@@ -966,7 +966,7 @@ body {
     .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
     .course-detail-layout { flex-direction: column; } 
-    .course-text-wrapper { margin-left: 0; margin-top: -50px; width: 100%; }
+    .course-text-wrapper { margin-left: 0; margin-top: -80px; width: 90%; padding: 2rem; }
     .bca-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media(max-width: 768px) {
@@ -1001,7 +1001,8 @@ body {
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
     .facility-layout:nth-child(2) .facility-image { order: -1; }
-    .course-text-wrapper { margin-top: -30px; padding: 2rem; }
+    .course-text-wrapper { margin-top: -50px; width: calc(100% - 2rem); padding: 1.5rem; }
+    .course-text-wrapper h2 { font-size: 1.5rem; }
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
