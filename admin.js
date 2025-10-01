@@ -1,5 +1,6 @@
 // --- SECURE LOGIN LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Only show the panel if the user is logged in
     if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
         showAdminPanel();
     }
@@ -18,6 +19,7 @@ loginForm.addEventListener('submit', async (e) => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     
+    // The URL of your secure Render backend
     const BACKEND_URL = 'https://college-backened.onrender.com/login';
 
     try {
@@ -38,7 +40,7 @@ loginForm.addEventListener('submit', async (e) => {
         }
     } catch (error) {
         console.error('Login request failed:', error);
-        loginError.textContent = 'Could not connect to the server. Please try again.';
+        loginError.textContent = 'Could not connect to the login server. Please try again.';
         loginError.style.display = 'block';
     } finally {
         loginButton.disabled = false;
@@ -56,6 +58,7 @@ logoutBtn.addEventListener('click', () => {
 function showAdminPanel() {
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
+    // Load all data once the panel is shown
     loadTicker();
     loadNotices();
     loadGalleryItems();
@@ -75,10 +78,7 @@ async function loadTicker() {
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
-                div.innerHTML = `
-                    <span>${item.message.substring(0, 50)}...</span>
-                    <button class="delete-btn" onclick="deleteTicker(${item.id})">Delete</button>
-                `;
+                div.innerHTML = `<span>${item.message.substring(0, 50)}...</span> <button class="delete-btn" onclick="deleteTicker(${item.id})">Delete</button>`;
                 tickerList.appendChild(div);
             });
         } else {
@@ -127,10 +127,7 @@ async function loadNotices() {
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
-                div.innerHTML = `
-                    <span>${item.heading}</span>
-                    <button class="delete-btn" onclick="deleteNotice(${item.id}, '${item.image_url}')">Delete</button>
-                `;
+                div.innerHTML = `<span>${item.heading}</span> <button class="delete-btn" onclick="deleteNotice(${item.id}, '${item.image_url}')">Delete</button>`;
                 noticeList.appendChild(div);
             });
         } else {
@@ -148,6 +145,8 @@ noticeForm.addEventListener('submit', async (e) => {
     const description = document.getElementById('notice-description').value;
     const imageFile = document.getElementById('notice-image').files[0];
     let imageUrl = null;
+    const submitBtn = noticeForm.querySelector('button');
+    submitBtn.disabled = true;
 
     try {
         if (imageFile) {
@@ -156,12 +155,10 @@ noticeForm.addEventListener('submit', async (e) => {
             const { error: uploadError } = await supaClient.storage.from('notice-images').upload(filePath, imageFile);
             if (uploadError) throw uploadError;
             
-            // CORRECTED: Use supaClient
             const { data } = supaClient.storage.from('notice-images').getPublicUrl(filePath);
             imageUrl = data.publicUrl;
         }
 
-        // CORRECTED: Use supaClient
         const { error: insertError } = await supaClient.from('notices').insert({ heading, description, image_url: imageUrl });
         if (insertError) throw insertError;
 
@@ -170,20 +167,20 @@ noticeForm.addEventListener('submit', async (e) => {
         loadNotices();
     } catch (error) {
         alert('Error: ' + error.message);
+    } finally {
+        submitBtn.disabled = false;
     }
 });
 
 async function deleteNotice(id, imageUrl) {
     if (confirm('Are you sure you want to delete this notice?')) {
-        // CORRECTED: Use supaClient
         const { error: dbError } = await supaClient.from('notices').delete().eq('id', id);
         if (dbError) {
-            alert('Error deleting notice from database: ' + dbError.message);
+            alert('Error deleting notice: ' + dbError.message);
             return;
         }
         if (imageUrl && imageUrl !== 'null') {
             const fileName = imageUrl.split('/').pop();
-            // CORRECTED: Use supaClient
             await supaClient.storage.from('notice-images').remove([`public/${fileName}`]);
         }
         loadNotices();
@@ -204,10 +201,7 @@ async function loadGalleryItems() {
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
-                div.innerHTML = `
-                    <span>${item.caption || 'No Caption'}</span>
-                    <button class="delete-btn" onclick="deleteGalleryItem(${item.id}, '${item.image_url}')">Delete</button>
-                `;
+                div.innerHTML = `<span>${item.caption || 'No Caption'}</span> <button class="delete-btn" onclick="deleteGalleryItem(${item.id}, '${item.image_url}')">Delete</button>`;
                 galleryList.appendChild(div);
             });
         } else {
@@ -227,6 +221,8 @@ galleryForm.addEventListener('submit', async (e) => {
         alert('Please select an image file to upload.');
         return;
     }
+    const submitBtn = galleryForm.querySelector('button');
+    submitBtn.disabled = true;
 
     try {
         const filePath = `public/${Date.now()}-${imageFile.name}`;
@@ -234,11 +230,9 @@ galleryForm.addEventListener('submit', async (e) => {
         const { error: uploadError } = await supaClient.storage.from('gallery-images').upload(filePath, imageFile);
         if (uploadError) throw uploadError;
 
-        // CORRECTED: Use supaClient
         const { data } = supaClient.storage.from('gallery-images').getPublicUrl(filePath);
         const imageUrl = data.publicUrl;
 
-        // CORRECTED: Use supaClient
         const { error: insertError } = await supaClient.from('gallery').insert({ caption, image_url: imageUrl });
         if (insertError) throw insertError;
 
@@ -247,12 +241,13 @@ galleryForm.addEventListener('submit', async (e) => {
         loadGalleryItems();
     } catch (error) {
         alert('Error: ' + error.message);
+    } finally {
+        submitBtn.disabled = false;
     }
 });
 
 async function deleteGalleryItem(id, imageUrl) {
      if (confirm('Are you sure you want to delete this gallery item?')) {
-        // CORRECTED: Use supaClient
         const { error: dbError } = await supaClient.from('gallery').delete().eq('id', id);
         if (dbError) {
             alert('Error deleting item: ' + dbError.message);
@@ -260,9 +255,8 @@ async function deleteGalleryItem(id, imageUrl) {
         }
         if (imageUrl && imageUrl !== 'null') {
             const fileName = imageUrl.split('/').pop();
-            // CORRECTED: Use supaClient
             await supaClient.storage.from('gallery-images').remove([`public/${fileName}`]);
         }
         loadGalleryItems();
     }
-        }
+}
