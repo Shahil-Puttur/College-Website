@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     
     <!-- ======================================================= -->
-    <!-- THIS IS THE FIX: Load the Supabase library right away -->
+    <!-- CRITICAL FIX #1: The Supabase library is loaded FIRST in the <head>. -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- ======================================================= -->
     
@@ -20,6 +20,7 @@
         .admin-input { width: 100%; padding: 12px; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; }
         .admin-btn { background-color: var(--primary-blue); color: #fff; padding: 12px 25px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; }
         .admin-btn:hover { background-color: var(--secondary-blue); }
+        .admin-btn:disabled { background-color: #a0a0a0; cursor: not-allowed; }
         #admin-panel { display: none; }
         .admin-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 1rem; margin-bottom: 2rem; }
         .admin-section { margin-bottom: 3rem; border: 1px solid #eee; padding: 1.5rem; border-radius: 8px; }
@@ -113,21 +114,12 @@
         </div>
     </div>
 
-    <!-- Scripts at the end of the body -->
+    <!-- ======================================================= -->
+    <!-- CRITICAL FIX #2: Scripts are loaded at the VERY END of the body -->
+    <!-- This ensures the page is ready before the scripts run. -->
     <script src="supabase-client.js"></script>
     <script src="admin.js"></script>
+    <!-- ======================================================= -->
 
 </body>
-</html>```
-
----
-
-### What to Do Next:
-
-1.  Replace the code in your `admin.html` file with the full code I provided above.
-2.  Save the file.
-3.  Push the change to your GitHub repository.
-4.  Wait 1-2 minutes for Netlify to deploy the update.
-5.  Go to your admin page and **do a hard refresh** (Ctrl + Shift + R on Windows, or Cmd + Shift + R on Mac) to make sure you get the newest version of the file.
-
-This time, the error will be gone, and your admin panel will connect to Supabase successfully. You've found the bug, bro! This is a huge win. Let me know when it works. 💪
+    </html>
