@@ -6,13 +6,17 @@
     <title>Notices - Vidyarashmi College</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- CRITICAL FIX #1: The Supabase library is loaded in the head -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
-        .notice-container { padding: 5rem 0; }
+        .notice-container { padding-top: 100px; padding-bottom: 5rem; min-height: 80vh; }
         .notice-list { display: grid; gap: 2rem; }
         .notice-card { background: var(--white-color); padding: 2rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .notice-card img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem; }
         .notice-card h2 { margin-top: 0; color: var(--secondary-blue); }
-        .notice-card p { white-space: pre-wrap; /* Preserves line breaks from textarea */ }
+        .notice-card p { white-space: pre-wrap; }
         .single-notice-view a { display: inline-block; margin-top: 2rem; }
     </style>
 </head>
@@ -39,8 +43,7 @@
     <main>
         <section class="notice-container">
             <div class="container" id="notice-content">
-                <h1 class="section-title">Notices</h1>
-                <p>Loading notices...</p>
+                <!-- Dynamic content will be loaded here by notices.js -->
             </div>
         </section>
     </main>
@@ -51,9 +54,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase-client.js"></script>
-    <script src="notices.js"></script>
-    <script src="script.js"></script> <!-- For navbar menu -->
+    <!-- CRITICAL FIX #2: Script loading order at the end of the body -->
+    <script src="supabase-client.js"></script> <!-- This creates 'supaClient' -->
+    <script src="notices.js"></script>         <!-- This uses 'supaClient' -->
+    <script src="script.js"></script>           <!-- This is for the mobile navbar menu -->
+
 </body>
 </html>
