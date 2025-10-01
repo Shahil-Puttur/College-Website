@@ -99,7 +99,11 @@
         </div>
     </footer>
 
+    <!-- ======================================================= -->
+    <!-- THE FIX: Correct script loading order for this page -->
+    <script src="main.js"></script> <!-- Shared navbar logic -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <script> AOS.init({ duration: 1000, once: true }); </script>
+    <!-- ======================================================= -->
 </body>
-              </html>
+    </html>
