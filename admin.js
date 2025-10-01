@@ -1,46 +1,41 @@
-// Check login status on page load
+// --- SECURE LOGIN LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
     if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
         showAdminPanel();
     }
 });
 
-// LOGIN LOGIC - NOW SECURE!
 const loginForm = document.getElementById('login-form');
 const loginError = document.getElementById('login-error');
 const loginButton = loginForm.querySelector('button');
 
 loginForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    loginButton.disabled = true; // Prevent multiple clicks
+    loginButton.disabled = true;
     loginButton.textContent = 'Checking...';
     loginError.style.display = 'none';
 
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     
-    // YOUR RENDER BACKEND URL IS NOW ADDED HERE
-    const BACKEND_URL = 'https://college-backened.onrender.com/login'; 
+    const BACKEND_URL = 'https://college-backened.onrender.com/login';
 
     try {
         const response = await fetch(BACKEND_URL, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),
         });
 
         const data = await response.json();
 
-        if (response.ok && data.success) { // Check if response is successful
+        if (response.ok && data.success) {
             sessionStorage.setItem('isAdminLoggedIn', 'true');
             showAdminPanel();
         } else {
             loginError.textContent = data.message || 'Invalid credentials';
             loginError.style.display = 'block';
         }
-
     } catch (error) {
         console.error('Login request failed:', error);
         loginError.textContent = 'Could not connect to the server. Please try again.';
@@ -51,14 +46,10 @@ loginForm.addEventListener('submit', async (e) => {
     }
 });
 
-
-// LOGOUT LOGIC
+// --- LOGOUT & PANEL DISPLAY ---
 const logoutBtn = document.getElementById('logout-btn');
 logoutBtn.addEventListener('click', () => {
     sessionStorage.removeItem('isAdminLoggedIn');
-    document.getElementById('login-container').style.display = 'block';
-    document.getElementById('admin-panel').style.display = 'none';
-    // Optional: reload the page to clear everything
     window.location.reload();
 });
 
@@ -114,11 +105,8 @@ tickerForm.addEventListener('submit', async (e) => {
 async function deleteTicker(id) {
     if (confirm('Are you sure you want to delete this ticker message?')) {
         const { error } = await supabase.from('ticker').delete().eq('id', id);
-        if (error) {
-            alert('Error deleting ticker: ' + error.message);
-        } else {
-            loadTicker();
-        }
+        if (error) alert('Error deleting ticker: ' + error.message);
+        else loadTicker();
     }
 }
 
@@ -131,7 +119,7 @@ async function loadNotices() {
         const { data, error } = await supabase.from('notices').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         noticeList.innerHTML = '';
-        if (data) {
+        if (data && data.length > 0) {
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
@@ -141,6 +129,8 @@ async function loadNotices() {
                 `;
                 noticeList.appendChild(div);
             });
+        } else {
+            noticeList.innerHTML = '<p>No notices found.</p>';
         }
     } catch(error) {
         console.error('Error loading notices:', error);
@@ -155,29 +145,24 @@ noticeForm.addEventListener('submit', async (e) => {
     const imageFile = document.getElementById('notice-image').files[0];
     let imageUrl = null;
 
-    if (imageFile) {
-        const filePath = `public/${Date.now()}-${imageFile.name}`;
-        const { error: uploadError } = await supabase.storage.from('notice-images').upload(filePath, imageFile);
-        if (uploadError) {
-            alert('Image upload failed: ' + uploadError.message);
-            return;
+    try {
+        if (imageFile) {
+            const filePath = `public/${Date.now()}-${imageFile.name}`;
+            const { error: uploadError } = await supabase.storage.from('notice-images').upload(filePath, imageFile);
+            if (uploadError) throw uploadError;
+            
+            const { data } = supabase.storage.from('notice-images').getPublicUrl(filePath);
+            imageUrl = data.publicUrl;
         }
-        const { data } = supabase.storage.from('notice-images').getPublicUrl(filePath);
-        imageUrl = data.publicUrl;
-    }
 
-    const { error: insertError } = await supabase.from('notices').insert({
-        heading: heading,
-        description: description,
-        image_url: imageUrl
-    });
+        const { error: insertError } = await supabase.from('notices').insert({ heading, description, image_url: imageUrl });
+        if (insertError) throw insertError;
 
-    if (insertError) {
-        alert('Error adding notice: ' + insertError.message);
-    } else {
         alert('Notice added successfully!');
         noticeForm.reset();
         loadNotices();
+    } catch (error) {
+        alert('Error: ' + error.message);
     }
 });
 
@@ -205,7 +190,7 @@ async function loadGalleryItems() {
         const { data, error } = await supabase.from('gallery').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         galleryList.innerHTML = '';
-        if (data) {
+        if (data && data.length > 0) {
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
@@ -215,6 +200,8 @@ async function loadGalleryItems() {
                 `;
                 galleryList.appendChild(div);
             });
+        } else {
+            galleryList.innerHTML = '<p>No gallery items found.</p>';
         }
     } catch(error) {
         console.error('Error loading gallery items:', error);
@@ -226,28 +213,27 @@ galleryForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const caption = document.getElementById('gallery-caption').value;
     const imageFile = document.getElementById('gallery-image').files[0];
-
-    const filePath = `public/${Date.now()}-${imageFile.name}`;
-    const { error: uploadError } = await supabase.storage.from('gallery-images').upload(filePath, imageFile);
-    if (uploadError) {
-        alert('Image upload failed: ' + uploadError.message);
+    if (!imageFile) {
+        alert('Please select an image file to upload.');
         return;
     }
 
-    const { data } = supabase.storage.from('gallery-images').getPublicUrl(filePath);
-    const imageUrl = data.publicUrl;
+    try {
+        const filePath = `public/${Date.now()}-${imageFile.name}`;
+        const { error: uploadError } = await supabase.storage.from('gallery-images').upload(filePath, imageFile);
+        if (uploadError) throw uploadError;
 
-    const { error: insertError } = await supabase.from('gallery').insert({
-        caption: caption,
-        image_url: imageUrl
-    });
+        const { data } = supabase.storage.from('gallery-images').getPublicUrl(filePath);
+        const imageUrl = data.publicUrl;
 
-    if (insertError) {
-        alert('Error adding to gallery: ' + insertError.message);
-    } else {
+        const { error: insertError } = await supabase.from('gallery').insert({ caption, image_url: imageUrl });
+        if (insertError) throw insertError;
+
         alert('Image added to gallery!');
         galleryForm.reset();
         loadGalleryItems();
+    } catch (error) {
+        alert('Error: ' + error.message);
     }
 });
 
@@ -264,4 +250,4 @@ async function deleteGalleryItem(id, imageUrl) {
         }
         loadGalleryItems();
     }
-}
+                           }
