@@ -1,12 +1,3 @@
-
----
-
-### Step 2: Replace `admin.js`
-
-This file needs to be updated to use our new `supaClient` variable instead of the old `supabase` variable.
-
-#### File: `admin.js` (Corrected)
-```javascript
 // --- SECURE LOGIN LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
     if (sessionStorage.getItem('isAdminLoggedIn') === 'true') {
@@ -76,7 +67,7 @@ const tickerList = document.getElementById('ticker-list');
 
 async function loadTicker() {
     try {
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { data, error } = await supaClient.from('ticker').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         tickerList.innerHTML = '';
@@ -102,7 +93,7 @@ async function loadTicker() {
 tickerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const message = document.getElementById('ticker-message').value;
-    // THE FIX: Use supaClient instead of supabase
+    // CORRECTED: Use supaClient
     const { error } = await supaClient.from('ticker').insert({ message: message });
     if (error) {
         alert('Error adding ticker: ' + error.message);
@@ -115,7 +106,7 @@ tickerForm.addEventListener('submit', async (e) => {
 
 async function deleteTicker(id) {
     if (confirm('Are you sure you want to delete this ticker message?')) {
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { error } = await supaClient.from('ticker').delete().eq('id', id);
         if (error) alert('Error deleting ticker: ' + error.message);
         else loadTicker();
@@ -128,7 +119,7 @@ const noticeList = document.getElementById('notice-list');
 
 async function loadNotices() {
     try {
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { data, error } = await supaClient.from('notices').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         noticeList.innerHTML = '';
@@ -161,16 +152,16 @@ noticeForm.addEventListener('submit', async (e) => {
     try {
         if (imageFile) {
             const filePath = `public/${Date.now()}-${imageFile.name}`;
-            // THE FIX: Use supaClient instead of supabase
+            // CORRECTED: Use supaClient
             const { error: uploadError } = await supaClient.storage.from('notice-images').upload(filePath, imageFile);
             if (uploadError) throw uploadError;
             
-            // THE FIX: Use supaClient instead of supabase
+            // CORRECTED: Use supaClient
             const { data } = supaClient.storage.from('notice-images').getPublicUrl(filePath);
             imageUrl = data.publicUrl;
         }
 
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { error: insertError } = await supaClient.from('notices').insert({ heading, description, image_url: imageUrl });
         if (insertError) throw insertError;
 
@@ -184,7 +175,7 @@ noticeForm.addEventListener('submit', async (e) => {
 
 async function deleteNotice(id, imageUrl) {
     if (confirm('Are you sure you want to delete this notice?')) {
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { error: dbError } = await supaClient.from('notices').delete().eq('id', id);
         if (dbError) {
             alert('Error deleting notice from database: ' + dbError.message);
@@ -192,7 +183,7 @@ async function deleteNotice(id, imageUrl) {
         }
         if (imageUrl && imageUrl !== 'null') {
             const fileName = imageUrl.split('/').pop();
-            // THE FIX: Use supaClient instead of supabase
+            // CORRECTED: Use supaClient
             await supaClient.storage.from('notice-images').remove([`public/${fileName}`]);
         }
         loadNotices();
@@ -205,7 +196,7 @@ const galleryList = document.getElementById('gallery-list');
 
 async function loadGalleryItems() {
     try {
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { data, error } = await supaClient.from('gallery').select('*').order('created_at', { ascending: false });
         if (error) throw error;
         galleryList.innerHTML = '';
@@ -239,15 +230,15 @@ galleryForm.addEventListener('submit', async (e) => {
 
     try {
         const filePath = `public/${Date.now()}-${imageFile.name}`;
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { error: uploadError } = await supaClient.storage.from('gallery-images').upload(filePath, imageFile);
         if (uploadError) throw uploadError;
 
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { data } = supaClient.storage.from('gallery-images').getPublicUrl(filePath);
         const imageUrl = data.publicUrl;
 
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { error: insertError } = await supaClient.from('gallery').insert({ caption, image_url: imageUrl });
         if (insertError) throw insertError;
 
@@ -261,7 +252,7 @@ galleryForm.addEventListener('submit', async (e) => {
 
 async function deleteGalleryItem(id, imageUrl) {
      if (confirm('Are you sure you want to delete this gallery item?')) {
-        // THE FIX: Use supaClient instead of supabase
+        // CORRECTED: Use supaClient
         const { error: dbError } = await supaClient.from('gallery').delete().eq('id', id);
         if (dbError) {
             alert('Error deleting item: ' + dbError.message);
@@ -269,9 +260,9 @@ async function deleteGalleryItem(id, imageUrl) {
         }
         if (imageUrl && imageUrl !== 'null') {
             const fileName = imageUrl.split('/').pop();
-            // THE FIX: Use supaClient instead of supabase
+            // CORRECTED: Use supaClient
             await supaClient.storage.from('gallery-images').remove([`public/${fileName}`]);
         }
         loadGalleryItems();
     }
-    }
+        }
