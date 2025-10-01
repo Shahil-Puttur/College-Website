@@ -6,8 +6,6 @@
     <title>Notices - Vidyarashmi College</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-    <!-- Supabase library is now loaded here -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         .notice-container { padding-top: 100px; padding-bottom: 5rem; min-height: 80vh; }
         .notice-list { display: grid; gap: 2rem; }
@@ -52,10 +50,17 @@
         </div>
     </footer>
 
-    <!-- CORRECT SCRIPT LOADING ORDER FOR NOTICES PAGE -->
+    <!-- ======================================================= -->
+    <!-- THE FINAL, CRITICAL FIX: SCRIPT LOADING ORDER -->
+    <!-- 1. Load the main library FIRST -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- 2. Load the file that USES the library to create our client -->
     <script src="supabase-client.js"></script>
-    <script src="notices.js"></script> <!-- Notices page logic -->
-    <script src="main.js"></script>     <!-- Shared navbar logic -->
+    <!-- 3. Load the file that USES our client -->
+    <script src="notices.js"></script>
+    <!-- 4. Load the shared navbar logic -->
+    <script src="main.js"></script>
+    <!-- ======================================================= -->
 
 </body>
 </html>
