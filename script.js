@@ -1,3 +1,6 @@
+// --- script.js ---
+// This file contains JavaScript ONLY for the HOMEPAGE (index.html).
+
 // --- PRELOADER / FAKE VERIFICATION LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loading');
@@ -38,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- DYNAMIC CONTENT LOADER FROM SUPABASE ---
 document.addEventListener('DOMContentLoaded', () => {
-    // These functions will only run if the correct elements exist on the page
     if (document.querySelector('.news-ticker-section')) {
         loadTicker();
     }
@@ -52,9 +54,8 @@ async function loadTicker() {
     if (!tickerWrapper) return;
     
     try {
-        // Use supaClient, which is defined in supabase-client.js
         const { data, error } = await supaClient.from('ticker').select('message').order('created_at', { ascending: false }).limit(1).single();
-        if (error && error.code !== 'PGRST116') throw error; // Ignore "single row not found" error
+        if (error && error.code !== 'PGRST116') throw error;
 
         if (data && data.message) {
             const message = data.message + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -73,7 +74,6 @@ async function loadHomepageNotices() {
     if (!noticeContainer) return;
 
     try {
-        // Use supaClient, which is defined in supabase-client.js
         const { data, error } = await supaClient.from('notices').select('*').order('created_at', { ascending: false }).limit(5);
         if (error) throw error;
 
@@ -118,23 +118,7 @@ async function loadHomepageNotices() {
     }
 }
 
-
-// --- ORIGINAL WEBSITE FUNCTIONALITY ---
-// Mobile Navigation Menu
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
-const overlay = document.querySelector(".overlay");
-function openMenu() { hamburger.classList.add("active"); navMenu.classList.add("active"); overlay.classList.add("active"); }
-function closeMenu() { hamburger.classList.remove("active"); navMenu.classList.remove("active"); overlay.classList.remove("active"); }
-if(hamburger) {
-    hamburger.addEventListener("click", () => { navMenu.classList.contains("active") ? closeMenu() : openMenu(); });
-    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", closeMenu));
-    overlay.addEventListener("click", closeMenu);
-}
-
-// Initialize AOS (Animate on Scroll)
-AOS.init({ duration: 1000, once: true });
-
+// --- HOMEPAGE-ONLY WEBSITE FUNCTIONALITY ---
 // "Read More" Button Logic
 const readMoreBtn = document.getElementById('readMoreBtn');
 const managementTextWrapper = document.getElementById('managementText');
@@ -145,7 +129,7 @@ if (readMoreBtn) {
     });
 }
 
-// Logic that runs after DOM is loaded
+// Logic that runs after DOM is loaded for homepage-specific items
 document.addEventListener('DOMContentLoaded', () => {
     
     // Typing Animation
