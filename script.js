@@ -2,7 +2,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loading');
     const preloader = document.getElementById('preloader');
-    if (!preloader) return; // Stop if no preloader on the page
+    if (!preloader) {
+        document.body.classList.remove('loading');
+        return; 
+    }
 
     const countdownElement = document.getElementById('countdown-text');
     const loaderTextElement = document.getElementById('loader-text');
@@ -22,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
             clearInterval(interval);
             countdownContainer.style.display = 'none';
             checkmarkContainer.style.display = 'block';
-            if (successSound) { successSound.play().catch(e => console.log("Audio play failed, requires user interaction.")); }
+            if (successSound) { 
+                successSound.play().catch(e => console.log("Audio play failed, requires user interaction.")); 
+            }
             setTimeout(() => {
                 preloader.classList.add('preloader-hidden');
                 document.body.classList.remove('loading');
@@ -33,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- DYNAMIC CONTENT LOADER FROM SUPABASE ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Only run these on the homepage
+    // These functions will only run if the correct elements exist on the page
     if (document.querySelector('.news-ticker-section')) {
         loadTicker();
     }
@@ -47,8 +52,9 @@ async function loadTicker() {
     if (!tickerWrapper) return;
     
     try {
-        const { data, error } = await supabase.from('ticker').select('message').order('created_at', { ascending: false }).limit(1).single();
-        if (error) throw error;
+        // Use supaClient, which is defined in supabase-client.js
+        const { data, error } = await supaClient.from('ticker').select('message').order('created_at', { ascending: false }).limit(1).single();
+        if (error && error.code !== 'PGRST116') throw error; // Ignore "single row not found" error
 
         if (data && data.message) {
             const message = data.message + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
@@ -67,11 +73,12 @@ async function loadHomepageNotices() {
     if (!noticeContainer) return;
 
     try {
-        const { data, error } = await supabase.from('notices').select('*').order('created_at', { ascending: false }).limit(5);
+        // Use supaClient, which is defined in supabase-client.js
+        const { data, error } = await supaClient.from('notices').select('*').order('created_at', { ascending: false }).limit(5);
         if (error) throw error;
 
         if (data && data.length > 0) {
-            noticeContainer.innerHTML = ''; // Clear loading message
+            noticeContainer.innerHTML = '';
             const track = document.createElement('div');
             track.className = 'notice-slider-track';
             const randomImages = ['random1.png', 'random2.png', 'random3.png', 'random4.png'];
@@ -151,11 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     let i = 0; textElement.innerHTML = '';
                     const typingInterval = setInterval(() => {
                         if (i < fullText.length) {
-                            textElement.innerHTML += fullText.charAt(i);
-                            i++;
+                            textElement.innerHTML += fullText.charAt(i); i++;
                         } else {
-                            clearInterval(typingInterval);
-                            textElement.classList.add('typing-done');
+                            clearInterval(typingInterval); textElement.classList.add('typing-done');
                         }
                     }, 50);
                     observer.unobserve(textElement);
@@ -191,17 +196,36 @@ document.addEventListener('DOMContentLoaded', () => {
         professorData.forEach(prof => {
             const slide = document.createElement('div');
             slide.className = 'professor-slide';
-            const qualText = prof.qual || '';
-            const descText = prof.desc || '';
+            const qualText = prof.qual || '', descText = prof.desc || '';
             const separator = qualText && descText ? ', ' : '';
             slide.innerHTML = `<img src="${prof.img}" alt="${prof.name}"><div class="professor-info"><h3>${prof.name}</h3><p>${qualText}${separator}${descText}</p></div>`;
             track.appendChild(slide);
         });
         const slides = Array.from(track.children);
         let currentIndex = 0;
-        function updateCarousel() { slides.forEach((slide, index) => { slide.className = 'professor-slide'; let newPos = (index - currentIndex + slides.length) % slides.length; if (newPos === 0) slide.classList.add('slide-active'); else if (newPos === 1 || newPos < slides.length / 2) slide.classList.add('slide-next'); else slide.classList.add('slide-prev'); }); }
-        function slideNext() { currentIndex = (currentIndex + 1) % slides.length; updateCarousel(); }
-        if (slides.length > 0) { updateCarousel(); setInterval(slideNext, 3000); }
+        function updateCarousel() { 
+            slides.forEach((slide, index) => { 
+                slide.classList.remove('slide-active', 'slide-prev', 'slide-next', 'slide-hidden'); 
+                let newIndex = (index - currentIndex + slides.length) % slides.length; 
+                if (newIndex === 0) { 
+                    slide.classList.add('slide-active'); 
+                } else if (newIndex === 1) { 
+                    slide.classList.add('slide-next'); 
+                } else if (newIndex === slides.length - 1) { 
+                    slide.classList.add('slide-prev'); 
+                } else { 
+                    slide.classList.add('slide-hidden'); 
+                } 
+            }); 
+        }
+        function slideNext() { 
+            currentIndex = (currentIndex + 1) % slides.length; 
+            updateCarousel(); 
+        }
+        if (slides.length > 1) { 
+            updateCarousel(); 
+            setInterval(slideNext, 3000); 
+        }
     }
 
     // Custom Audio Player (for bca.html)
@@ -210,20 +234,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const audio = document.getElementById('bcaAudio');
         const playBtn = document.getElementById('playBtn');
         const pauseBtn = document.getElementById('pauseBtn');
-        playBtn.addEventListener('click', () => { audio.play(); playBtn.style.display = 'none'; pauseBtn.style.display = 'flex'; });
-        pauseBtn.addEventListener('click', () => { audio.pause(); playBtn.style.display = 'flex'; pauseBtn.style.display = 'none'; });
+        playBtn.addEventListener('click', () => { 
+            audio.play(); 
+            playBtn.style.display = 'none'; 
+            pauseBtn.style.display = 'flex'; 
+        });
+        pauseBtn.addEventListener('click', () => { 
+            audio.pause(); 
+            playBtn.style.display = 'flex'; 
+            pauseBtn.style.display = 'none'; 
+        });
     }
 
     // Latest Events Slider
     const eventSliderContainer = document.getElementById('eventSlider');
     if (eventSliderContainer) {
         const events = [
-            { img: 'assets/images/latest1.jpg', caption: 'Independence Day Cup' },
-            { img: 'assets/images/latest2.jpg', caption: 'Dasara Kabaddi Winners' },
-            { img: 'assets/images/latest3.jpg', caption: 'Aati Fest' },
-            { img: 'assets/images/latest4.jpg', caption: 'IT Association Programme' },
-            { img: 'assets/images/latest5.jpg', caption: 'Kannada Sahitya Programme' },
-            { img: 'assets/images/latest6.jpg', caption: 'Arts Association Programme' },
+            { img: 'assets/images/latest1.jpg', caption: 'Independence Day Cup' }, 
+            { img: 'assets/images/latest2.jpg', caption: 'Dasara Kabaddi Winners' }, 
+            { img: 'assets/images/latest3.jpg', caption: 'Aati Fest' }, 
+            { img: 'assets/images/latest4.jpg', caption: 'IT Association Programme' }, 
+            { img: 'assets/images/latest5.jpg', caption: 'Kannada Sahitya Programme' }, 
+            { img: 'assets/images/latest6.jpg', caption: 'Arts Association Programme' }, 
             { img: 'assets/images/latest7.jpg', caption: 'Commerce Association Programme' }
         ];
         const dotsContainer = document.querySelector('.event-slider-dots');
@@ -241,7 +273,13 @@ document.addEventListener('DOMContentLoaded', () => {
             dots.forEach(dot => dot.classList.remove('active'));
             if(dots[index]) dots[index].classList.add('active');
         }
-        function nextSlide() { currentSlide = (currentSlide + 1) % events.length; showSlide(currentSlide); }
-        if (events.length > 0) { showSlide(0); setInterval(nextSlide, 3000); }
+        function nextSlide() { 
+            currentSlide = (currentSlide + 1) % events.length; 
+            showSlide(currentSlide); 
+        }
+        if (events.length > 0) { 
+            showSlide(0); 
+            setInterval(nextSlide, 3000); 
+        }
     }
 });
