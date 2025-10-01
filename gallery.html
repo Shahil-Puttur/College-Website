@@ -39,7 +39,7 @@
             <div class="container">
                 <h1 class="section-title">Our Gallery</h1>
                 <div id="gallery-grid" class="gallery-grid">
-                    <!-- Dynamic content will be loaded here by gallery.js -->
+                    <p>Loading images...</p>
                 </div>
             </div>
         </section>
@@ -52,13 +52,43 @@
     </footer>
 
     <!-- ======================================================= -->
-    <!-- THE FINAL, CORRECTED SCRIPT BLOCK -->
-    <!-- All scripts are now here, at the end of the body, in the correct order. -->
+    <!-- THE FINAL, BULLETPROOF SCRIPT BLOCK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-client.js"></script>
-    <script src="gallery.js"></script>
     <script src="main.js"></script>
+
+    <script>
+        // This is the code from gallery.js, placed directly into the HTML
+        document.addEventListener('DOMContentLoaded', async () => {
+            const galleryGrid = document.getElementById('gallery-grid');
+            if (!galleryGrid) return;
+
+            try {
+                const { data, error } = await supaClient.from('gallery').select('*').order('created_at', { ascending: false });
+                if (error) throw error;
+                if (data && data.length > 0) {
+                    galleryGrid.innerHTML = '';
+                    data.forEach(item => {
+                        const galleryItem = document.createElement('div');
+                        galleryItem.className = 'gallery-item';
+                        galleryItem.innerHTML = `
+                            <a href="${item.image_url}" target="_blank">
+                                <img src="${item.image_url}" alt="${item.caption || 'Gallery Image'}" loading="lazy">
+                            </a>
+                            ${item.caption ? `<p>${item.caption}</p>` : ''}
+                        `;
+                        galleryGrid.appendChild(galleryItem);
+                    });
+                } else {
+                    galleryGrid.innerHTML = '<p>No images have been added to the gallery yet.</p>';
+                }
+            } catch(error) {
+                console.error("Fatal Error loading gallery:", error);
+                galleryGrid.innerHTML = '<p>Could not load the gallery due to a connection error.</p>';
+            }
+        });
+    </script>
     <!-- ======================================================= -->
 
 </body>
-</html>
+        </html>
