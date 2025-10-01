@@ -1,63 +1,134 @@
 // --- PRELOADER / FAKE VERIFICATION LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loading');
-
     const preloader = document.getElementById('preloader');
-    const countdownElement = document.getElementById('countdown-text'); // UPDATED: Target SVG text
+    if (!preloader) return; // Stop if no preloader on the page
+
+    const countdownElement = document.getElementById('countdown-text');
     const loaderTextElement = document.getElementById('loader-text');
     const countdownContainer = document.getElementById('countdown-container');
     const checkmarkContainer = document.getElementById('checkmark-container');
     const successSound = document.getElementById('success-sound');
 
-    if (preloader) {
-        let countdown = 5;
-        const messages = {
-            5: "Checking 💻",
-            4: "Analyzing 🌐",
-            3: "Robot Detection 🤖",
-            2: "Human Verification 👨🏻‍💻",
-            1: "Almost Done..."
-        };
+    let countdown = 5;
+    const messages = { 5: "Checking 💻", 4: "Analyzing 🌐", 3: "Robot Detection 🤖", 2: "Human Verification 👨🏻‍💻", 1: "Almost Done..." };
+    
+    const interval = setInterval(() => {
+        countdown--;
+        if (countdown >= 1) {
+            countdownElement.textContent = countdown;
+            loaderTextElement.textContent = messages[countdown];
+        } else {
+            clearInterval(interval);
+            countdownContainer.style.display = 'none';
+            checkmarkContainer.style.display = 'block';
+            if (successSound) { successSound.play().catch(e => console.log("Audio play failed, requires user interaction.")); }
+            setTimeout(() => {
+                preloader.classList.add('preloader-hidden');
+                document.body.classList.remove('loading');
+            }, 1500);
+        }
+    }, 1000);
+});
 
-        const interval = setInterval(() => {
-            countdown--;
-            if (countdown >= 1) {
-                countdownElement.textContent = countdown; // Use textContent for SVG text
-                loaderTextElement.textContent = messages[countdown];
-            } else {
-                clearInterval(interval);
-                
-                countdownContainer.style.display = 'none';
-                checkmarkContainer.style.display = 'block';
-                
-                if (successSound) {
-                    successSound.play().catch(error => console.log("Audio play failed:", error));
-                }
-
-                setTimeout(() => {
-                    preloader.classList.add('preloader-hidden');
-                    document.body.classList.remove('loading');
-                }, 1500);
-            }
-        }, 1000);
+// --- DYNAMIC CONTENT LOADER FROM SUPABASE ---
+document.addEventListener('DOMContentLoaded', () => {
+    // Only run these on the homepage
+    if (document.querySelector('.news-ticker-section')) {
+        loadTicker();
+    }
+    if (document.getElementById('notice-slider-container')) {
+        loadHomepageNotices();
     }
 });
 
+async function loadTicker() {
+    const tickerWrapper = document.querySelector('.scrolling-text-wrapper');
+    if (!tickerWrapper) return;
+    
+    try {
+        const { data, error } = await supabase.from('ticker').select('message').order('created_at', { ascending: false }).limit(1).single();
+        if (error) throw error;
 
-// --- Pro Mobile Navigation Menu ---
+        if (data && data.message) {
+            const message = data.message + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+            tickerWrapper.innerHTML = `<span class="scrolling-text-item">${message}</span><span class="scrolling-text-item">${message}</span>`;
+        } else {
+            document.querySelector('.news-ticker-section').style.display = 'none';
+        }
+    } catch (error) {
+        console.error("Error loading ticker:", error);
+        document.querySelector('.news-ticker-section').style.display = 'none';
+    }
+}
+
+async function loadHomepageNotices() {
+    const noticeContainer = document.getElementById('notice-slider-container');
+    if (!noticeContainer) return;
+
+    try {
+        const { data, error } = await supabase.from('notices').select('*').order('created_at', { ascending: false }).limit(5);
+        if (error) throw error;
+
+        if (data && data.length > 0) {
+            noticeContainer.innerHTML = ''; // Clear loading message
+            const track = document.createElement('div');
+            track.className = 'notice-slider-track';
+            const randomImages = ['random1.png', 'random2.png', 'random3.png', 'random4.png'];
+
+            data.forEach(notice => {
+                let imageUrl = notice.image_url;
+                if (!imageUrl) {
+                    imageUrl = `assets/images/${randomImages[Math.floor(Math.random() * randomImages.length)]}`;
+                }
+
+                const slide = document.createElement('div');
+                slide.className = 'notice-slide';
+                slide.innerHTML = `
+                    <img src="${imageUrl}" alt="${notice.heading}">
+                    <div class="notice-slide-content">
+                        <h3><a href="notices.html?id=${notice.id}">${notice.heading}</a></h3>
+                    </div>
+                `;
+                track.appendChild(slide);
+            });
+            noticeContainer.appendChild(track);
+
+            let currentSlide = 0;
+            const slides = track.children;
+            if (slides.length > 1) {
+                setInterval(() => {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }, 4000);
+            }
+        } else {
+            noticeContainer.innerHTML = '<p style="padding: 2rem; text-align: center;">No recent notices to display.</p>';
+        }
+    } catch (error) {
+        console.error("Error loading notices:", error);
+        noticeContainer.innerHTML = '<p style="padding: 2rem; text-align: center;">Could not load notices.</p>';
+    }
+}
+
+
+// --- ORIGINAL WEBSITE FUNCTIONALITY ---
+// Mobile Navigation Menu
 const hamburger = document.querySelector(".hamburger");
 const navMenu = document.querySelector(".nav-menu");
 const overlay = document.querySelector(".overlay");
 function openMenu() { hamburger.classList.add("active"); navMenu.classList.add("active"); overlay.classList.add("active"); }
 function closeMenu() { hamburger.classList.remove("active"); navMenu.classList.remove("active"); overlay.classList.remove("active"); }
-hamburger.addEventListener("click", () => { if (navMenu.classList.contains("active")) { closeMenu(); } else { openMenu(); } });
-document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", closeMenu));
-overlay.addEventListener("click", closeMenu);
+if(hamburger) {
+    hamburger.addEventListener("click", () => { navMenu.classList.contains("active") ? closeMenu() : openMenu(); });
+    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", closeMenu));
+    overlay.addEventListener("click", closeMenu);
+}
 
-// --- Initialize AOS (Animate on Scroll) Library ---
+// Initialize AOS (Animate on Scroll)
 AOS.init({ duration: 1000, once: true });
 
-// --- "Read More" Button Logic (index.html only) ---
+// "Read More" Button Logic
 const readMoreBtn = document.getElementById('readMoreBtn');
 const managementTextWrapper = document.getElementById('managementText');
 if (readMoreBtn) {
@@ -67,10 +138,10 @@ if (readMoreBtn) {
     });
 }
 
-// --- LOGIC THAT RUNS ON EVERY PAGE LOAD ---
+// Logic that runs after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Typing Animation (SILENT VERSION) ---
+    // Typing Animation
     const textElement = document.getElementById('leaderExperienceText');
     if (textElement) {
         const fullText = "Vidyarashmi First Grade College, Savanoor is one of the best places to learn and grow. The supportive teachers, friendly environment, and good facilities make studies enjoyable. Along with academics, the college also encourages cultural and sports activities. Truly a great place for overall development!";
@@ -80,14 +151,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     let i = 0; textElement.innerHTML = '';
                     const typingInterval = setInterval(() => {
                         if (i < fullText.length) {
-                            const char = fullText.charAt(i);
-                            textElement.innerHTML += char;
+                            textElement.innerHTML += fullText.charAt(i);
                             i++;
                         } else {
                             clearInterval(typingInterval);
                             textElement.classList.add('typing-done');
                         }
-                    }, 50); // Typing speed
+                    }, 50);
                     observer.unobserve(textElement);
                 }
             });
@@ -95,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(textElement);
     }
 
-    // --- Professor Carousel (index.html only) ---
+    // Professor Carousel
     const track = document.querySelector('.carousel-track');
     if (track) {
         const professorData = [
@@ -118,55 +188,33 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/d9.jpg', name: 'Shreya', qual: '', desc: 'Liabrary Staff' },
             { img: 'assets/images/d10.jpg', name: 'Dr. Rajalakshmi Rai', qual: '', desc: 'Principal' }
         ];
-
         professorData.forEach(prof => {
             const slide = document.createElement('div');
             slide.className = 'professor-slide';
-            const qualText = prof.qual ? prof.qual : '';
-            const descText = prof.desc ? prof.desc : '';
+            const qualText = prof.qual || '';
+            const descText = prof.desc || '';
             const separator = qualText && descText ? ', ' : '';
             slide.innerHTML = `<img src="${prof.img}" alt="${prof.name}"><div class="professor-info"><h3>${prof.name}</h3><p>${qualText}${separator}${descText}</p></div>`;
             track.appendChild(slide);
         });
-
         const slides = Array.from(track.children);
         let currentIndex = 0;
-        function updateCarousel() {
-            slides.forEach((slide, index) => {
-                slide.classList.remove('slide-active', 'slide-prev', 'slide-next', 'slide-hidden');
-                let newIndex = (index - currentIndex + slides.length) % slides.length;
-                if (newIndex === 0) { slide.classList.add('slide-active'); } 
-                else if (newIndex === 1) { slide.classList.add('slide-next'); } 
-                else if (newIndex === slides.length - 1) { slide.classList.add('slide-prev'); } 
-                else { slide.classList.add('slide-hidden'); }
-            });
-        }
+        function updateCarousel() { slides.forEach((slide, index) => { slide.className = 'professor-slide'; let newPos = (index - currentIndex + slides.length) % slides.length; if (newPos === 0) slide.classList.add('slide-active'); else if (newPos === 1 || newPos < slides.length / 2) slide.classList.add('slide-next'); else slide.classList.add('slide-prev'); }); }
         function slideNext() { currentIndex = (currentIndex + 1) % slides.length; updateCarousel(); }
-        updateCarousel();
-        setInterval(slideNext, 3000);
+        if (slides.length > 0) { updateCarousel(); setInterval(slideNext, 3000); }
     }
 
-    // --- Custom Audio Player (bca.html only) ---
+    // Custom Audio Player (for bca.html)
     const audioPlayer = document.getElementById('bcaAudioPlayer');
     if (audioPlayer) {
         const audio = document.getElementById('bcaAudio');
         const playBtn = document.getElementById('playBtn');
         const pauseBtn = document.getElementById('pauseBtn');
-        const playAudio = () => { 
-            audio.play(); 
-            playBtn.style.display = 'none'; 
-            pauseBtn.style.display = 'flex'; 
-        };
-        const pauseAudio = () => { 
-            audio.pause(); 
-            playBtn.style.display = 'flex'; 
-            pauseBtn.style.display = 'none'; 
-        };
-        playBtn.addEventListener('click', playAudio);
-        pauseBtn.addEventListener('click', pauseAudio);
+        playBtn.addEventListener('click', () => { audio.play(); playBtn.style.display = 'none'; pauseBtn.style.display = 'flex'; });
+        pauseBtn.addEventListener('click', () => { audio.pause(); playBtn.style.display = 'flex'; pauseBtn.style.display = 'none'; });
     }
 
-    // --- START: UPDATED LATEST EVENTS SLIDER LOGIC ---
+    // Latest Events Slider
     const eventSliderContainer = document.getElementById('eventSlider');
     if (eventSliderContainer) {
         const events = [
@@ -178,51 +226,22 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/latest6.jpg', caption: 'Arts Association Programme' },
             { img: 'assets/images/latest7.jpg', caption: 'Commerce Association Programme' }
         ];
-
         const dotsContainer = document.querySelector('.event-slider-dots');
-        
         const track = document.createElement('div');
         track.className = 'event-slider-track';
-        
         events.forEach((event, index) => {
-            const slide = document.createElement('div');
-            slide.className = 'event-slide';
-            slide.innerHTML = `
-                <img src="${event.img}" alt="${event.caption}">
-                <div class="event-slide-caption">${event.caption}</div>
-            `;
-            track.appendChild(slide);
-
-            const dot = document.createElement('div');
-            dot.className = 'dot';
-            dot.dataset.index = index;
-            if (dotsContainer) {
-                dotsContainer.appendChild(dot);
-            }
+            track.innerHTML += `<div class="event-slide"><img src="${event.img}" alt="${event.caption}"><div class="event-slide-caption">${event.caption}</div></div>`;
+            if (dotsContainer) dotsContainer.innerHTML += `<div class="dot" data-index="${index}"></div>`;
         });
-
         eventSliderContainer.appendChild(track);
-
         const dots = document.querySelectorAll('.dot');
         let currentSlide = 0;
-
         function showSlide(index) {
             track.style.transform = `translateX(-${index * 100}%)`;
             dots.forEach(dot => dot.classList.remove('active'));
-            if(dots[index]) {
-                dots[index].classList.add('active');
-            }
+            if(dots[index]) dots[index].classList.add('active');
         }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % events.length;
-            showSlide(currentSlide);
-        }
-
-        if (events.length > 0) {
-            showSlide(0);
-            setInterval(nextSlide, 3000);
-        }
+        function nextSlide() { currentSlide = (currentSlide + 1) % events.length; showSlide(currentSlide); }
+        if (events.length > 0) { showSlide(0); setInterval(nextSlide, 3000); }
     }
-    // --- END: UPDATED LATEST EVENTS SLIDER LOGIC ---
 });
