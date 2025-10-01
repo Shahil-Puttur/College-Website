@@ -216,21 +216,28 @@ body {
 .management-text p { 
     margin-bottom: 1rem; 
 }
+
+/* === THE BUTTON FIX IS HERE === */
 .btn-secondary { 
+    display: inline-block;
     background-color: transparent; 
     color: var(--accent-pink); 
     border: 2px solid var(--accent-pink); 
-    padding: 10px 20px; 
+    padding: 8px 18px;
     border-radius: 50px; 
     font-weight: 600; 
     cursor: pointer; 
     transition: all 0.3s ease; 
-    margin-top: 1rem; 
+    margin-top: 1rem;
+    text-decoration: none;
+    text-align: center;
 }
 .btn-secondary:hover { 
     background-color: var(--accent-pink); 
     color: var(--white-color); 
 }
+/* =============================== */
+
 .management-images { 
     background-color: var(--text-color-dark); 
     border-radius: 15px; 
@@ -767,10 +774,12 @@ body {
     overflow: hidden; 
     white-space: nowrap; 
 }
+/* === THE TICKER SPEED FIX IS HERE === */
 .scrolling-text-wrapper { 
     display: inline-block; 
-    animation: scroll-left 30s linear infinite; 
+    animation: scroll-left 20s linear infinite; 
 }
+/* ===================================== */
 .scrolling-text-item { 
     display: inline-block; 
     padding: 1rem 0; 
