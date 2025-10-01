@@ -6,17 +6,11 @@
     <title>Gallery - Vidyarashmi College</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-
-    <!-- CRITICAL FIX #1: The Supabase library is loaded in the head -->
+    <!-- Supabase library is now loaded here -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
     <style>
         .gallery-container { padding-top: 100px; padding-bottom: 5rem; min-height: 80vh; }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
         .gallery-item { background: var(--white-color); border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .gallery-item img { width: 100%; height: 250px; object-fit: cover; display: block; }
         .gallery-item p { padding: 1rem; text-align: center; color: var(--secondary-blue); margin: 0;}
@@ -59,10 +53,10 @@
         </div>
     </footer>
 
-    <!-- CRITICAL FIX #2: Script loading order at the end of the body -->
-    <script src="supabase-client.js"></script> <!-- This creates 'supaClient' -->
-    <script src="gallery.js"></script>         <!-- This uses 'supaClient' -->
-    <script src="script.js"></script>           <!-- This is for the mobile navbar menu -->
+    <!-- CORRECT SCRIPT LOADING ORDER FOR GALLERY PAGE -->
+    <script src="supabase-client.js"></script>
+    <script src="gallery.js"></script> <!-- Gallery page logic -->
+    <script src="main.js"></script>     <!-- Shared navbar logic -->
 
 </body>
     </html>
