@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BCA Program - Vidyarashmi College</title>
-    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -36,7 +35,6 @@
     <div class="overlay"></div>
 
     <main>
-        <!-- GRAND VIDEO HERO SECTION -->
         <section class="video-hero-section">
             <video autoplay muted loop playsinline class="hero-video" preload="metadata">
                 <source src="assets/videos/coding_video.mp4" type="video/mp4">
@@ -66,7 +64,6 @@
             </div>
         </section>
         
-        <!-- START: NEW BCA IMAGE GALLERY SECTION -->
         <section class="content-section course-gallery-section">
             <div class="container">
                  <h2 class="section-title" data-aos="fade-up">Glimpses of BCA Life</h2>
@@ -80,7 +77,6 @@
                  </div>
             </div>
         </section>
-        <!-- END: NEW BCA IMAGE GALLERY SECTION -->
 
         <section class="content-section bca-learn-section">
             <div class="container">
@@ -118,15 +114,36 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Vidyarashmi College. All Rights Reserved. Designed by You!</p>
+            <p>&copy; 2025 Vidyarashmi College. All Rights Reserved.</p>
         </div>
     </footer>
 
     <!-- ======================================================= -->
-    <!-- THE FIX: Correct script loading order for this page -->
-    <script src="main.js"></script> <!-- Shared navbar logic -->
+    <!-- THE FINAL, BULLETPROOF SCRIPT BLOCK FOR BCA.HTML -->
+    <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script> AOS.init({ duration: 1000, once: true }); </script>
+    <script>
+        // Initialize AOS animations on this page
+        AOS.init({ duration: 1000, once: true });
+
+        // Custom Audio Player logic, isolated to this page only
+        const audioPlayer = document.getElementById('bcaAudioPlayer');
+        if (audioPlayer) {
+            const audio = document.getElementById('bcaAudio');
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            playBtn.addEventListener('click', () => { 
+                audio.play(); 
+                playBtn.style.display = 'none'; 
+                pauseBtn.style.display = 'flex'; 
+            });
+            pauseBtn.addEventListener('click', () => { 
+                audio.pause(); 
+                playBtn.style.display = 'flex'; 
+                pauseBtn.style.display = 'none'; 
+            });
+        }
+    </script>
     <!-- ======================================================= -->
 </body>
-</html>
+                                                                                                                             </html>
