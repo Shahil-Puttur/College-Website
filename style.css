@@ -671,7 +671,7 @@ body {
 .contact-icon-home { 
     font-size: 3rem; 
     color: var(--white-color); 
-    background: var(--accent-pink); 
+    background: #9b59b6; /* CHANGED from --accent-pink */
     width: 80px; 
     height: 80px; 
     border-radius: 50%; 
@@ -697,7 +697,7 @@ body {
     margin: auto; 
     background: var(--creamy-purple); 
     border-radius: 15px; 
-    padding: 3rem; 
+    padding: 0; /* CHANGED from 3rem */
     box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2); 
     overflow: hidden; 
 }
@@ -713,7 +713,7 @@ body {
     align-items: center; 
     justify-content: center; 
     text-align: center; 
-    padding: 0 1.5rem; 
+    padding: 3rem 1.5rem; /* MOVED padding here */
 }
 .social-logo { 
     height: 80px; 
@@ -965,8 +965,16 @@ body {
     .owner-image { display: none; } 
     .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
-    .course-detail-layout { flex-direction: column; } 
-    .course-text-wrapper { margin-left: 0; margin-top: -80px; width: 90%; padding: 2rem; }
+    .course-detail-layout {
+        flex-direction: column-reverse; /* CHANGED for BCA page layout */
+        gap: 2rem; /* ADDED for spacing */
+    } 
+    .course-text-wrapper {
+        margin-left: 0;
+        margin-top: 0; /* CHANGED from -80px to remove overlap */
+        width: 90%;
+        padding: 2rem;
+    }
     .bca-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media(max-width: 768px) {
@@ -1001,7 +1009,11 @@ body {
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
     .facility-layout:nth-child(2) .facility-image { order: -1; }
-    .course-text-wrapper { margin-top: -50px; width: calc(100% - 2rem); padding: 1.5rem; }
+    .course-text-wrapper {
+        margin-top: 0; /* CHANGED from -50px to remove overlap */
+        width: calc(100% - 2rem);
+        padding: 1.5rem;
+    }
     .course-text-wrapper h2 { font-size: 1.5rem; }
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
 }
