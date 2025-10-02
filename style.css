@@ -966,12 +966,12 @@ body {
     .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
     .course-detail-layout {
-        flex-direction: column-reverse; /* CHANGED for BCA page layout */
-        gap: 2rem; /* ADDED for spacing */
+        flex-direction: column; /* THIS IS THE FIX: Image will be on top, text below */
+        gap: 2rem;
     } 
     .course-text-wrapper {
         margin-left: 0;
-        margin-top: 0; /* CHANGED from -80px to remove overlap */
+        margin-top: 0;
         width: 90%;
         padding: 2rem;
     }
@@ -1010,7 +1010,7 @@ body {
     .facility-layout { grid-template-columns: 1fr; }
     .facility-layout:nth-child(2) .facility-image { order: -1; }
     .course-text-wrapper {
-        margin-top: 0; /* CHANGED from -50px to remove overlap */
+        margin-top: 0;
         width: calc(100% - 2rem);
         padding: 1.5rem;
     }
