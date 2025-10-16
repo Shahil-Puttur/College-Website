@@ -12,26 +12,18 @@
 </head>
 <body>
 
-    <!-- PRELOADER HTML (Full version) -->
+    <!-- ======================================================= -->
+    <!-- NEW, ELEGANT PRELOADER -->
+    <!-- This new preloader is simpler and more professional. -->
+    <!-- It will disappear only after the main hero image is loaded. -->
+    <!-- ======================================================= -->
     <div id="preloader">
-        <div class="loader-content">
-            <div id="countdown-container">
-                <svg id="countdown-svg" width="150" height="150" viewBox="0 0 150 150">
-                    <circle class="countdown-bg" cx="75" cy="75" r="70"></circle>
-                    <circle class="countdown-progress" cx="75" cy="75" r="70"></circle>
-                    <text id="countdown-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">5</text>
-                </svg>
-                <p id="loader-text">Checking 💻</p>
-            </div>
-            <div id="checkmark-container">
-                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                </svg>
-            </div>
+        <div class="loader-container">
+            <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo" class="loader-logo">
+            <div class="loader-spinner"></div>
+            <p class="loader-text">Preparing the future...</p>
         </div>
     </div>
-    <audio id="success-sound" src="assets/audio/success.mp3" preload="auto"></audio>
 
     <!-- HEADER and NAVBAR HTML (Full version) -->
     <header class="header">
@@ -63,10 +55,13 @@
             <div class="hero-background"></div>
             <img src="assets/images/owner2.png" alt="College Founder" class="owner-image owner-left" data-aos="fade-down" data-aos-delay="400">
             <img src="assets/images/owner1.png" alt="College Chairman" class="owner-image owner-right" data-aos="fade-down" data-aos-delay="400">
-            <div class="hero-content" data-aos="fade-up">
-                <h1>Welcome to Vidyarashmi College</h1>
-                <p>Excellence in Education, Foundation for Life.</p>
-                <a href="#programs" class="btn-primary">Explore Our Courses</a>
+            <!-- UPDATED: Added a container for better animation control -->
+            <div class="hero-content-container">
+                <div class="hero-content" data-aos="fade-up">
+                    <h1>Welcome to Vidyarashmi College</h1>
+                    <p>Excellence in Education, Foundation for Life.</p>
+                    <a href="#programs" class="btn-primary">Explore Our Courses</a>
+                </div>
             </div>
         </section>
 
@@ -143,6 +138,7 @@
             <div class="container">
                 <h2 class="section-title">Our Programs</h2>
                 <div class="card-grid">
+                    <!-- UPDATED: Added staggered animation delays -->
                     <div class="program-card bca-card" data-aos="fade-up" data-aos-delay="100">
                         <a href="bca.html" class="card-link"></a>
                         <div class="card-content"><h3>BCA</h3><p>Dive into the world of technology, software, and innovation.</p><span>Learn More</span></div>
@@ -164,6 +160,7 @@
                 <div class="pill-heading">AMENITIES</div>
                 <h2 class="section-title">Facilities & Infrastructure</h2>
                 <div class="facilities-grid">
+                    <!-- UPDATED: Added staggered animation delays -->
                     <div class="facility-card" data-aos="fade-up" data-aos-delay="100">
                         <a href="laboratory.html" class="facility-link"></a>
                         <div class="facility-card-inner"><div class="facility-card-front"><div class="facility-icon"><i class='bx bx-desktop'></i></div><h3>Laboratory</h3></div><div class="facility-card-back"><h3>Advanced Labs</h3><p>Hands-on experience with the latest technology and software.</p></div></div>
@@ -184,6 +181,7 @@
             <div class="container">
                 <h2 class="section-title">Co-curricular Activities</h2>
                 <div class="cocurricular-grid">
+                     <!-- UPDATED: Added staggered animation delays -->
                     <div class="activity-card nss-card" data-aos="zoom-in" data-aos-delay="100">
                         <a href="nss.html" class="activity-link"></a>
                         <div class="activity-content"><h3>NSS</h3></div>
@@ -220,6 +218,7 @@
             <div class="container">
                 <h2 class="section-title">Contact ☎️</h2>
                 <div class="contact-grid-home">
+                    <!-- UPDATED: Added staggered animation delays -->
                     <div class="contact-card-home" data-aos="fade-up" data-aos-delay="100"><a href="tel:8951932313"><div class="contact-icon-home"><i class='bx bx-phone-call'></i></div><h3>Phone Numbers</h3><p>9448501780<br>6361131491</p></a></div>
                     <div class="contact-card-home" data-aos="fade-up" data-aos-delay="200"><a href="mailto:vidyarashmifgc@gmail.com"><div class="contact-icon-home"><i class='bx bxl-gmail'></i></div><h3>Gmail</h3><p>vrfgc@vidyarashmi.in</p></a></div>
                 </div>
@@ -251,7 +250,7 @@
     <script src="script.js"></script> <!-- Homepage-specific logic -->
     <script src="main.js"></script>   <!-- Shared navbar logic -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script> AOS.init({ duration: 1000, once: true }); </script>
+    <script> AOS.init({ duration: 1000, once: true, easing: 'ease-in-out' }); </script>
 
 </body>
     </html>
