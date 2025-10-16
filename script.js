@@ -1,43 +1,41 @@
 // --- script.js ---
 // This file contains JavaScript ONLY for the HOMEPAGE (index.html).
 
-// --- PRELOADER / FAKE VERIFICATION LOGIC ---
+// ================================================================================= //
+// --- NEW PRELOADER LOGIC ---
+// This script waits for the main hero background image to load before showing the page.
+// This avoids boring countdowns and ensures the user sees a complete, beautiful hero section.
+// ================================================================================= //
 document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loading');
     const preloader = document.getElementById('preloader');
-    if (!preloader) {
-        document.body.classList.remove('loading');
-        return; 
-    }
 
-    const countdownElement = document.getElementById('countdown-text');
-    const loaderTextElement = document.getElementById('loader-text');
-    const countdownContainer = document.getElementById('countdown-container');
-    const checkmarkContainer = document.getElementById('checkmark-container');
-    const successSound = document.getElementById('success-sound');
-
-    let countdown = 5;
-    const messages = { 5: "Checking 💻", 4: "Analyzing 🌐", 3: "Robot Detection 🤖", 2: "Human Verification 👨🏻‍💻", 1: "Almost Done..." };
+    // The path to your hero background image from the CSS file.
+    const heroBgImagePath = 'assets/images/hero-bg.jpg';
     
-    const interval = setInterval(() => {
-        countdown--;
-        if (countdown >= 1) {
-            countdownElement.textContent = countdown;
-            loaderTextElement.textContent = messages[countdown];
-        } else {
-            clearInterval(interval);
-            countdownContainer.style.display = 'none';
-            checkmarkContainer.style.display = 'block';
-            if (successSound) { 
-                successSound.play().catch(e => console.log("Audio play failed, requires user interaction.")); 
-            }
-            setTimeout(() => {
-                preloader.classList.add('preloader-hidden');
-                document.body.classList.remove('loading');
-            }, 1500);
+    // Create a new image object in memory.
+    const heroBgImage = new Image();
+    heroBgImage.src = heroBgImagePath;
+
+    const hidePreloader = () => {
+        if (preloader) {
+            preloader.classList.add('preloader-hidden');
+            document.body.classList.remove('loading');
+            // Trigger AOS animations again after content is visible, for hero section
+            AOS.refresh();
         }
-    }, 1000);
+    };
+
+    // When the image has successfully loaded, hide the preloader.
+    heroBgImage.onload = () => {
+        console.log("Hero image loaded. Hiding preloader.");
+        hidePreloader();
+    };
+
+    // Fallback: If the image fails to load or takes too long, hide the preloader after 4 seconds.
+    setTimeout(hidePreloader, 4000);
 });
+
 
 // --- DYNAMIC CONTENT LOADER FROM SUPABASE ---
 document.addEventListener('DOMContentLoaded', () => {
