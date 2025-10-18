@@ -68,7 +68,7 @@ body {
 }
 .nav-link { 
     text-decoration: none; 
-    color: var(--white-color); /* FIX #1: Made desktop menu links white to be visible on dark header */
+    color: var(--white-color);
     font-weight: 600; 
     transition: color 0.3s ease; 
 }
@@ -969,8 +969,7 @@ main, footer {
 /* --- Responsive Media Queries --- */
 @media(max-width: 992px) { 
     .owner-image { display: none; } 
-    .management-grid,
-    .admission-grid { grid-template-columns: 1fr; } /* FIX #2: Stacks admission cards on tablets */
+    .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
     .course-detail-layout {
         flex-direction: column; 
@@ -1011,7 +1010,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid { grid-template-columns: 1fr; }
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
@@ -1081,7 +1080,7 @@ body.loading > .overlay {
 .notice-slide-content h3 a { color: var(--white-color); text-decoration: none; transition: color 0.3s; }
 .notice-slide-content h3 a:hover { color: var(--primary-blue); }
 
-/* --- ADMISSION PAGE STYLES (NEW) --- */
+/* --- ADMISSION PAGE STYLES --- */
 .admission-section {
     padding-top: 120px; 
     padding-bottom: 5rem;
@@ -1089,8 +1088,9 @@ body.loading > .overlay {
 }
 .admission-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    /* THIS IS THE FIX: Professional, flexible grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 .admission-card {
     background-color: var(--white-color);
@@ -1151,4 +1151,4 @@ body.loading > .overlay {
 }
 .fee-table tbody tr:nth-child(even) {
     background-color: #f9f9ff;
-    }
+}
