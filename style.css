@@ -43,7 +43,7 @@ body {
 
 /* --- Header & Navigation --- */
 .header { 
-    background-color: var(--text-color-dark); /* MODIFIED */
+    background-color: var(--text-color-dark); 
     box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
     position: fixed; 
     width: 100%; 
@@ -85,7 +85,7 @@ body {
     width: 25px; 
     height: 3px; 
     margin: 5px auto; 
-    background-color: var(--white-color); /* MODIFIED */
+    background-color: var(--white-color); 
     transition: all 0.3s ease-in-out; 
 }
 .overlay { 
@@ -856,7 +856,7 @@ main, footer {
 
 /* --- Footer --- */
 .footer { 
-    background-color: var(--text-color-dark); /* MODIFIED */
+    background-color: var(--text-color-dark); 
     color: var(--white-color); 
     text-align: center; 
     padding: 3rem 0; 
@@ -972,7 +972,7 @@ main, footer {
     .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
     .course-detail-layout {
-        flex-direction: column; /* THIS IS THE FIX: Image will be on top, text below */
+        flex-direction: column; 
         gap: 2rem;
     } 
     .course-text-wrapper {
@@ -985,15 +985,15 @@ main, footer {
 }
 @media(max-width: 768px) {
     .nav-menu { 
-        position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--text-color-dark); /* MODIFIED */
+        position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--text-color-dark); 
         width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; 
         box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; 
     }
     .nav-menu.active { right: 0; }
     .nav-item { width: 100%; }
-    .nav-link { color: var(--white-color); font-size: 1.2rem; display: block; padding: 1rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } /* MODIFIED */
+    .nav-link { color: var(--white-color); font-size: 1.2rem; display: block; padding: 1rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } 
     .hamburger { display: block; }
-    .hamburger.active .bar { background-color: var(--white-color); } /* MODIFIED */
+    .hamburger.active .bar { background-color: var(--white-color); } 
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -1010,7 +1010,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; } /* MODIFIED */
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; } /* THIS IS THE FIX */
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
