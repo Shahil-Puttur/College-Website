@@ -1010,7 +1010,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid { grid-template-columns: 1fr; }
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; } /* MODIFIED */
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
@@ -1079,3 +1079,75 @@ body.loading > .overlay {
 .notice-slide-content h3 { font-size: 1.75rem; margin: 0; }
 .notice-slide-content h3 a { color: var(--white-color); text-decoration: none; transition: color 0.3s; }
 .notice-slide-content h3 a:hover { color: var(--primary-blue); }
+
+/* --- ADMISSION PAGE STYLES (NEW) --- */
+.admission-section {
+    padding-top: 120px; /* Extra padding to account for fixed header */
+    padding-bottom: 5rem;
+    min-height: 80vh;
+}
+.admission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+.admission-card {
+    background-color: var(--white-color);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.admission-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2);
+}
+.admission-card .card-title {
+    font-size: 1.8rem;
+    color: var(--secondary-blue);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.admission-card .card-title i {
+    font-size: 2rem;
+    color: var(--primary-blue);
+}
+.admission-card p {
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+.requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.requirements-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+.requirements-list li i {
+    color: var(--accent-green);
+    font-size: 1.5rem;
+}
+.fee-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+.fee-table th, .fee-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+.fee-table th {
+    background-color: var(--creamy-purple);
+    font-weight: 600;
+}
+.fee-table tbody tr:nth-child(even) {
+    background-color: #f9f9ff;
+    }
