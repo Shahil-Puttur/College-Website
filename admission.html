@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission - Vidyarashmi College</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+
+    <!-- HEADER and NAVBAR -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo">
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#programs" class="nav-link">Courses</a></li>
+                <li class="nav-item"><a href="admission.html" class="nav-link">Admission</a></li>
+                <li class="nav-item"><a href="index.html#staff" class="nav-link">Faculty</a></li>
+                <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li class="nav-item"><a href="notices.html" class="nav-link">Notices</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <div class="overlay"></div>
+
+    <!-- MAIN ADMISSION CONTENT -->
+    <main>
+        <section class="content-section admission-section">
+            <div class="container">
+                <h1 class="section-title" data-aos="fade-up">Admissions Information</h1>
+                
+                <div class="admission-grid">
+                    <!-- Admission Requirements Card -->
+                    <div class="admission-card" data-aos="fade-up" data-aos-delay="100">
+                        <h2 class="card-title"><i class='bx bxs-file-doc'></i> Admission Requirements</h2>
+                        <p>Please bring the following original and xerox documents during your admission:</p>
+                        <ul class="requirements-list">
+                            <li><i class='bx bx-check-square'></i> SSLC Marks Card</li>
+                            <li><i class='bx bx-check-square'></i> PUC Marks Sheet</li>
+                            <li><i class='bx bx-check-square'></i> Aadhaar Card</li>
+                            <li><i class='bx bx-check-square'></i> Caste Certificate (if applicable)</li>
+                            <li><i class='bx bx-check-square'></i> 3 Passport Size Photographs</li>
+                            <li><i class='bx bx-check-square'></i> Valid Email ID</li>
+                        </ul>
+                    </div>
+
+                    <!-- Fee Concession Card -->
+                    <div class="admission-card" data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="card-title"><i class='bx bxs-graduation'></i> Fee Concession for Merit Students</h2>
+                        <p>We reward academic excellence with the following fee concessions based on your PUC percentage:</p>
+                        <table class="fee-table">
+                            <thead>
+                                <tr>
+                                    <th>Percentage (PUC)</th>
+                                    <th>Concession Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>80% – 85%</td>
+                                    <td>₹2,000</td>
+                                </tr>
+                                <tr>
+                                    <td>85% – 90%</td>
+                                    <td>₹3,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Above 90%</td>
+                                    <td>₹4,000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vidyarashmi College. All Rights Reserved. Designed by Mahammad Shahil</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+    </script>
+</body>
+</html>
