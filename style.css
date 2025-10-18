@@ -43,7 +43,7 @@ body {
 
 /* --- Header & Navigation --- */
 .header { 
-    background-color: var(--light-bg); 
+    background-color: var(--text-color-dark); /* MODIFIED */
     box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
     position: fixed; 
     width: 100%; 
@@ -85,7 +85,7 @@ body {
     width: 25px; 
     height: 3px; 
     margin: 5px auto; 
-    background-color: var(--text-color-dark); 
+    background-color: var(--white-color); /* MODIFIED */
     transition: all 0.3s ease-in-out; 
 }
 .overlay { 
@@ -856,7 +856,7 @@ main, footer {
 
 /* --- Footer --- */
 .footer { 
-    background-color: var(--secondary-blue); 
+    background-color: var(--text-color-dark); /* MODIFIED */
     color: var(--white-color); 
     text-align: center; 
     padding: 3rem 0; 
@@ -985,15 +985,15 @@ main, footer {
 }
 @media(max-width: 768px) {
     .nav-menu { 
-        position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--white-color); 
+        position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--text-color-dark); /* MODIFIED */
         width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; 
         box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; 
     }
     .nav-menu.active { right: 0; }
     .nav-item { width: 100%; }
-    .nav-link { color: var(--text-color-dark); font-size: 1.2rem; display: block; padding: 1rem 0; border-bottom: 1px solid #eee; }
+    .nav-link { color: var(--white-color); font-size: 1.2rem; display: block; padding: 1rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } /* MODIFIED */
     .hamburger { display: block; }
-    .hamburger.active .bar { background-color: var(--text-color-dark); }
+    .hamburger.active .bar { background-color: var(--white-color); } /* MODIFIED */
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -1024,7 +1024,7 @@ main, footer {
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* --- PRELOADER STYLES (MODIFIED) --- */
+/* --- PRELOADER STYLES --- */
 body.loading { 
     overflow: hidden; 
 }
