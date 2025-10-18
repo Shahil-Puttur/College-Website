@@ -68,7 +68,7 @@ body {
 }
 .nav-link { 
     text-decoration: none; 
-    color: var(--text-color-dark); 
+    color: var(--white-color); /* FIX #1: Made desktop menu links white to be visible on dark header */
     font-weight: 600; 
     transition: color 0.3s ease; 
 }
@@ -677,7 +677,7 @@ main, footer {
 .contact-icon-home { 
     font-size: 3rem; 
     color: var(--white-color); 
-    background: #9b59b6; /* CHANGED from --accent-pink */
+    background: #9b59b6; 
     width: 80px; 
     height: 80px; 
     border-radius: 50%; 
@@ -703,7 +703,7 @@ main, footer {
     margin: auto; 
     background: var(--creamy-purple); 
     border-radius: 15px; 
-    padding: 0; /* CHANGED from 3rem */
+    padding: 0; 
     box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2); 
     overflow: hidden; 
 }
@@ -719,7 +719,7 @@ main, footer {
     align-items: center; 
     justify-content: center; 
     text-align: center; 
-    padding: 3rem 1.5rem; /* MOVED padding here */
+    padding: 3rem 1.5rem; 
 }
 .social-logo { 
     height: 80px; 
@@ -969,7 +969,8 @@ main, footer {
 /* --- Responsive Media Queries --- */
 @media(max-width: 992px) { 
     .owner-image { display: none; } 
-    .management-grid { grid-template-columns: 1fr; } 
+    .management-grid,
+    .admission-grid { grid-template-columns: 1fr; } /* FIX #2: Stacks admission cards on tablets */
     .management-images { order: -1; margin-bottom: 2rem; }
     .course-detail-layout {
         flex-direction: column; 
@@ -1010,7 +1011,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; } /* THIS IS THE FIX */
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
@@ -1082,7 +1083,7 @@ body.loading > .overlay {
 
 /* --- ADMISSION PAGE STYLES (NEW) --- */
 .admission-section {
-    padding-top: 120px; /* Extra padding to account for fixed header */
+    padding-top: 120px; 
     padding-bottom: 5rem;
     min-height: 80vh;
 }
