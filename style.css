@@ -1022,6 +1022,9 @@ main, footer {
     }
     .course-text-wrapper h2 { font-size: 1.5rem; }
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .admission-card {
+        padding: 1.5rem; /* THE FIX: Reduced padding on mobile */
+    }
 }
 
 /* --- PRELOADER STYLES --- */
@@ -1089,7 +1092,6 @@ body.loading > .overlay {
 .admission-grid {
     display: grid;
     gap: 2rem;
-    /* THIS IS THE FIX: Professional, flexible grid layout */
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 .admission-card {
@@ -1151,4 +1153,4 @@ body.loading > .overlay {
 }
 .fee-table tbody tr:nth-child(even) {
     background-color: #f9f9ff;
-}
+    }
