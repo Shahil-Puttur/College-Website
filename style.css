@@ -1010,7 +1010,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid { grid-template-columns: 1fr; }
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
@@ -1141,7 +1141,7 @@ body.loading > .overlay {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1.5rem;
-    word-break: break-word; /* Helps prevent overflow */
+    word-break: break-word; 
 }
 .fee-table th, .fee-table td {
     padding: 1rem;
@@ -1154,4 +1154,27 @@ body.loading > .overlay {
 }
 .fee-table tbody tr:nth-child(even) {
     background-color: #f9f9ff;
+}
+
+/* --- MAP SECTION --- */
+.map-container {
+    margin-top: 3rem;
+}
+.map-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondary-blue);
+    font-weight: 600;
+}
+.map-container iframe {
+    width: 100%;
+    height: 450px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+@media(max-width: 768px) {
+    .map-container iframe {
+        height: 350px;
     }
+                          }
