@@ -1,43 +1,30 @@
 // --- script.js ---
 // This file contains JavaScript ONLY for the HOMEPAGE (index.html).
 
-// --- PRELOADER / FAKE VERIFICATION LOGIC ---
+// --- NEW PRELOADER LOGIC ---
+// This logic ensures the preloader is shown until the entire page (including images) is fully loaded.
 document.addEventListener('DOMContentLoaded', () => {
+    // Add 'loading' class immediately to hide content until it's ready
     document.body.classList.add('loading');
-    const preloader = document.getElementById('preloader');
-    if (!preloader) {
-        document.body.classList.remove('loading');
-        return; 
-    }
-
-    const countdownElement = document.getElementById('countdown-text');
-    const loaderTextElement = document.getElementById('loader-text');
-    const countdownContainer = document.getElementById('countdown-container');
-    const checkmarkContainer = document.getElementById('checkmark-container');
-    const successSound = document.getElementById('success-sound');
-
-    let countdown = 5;
-    const messages = { 5: "Checking ðŸ’»", 4: "Analyzing ðŸŒ", 3: "Robot Detection ðŸ¤–", 2: "Human Verification ðŸ‘¨ðŸ»â€ðŸ’»", 1: "Almost Done..." };
-    
-    const interval = setInterval(() => {
-        countdown--;
-        if (countdown >= 1) {
-            countdownElement.textContent = countdown;
-            loaderTextElement.textContent = messages[countdown];
-        } else {
-            clearInterval(interval);
-            countdownContainer.style.display = 'none';
-            checkmarkContainer.style.display = 'block';
-            if (successSound) { 
-                successSound.play().catch(e => console.log("Audio play failed, requires user interaction.")); 
-            }
-            setTimeout(() => {
-                preloader.classList.add('preloader-hidden');
-                document.body.classList.remove('loading');
-            }, 1500);
-        }
-    }, 1000);
 });
+
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // Start the fade-out process for the preloader
+        preloader.classList.add('preloader-hidden');
+
+        // After the preloader has faded out, remove the loading class from the body
+        // This will trigger the fade-in of the main content (header, main, footer)
+        setTimeout(() => {
+            document.body.classList.remove('loading');
+        }, 500); // This duration should match the transition time in the CSS
+    } else {
+        // If for some reason there is no preloader, just show the content
+        document.body.classList.remove('loading');
+    }
+});
+
 
 // --- DYNAMIC CONTENT LOADER FROM SUPABASE ---
 document.addEventListener('DOMContentLoaded', () => {
