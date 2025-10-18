@@ -7,31 +7,23 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Preload Key Assets for a Faster User Experience -->
+    <link rel="preload" as="image" href="assets/images/hero-bg.jpg">
+    <link rel="preload" as="image" href="assets/images/principal.png">
+    <link rel="preload" as="video" href="assets/videos/coding_video.mp4" type="video/mp4">
+    <link rel="preload" as="video" href="assets/videos/bcom_video.mp4" type="video/mp4">
+    <link rel="preload" as="video" href="assets/videos/ba_video.mp4" type="video/mp4">
+
     <!-- Supabase library is now loaded here on every page -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-    <!-- PRELOADER HTML (Full version) -->
+    <!-- NEW, ELEGANT PRELOADER -->
     <div id="preloader">
-        <div class="loader-content">
-            <div id="countdown-container">
-                <svg id="countdown-svg" width="150" height="150" viewBox="0 0 150 150">
-                    <circle class="countdown-bg" cx="75" cy="75" r="70"></circle>
-                    <circle class="countdown-progress" cx="75" cy="75" r="70"></circle>
-                    <text id="countdown-text" x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">5</text>
-                </svg>
-                <p id="loader-text">Checking 💻</p>
-            </div>
-            <div id="checkmark-container">
-                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
-                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                </svg>
-            </div>
-        </div>
+        <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College is Loading..." class="preloader-logo">
     </div>
-    <audio id="success-sound" src="assets/audio/success.mp3" preload="auto"></audio>
 
     <!-- HEADER and NAVBAR HTML (Full version) -->
     <header class="header">
@@ -254,4 +246,4 @@
     <script> AOS.init({ duration: 1000, once: true }); </script>
 
 </body>
-                    </html>
+                                                        </html>
