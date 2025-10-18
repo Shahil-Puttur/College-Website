@@ -1010,7 +1010,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid { grid-template-columns: 1fr; }
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
@@ -1023,7 +1023,7 @@ main, footer {
     .course-text-wrapper h2 { font-size: 1.5rem; }
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
     .admission-card {
-        padding: 1.5rem; /* THE FIX: Reduced padding on mobile */
+        padding: 1.5rem;
     }
 }
 
@@ -1092,7 +1092,7 @@ body.loading > .overlay {
 .admission-grid {
     display: grid;
     gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* THE GENIUS FIX */
 }
 .admission-card {
     background-color: var(--white-color);
@@ -1141,6 +1141,7 @@ body.loading > .overlay {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1.5rem;
+    word-break: break-word; /* Helps prevent overflow */
 }
 .fee-table th, .fee-table td {
     padding: 1rem;
