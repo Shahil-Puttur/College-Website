@@ -48,6 +48,7 @@ body {
     position: fixed; 
     width: 100%; 
     z-index: 1000; 
+    transition: opacity 0.5s ease-in-out;
 }
 .navbar { 
     display: flex; 
@@ -102,6 +103,11 @@ body {
 .overlay.active { 
     opacity: 1; 
     visibility: visible; 
+}
+
+/* --- Main and Footer Transitions --- */
+main, footer {
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* --- Hero Section --- */
@@ -275,7 +281,7 @@ body {
     padding-left: 2.5rem; 
 }
 .principal-text::before { 
-    content: 'â€œ'; 
+    content: '“'; 
     position: absolute; 
     top: -20px; 
     left: -10px; 
@@ -1018,25 +1024,50 @@ body {
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* --- PRELOADER STYLES --- */
-body.loading { overflow: hidden; }
-body.loading > header, body.loading > main, body.loading > footer, body.loading > .overlay { opacity: 0; }
-#preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--text-color-dark); z-index: 9999; display: flex; justify-content: center; align-items: center; color: var(--white-color); transition: opacity 0.5s ease, visibility 0.5s ease; }
-#preloader.preloader-hidden { opacity: 0; visibility: hidden; }
-.loader-content { text-align: center; }
-#countdown-svg { transform: rotate(-90deg); }
-.countdown-bg { fill: none; stroke: rgba(255, 255, 255, 0.2); stroke-width: 5; }
-.countdown-progress { fill: none; stroke: var(--accent-green); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 440; stroke-dashoffset: 440; animation: countdown-anim 5s linear forwards; }
-@keyframes countdown-anim { from { stroke-dashoffset: 440; } to { stroke-dashoffset: 0; } }
-#countdown-text { font-size: 4rem; font-weight: 700; fill: var(--white-color); transform: rotate(90deg); transform-origin: center; }
-#loader-text { font-size: 1.25rem; font-family: var(--mono-font); margin-top: 1rem; min-height: 25px; }
-#checkmark-container { display: none; width: 150px; height: 150px; }
-.checkmark-circle { stroke-dasharray: 166; stroke-dashoffset: 166; stroke-width: 3; stroke-miterlimit: 10; stroke: #4bb71b; fill: none; animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; }
-.checkmark { width: 150px; height: 150px; border-radius: 50%; display: block; stroke-width: 3; stroke: #fff; stroke-miterlimit: 10; box-shadow: inset 0px 0px 0px #4bb71b; animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both; }
-.checkmark-check { transform-origin: 50% 50%; stroke-dasharray: 48; stroke-dashoffset: 48; animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards; }
-@keyframes stroke { 100% { stroke-dashoffset: 0; } }
-@keyframes scale { 0%, 100% { transform: none; } 50% { transform: scale3d(1.1, 1.1, 1); } }
-@keyframes fill { 100% { box-shadow: inset 0px 0px 0px 80px #4bb71b; } }
+/* --- PRELOADER STYLES (MODIFIED) --- */
+body.loading { 
+    overflow: hidden; 
+}
+body.loading > header, 
+body.loading > main, 
+body.loading > footer, 
+body.loading > .overlay { 
+    opacity: 0; 
+    visibility: hidden;
+}
+#preloader { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: var(--text-color-dark); 
+    z-index: 9999; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    transition: opacity 0.5s ease, visibility 0.5s ease; 
+    transition-delay: 0.2s;
+}
+#preloader.preloader-hidden { 
+    opacity: 0; 
+    visibility: hidden; 
+}
+.loader {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 5px solid transparent;
+    border-top-color: var(--primary-blue);
+    border-right-color: var(--accent-pink);
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 
 /* --- HOMEPAGE NOTICE SLIDER STYLES --- */
 .notice-slider-container { position: relative; width: 100%; max-width: 900px; margin: auto; overflow: hidden; border-radius: 15px; box-shadow: 0 15px 40px rgba(74, 144, 226, 0.25); min-height: 300px; background: var(--white-color); }
