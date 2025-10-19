@@ -297,9 +297,9 @@ main, footer {
 }
 
 /* --- Leader & Typing Text Sections --- */
-.leader-photo-section { 
-    padding-top: 0; 
-}
+/* MODIFIED: Removed padding-top: 0; to give the new heading space */
+.leader-photo-section { }
+
 .leader-photo { 
     display: block; 
     width: 100%; 
@@ -1156,7 +1156,7 @@ body.loading > .overlay {
     background-color: #f9f9ff;
 }
 
-/* --- MAP SECTION (MODIFIED FOR FINAL FIX) --- */
+/* --- MAP SECTION --- */
 .map-container {
     margin-top: 3rem;
 }
@@ -1184,4 +1184,4 @@ body.loading > .overlay {
     .map-container iframe {
         height: 350px;
     }
-                                }
+    }
