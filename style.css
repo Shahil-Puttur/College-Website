@@ -297,7 +297,6 @@ main, footer {
 }
 
 /* --- Leader & Typing Text Sections --- */
-/* MODIFIED: Removed padding-top: 0; to give the new heading space */
 .leader-photo-section { }
 
 .leader-photo { 
@@ -1010,7 +1009,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid { grid-template-columns: 1fr; }
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
