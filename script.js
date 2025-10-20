@@ -255,60 +255,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // =======================================================
-    // NEW "FREE COURSES" SLIDER LOGIC FOR MOBILE
+    // NEW "FREE COURSES" GLOW ANIMATION LOGIC
     // =======================================================
-    // This code only runs if the screen is mobile-sized.
-    if (window.innerWidth <= 768) {
-        const courseTrack = document.getElementById('course-slider-track');
-        const dotsContainer = document.getElementById('course-slider-dots');
-        
-        if (courseTrack && dotsContainer) {
-            const slides = courseTrack.querySelectorAll('.course-card');
-            const slideCount = slides.length;
-            let currentCourseSlide = 0;
-            let slideInterval;
+    const courseSection = document.querySelector('.free-courses-section');
+    if (courseSection) {
+        const courseCards = courseSection.querySelectorAll('.course-card');
 
-            // 1. Create the dots
-            dotsContainer.innerHTML = '';
-            for (let i = 0; i < slideCount; i++) {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                dot.addEventListener('click', () => {
-                    showCourseSlide(i);
-                    resetInterval();
-                });
-                dotsContainer.appendChild(dot);
-            }
-            const dots = dotsContainer.querySelectorAll('.dot');
+        const glowSequence = () => {
+            courseCards.forEach((card, index) => {
+                // Add a delay for each card to glow one by one
+                setTimeout(() => {
+                    card.classList.add('glowing');
+                    // Remove the class after the animation is done so it can be re-triggered
+                    card.addEventListener('animationend', () => {
+                        card.classList.remove('glowing');
+                    }, { once: true }); // Use { once: true } to prevent multiple listeners
+                }, index * 500); // 0.5 second delay between each card's glow
+            });
+        };
 
-            // 2. Function to show a slide
-            function showCourseSlide(index) {
-                const percentage = index * (100 / slideCount);
-                courseTrack.style.transform = `translateX(-${percentage}%)`;
-                
-                // Update active dot
-                dots.forEach(dot => dot.classList.remove('active'));
-                if (dots[index]) {
-                    dots[index].classList.add('active');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Start the animation sequence immediately when it's visible
+                    glowSequence();
+                    // Then, repeat the animation sequence every 6 seconds (3 seconds for the sequence + 3 second gap)
+                    setInterval(glowSequence, 6000);
+                    // Stop observing once it has started to prevent multiple intervals
+                    observer.unobserve(courseSection);
                 }
-                currentCourseSlide = index;
-            }
+            });
+        }, { threshold: 0.2 }); // Start when 20% of the section is visible
 
-            // 3. Function for the next slide
-            function nextCourseSlide() {
-                currentCourseSlide = (currentCourseSlide + 1) % slideCount;
-                showCourseSlide(currentCourseSlide);
-            }
-            
-            // 4. Function to reset the automatic sliding
-            function resetInterval() {
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextCourseSlide, 5000); // Restart the timer
-            }
-
-            // 5. Start the slider
-            showCourseSlide(0); // Show the first slide initially
-            slideInterval = setInterval(nextCourseSlide, 5000); // Auto-slide every 5 seconds
-        }
+        observer.observe(courseSection);
     }
 });
