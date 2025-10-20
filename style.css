@@ -134,30 +134,9 @@ main, footer {
     background-size: cover; 
     z-index: 1; 
 }
-.owner-image { 
-    position: absolute; 
-    width: 90px; 
-    height: 90px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 3px solid var(--white-color); 
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25); 
-    z-index: 2; 
-    opacity: 0.9; 
-    transition: all 0.3s ease; 
-}
-.owner-image:hover { 
-    opacity: 1; 
-    transform: scale(1.1); 
-}
-.owner-left { 
-    top: 20%; 
-    left: 18%; 
-}
-.owner-right { 
-    top: 20%; 
-    right: 18%; 
-}
+/* ======================================================= */
+/* THE CSS FOR THE COMEDY MISTAKE IMAGES HAS BEEN REMOVED */
+/* ======================================================= */
 .hero-content { 
     position: relative; 
     z-index: 3; 
@@ -619,7 +598,7 @@ main, footer {
     font-weight: 700; 
 }
 .nss-card { 
-    background-image: url('assets/images/NSS.png'); 
+    background-image: url('assets/images/nss.png'); 
 }
 .redcross-card { 
     background-image: url('assets/images/redcross.png'); 
@@ -967,7 +946,6 @@ main, footer {
 
 /* --- Responsive Media Queries --- */
 @media(max-width: 992px) { 
-    .owner-image { display: none; } 
     .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
     .course-detail-layout {
@@ -1009,7 +987,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid, .course-grid { grid-template-columns: 1fr; }
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
@@ -1184,8 +1162,7 @@ body.loading > .overlay {
         height: 350px;
     }
 }
-
-/* --- NEW ADMISSION APPLY SECTION STYLES --- */
+/* --- ADMISSION APPLY SECTION STYLES --- */
 .admission-apply-section {
     padding-top: 0;
     padding-bottom: 5rem;
@@ -1246,4 +1223,62 @@ body.loading > .overlay {
 }
 .btn-apply i {
     font-size: 1.4rem;
+}
+/* --- FREE COURSES SECTION STYLES --- */
+.free-courses-section {
+    background-color: var(--white-color);
+}
+.section-subtitle {
+    text-align: center;
+    max-width: 600px;
+    margin: -2rem auto 3rem auto;
+    font-size: 1.1rem;
+    color: var(--secondary-blue);
+}
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+.course-card {
+    background: var(--light-bg);
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border: 2px solid #e0eaff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2);
+    border-color: var(--primary-blue);
+}
+.course-logo {
+    height: 60px;
+    width: auto;
+    margin-bottom: 1.5rem;
+    object-fit: contain;
+}
+.course-card h3 {
+    font-size: 1.5rem;
+    color: var(--text-color-dark);
+    margin-bottom: 0.75rem;
+}
+.course-card p {
+    margin-bottom: 2rem;
+    min-height: 50px;
+}
+.btn-course {
+    display: inline-block;
+    background-color: var(--primary-blue);
+    color: var(--white-color);
+    padding: 12px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-course:hover {
+    background-color: var(--secondary-blue);
+    transform: translateY(-3px);
     }
