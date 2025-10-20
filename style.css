@@ -595,7 +595,7 @@ main, footer {
     font-weight: 700; 
 }
 .nss-card { 
-    background-image: url('assets/images/Nss.png'); 
+    background-image: url('assets/images/NSS.png'); 
 }
 .redcross-card { 
     background-image: url('assets/images/redcross.png'); 
@@ -984,7 +984,12 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
+
+    /* ======================================================= */
+    /* THE FIX IS HERE! '.course-grid' has been removed from this line. */
+    /* ======================================================= */
     .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
+
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
@@ -999,22 +1004,27 @@ main, footer {
     .admission-card {
         padding: 1.5rem;
     }
-    /* STYLES FOR THE NEW MOBILE SLIDER */
+    
+    /* STYLES FOR THE "FREE COURSES" MOBILE SLIDER */
     .course-slider-wrapper {
         position: relative;
         width: 100%;
         margin: auto;
         overflow: hidden;
     }
-    .course-grid {
+    .free-courses-section .course-grid {
         display: flex;
         width: 300%; /* 100% for each of the 3 cards */
         transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        /* IMPORTANT: This undoes the grid-template-columns from the general rule */
+        grid-template-columns: none; 
     }
-    .course-card {
-        width: 33.333%; /* Each card takes up a third of the track */
+    .free-courses-section .course-card {
+        width: 100%; /* On mobile, the card takes the full width of the wrapper */
         flex-shrink: 0;
         padding: 2rem 1.5rem;
+        /* The next line is not needed as width is 100% now */
+        /* width: 33.333%; */
     }
     .course-slider-dots {
         text-align: center;
@@ -1303,4 +1313,7 @@ body.loading > .overlay {
 .btn-course:hover {
     background-color: var(--secondary-blue);
     transform: translateY(-3px);
+}
+.course-slider-dots {
+    display: none; /* Hide dots on desktop */
     }
