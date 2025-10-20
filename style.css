@@ -1006,6 +1006,34 @@ main, footer {
     .admission-card {
         padding: 1.5rem;
     }
+    
+    /* ======================================================= */
+    /* FINAL PRO SCROLL SNAP CAROUSEL STYLES (MOBILE ONLY) */
+    /* ======================================================= */
+    .free-courses-section .container {
+        padding: 0; /* Remove container padding to allow full width scroll */
+    }
+    .course-carousel-container {
+        overflow-x: auto; /* Make it scrollable horizontally */
+        scroll-snap-type: x mandatory; /* This is the magic for snapping! */
+        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+        scrollbar-width: none; /* Hide scrollbar on Firefox */
+    }
+    .course-carousel-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar on Chrome/Safari */
+    }
+    .free-courses-section .course-grid {
+        display: flex; /* Make the cards a row */
+        width: max-content; /* Allow the row to be as wide as its content */
+        grid-template-columns: none; /* Override the desktop grid style */
+        padding: 0 50px; /* Add padding to allow first/last cards to center */
+    }
+    .free-courses-section .course-card {
+        scroll-snap-align: center; /* This is the magic! Snap each card to the center */
+        width: 80vw; /* Each card takes 80% of the screen width */
+        max-width: 300px;
+        flex-shrink: 0;
+    }
 }
 
 /* --- PRELOADER STYLES --- */
@@ -1287,7 +1315,6 @@ body.loading > .overlay {
     background-color: var(--secondary-blue);
     transform: translateY(-3px);
 }
-/* This is for the "Active Glow" effect */
 .course-card.glowing {
     animation: cardGlow 1.5s ease-in-out;
 }
@@ -1301,53 +1328,5 @@ body.loading > .overlay {
         transform: scale(1.05);
         box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
         border-color: var(--primary-blue);
-    }
-}
-
-/* ======================================================= */
-/* NEW CAROUSEL STYLES FOR MOBILE - LIKE THE STAFF SECTION */
-/* ======================================================= */
-@media(max-width: 768px) {
-    .course-carousel-container {
-        position: relative;
-        width: 100%;
-        height: 480px; /* Give it a fixed height */
-        margin: auto;
-    }
-    .course-carousel-track {
-        position: relative;
-        width: 100%;
-        height: 100%;
-    }
-    .free-courses-section .course-card {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 85%; /* Make the card a bit smaller than the screen */
-        max-width: 300px;
-        transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-    }
-
-    /* These are the new classes for the carousel states */
-    .course-card.course-slide-active {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-        z-index: 10;
-        animation: cardGlow 1.5s ease-in-out; /* The glow effect for the middle one! */
-    }
-    .course-card.course-slide-prev {
-        transform: translate(-120%, -50%) scale(0.7);
-        opacity: 0.5;
-        z-index: 5;
-    }
-    .course-card.course-slide-next {
-        transform: translate(20%, -50%) scale(0.7);
-        opacity: 0.5;
-        z-index: 5;
-    }
-    .course-card.course-slide-hidden {
-        transform: translate(80%, -50%) scale(0.3);
-        opacity: 0;
-        z-index: 1;
     }
     }
