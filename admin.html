@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Vidyarashmi College</title>
+    
+    <!-- FAVICON ADDED HERE -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
     <link rel="stylesheet" href="style.css">
     
-    <!-- ======================================================= -->
-    <!-- CRITICAL FIX #1: The Supabase library is loaded FIRST in the <head>. -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <!-- ======================================================= -->
     
     <style>
         /* Admin-specific styles */
@@ -114,12 +115,7 @@
         </div>
     </div>
 
-    <!-- ======================================================= -->
-    <!-- CRITICAL FIX #2: Scripts are loaded at the VERY END of the body -->
-    <!-- This ensures the page is ready before the scripts run. -->
     <script src="supabase-client.js"></script>
     <script src="admin.js"></script>
-    <!-- ======================================================= -->
-
 </body>
     </html>
