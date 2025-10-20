@@ -134,9 +134,6 @@ main, footer {
     background-size: cover; 
     z-index: 1; 
 }
-/* ======================================================= */
-/* THE CSS FOR THE COMEDY MISTAKE IMAGES HAS BEEN REMOVED */
-/* ======================================================= */
 .hero-content { 
     position: relative; 
     z-index: 3; 
@@ -598,7 +595,7 @@ main, footer {
     font-weight: 700; 
 }
 .nss-card { 
-    background-image: url('assets/images/nss.png'); 
+    background-image: url('assets/images/Nss.png'); 
 }
 .redcross-card { 
     background-image: url('assets/images/redcross.png'); 
@@ -987,7 +984,7 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid, .course-grid { grid-template-columns: 1fr; }
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .facility-layout { grid-template-columns: 1fr; }
@@ -1001,6 +998,30 @@ main, footer {
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
     .admission-card {
         padding: 1.5rem;
+    }
+    /* STYLES FOR THE NEW MOBILE SLIDER */
+    .course-slider-wrapper {
+        position: relative;
+        width: 100%;
+        margin: auto;
+        overflow: hidden;
+    }
+    .course-grid {
+        display: flex;
+        width: 300%; /* 100% for each of the 3 cards */
+        transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .course-card {
+        width: 33.333%; /* Each card takes up a third of the track */
+        flex-shrink: 0;
+        padding: 2rem 1.5rem;
+    }
+    .course-slider-dots {
+        text-align: center;
+        padding-top: 1.5rem;
+    }
+    .course-slider-dots .dot {
+        cursor: pointer;
     }
 }
 
@@ -1224,6 +1245,7 @@ body.loading > .overlay {
 .btn-apply i {
     font-size: 1.4rem;
 }
+
 /* --- FREE COURSES SECTION STYLES --- */
 .free-courses-section {
     background-color: var(--white-color);
