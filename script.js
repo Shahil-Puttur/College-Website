@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // FINAL PRO "FREE COURSES" GLOW ON SCROLL LOGIC
     // =======================================================
     const courseCards = document.querySelectorAll('.free-courses-section .course-card');
-    if (courseCards.length > 0) {
+    if (courseCards.length > 0 && window.innerWidth <= 768) { // Only run this on mobile
         const observerOptions = {
             root: document.querySelector('.course-carousel-container'), // This is the scrollable area
             rootMargin: '0px',
@@ -267,11 +267,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                // When a card is centered, add the glowing class
                 if (entry.isIntersecting) {
-                    // When a card is centered, add the glowing class
                     entry.target.classList.add('glowing');
                 } else {
-                    // When it's not centered, remove it
+                    // When it's not centered, remove it so the animation can play again
                     entry.target.classList.remove('glowing');
                 }
             });
