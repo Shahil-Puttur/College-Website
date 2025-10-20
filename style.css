@@ -985,7 +985,10 @@ main, footer {
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
     
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid, .course-grid { 
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .course-grid {
         grid-template-columns: 1fr; 
     }
 
@@ -1284,23 +1287,67 @@ body.loading > .overlay {
     background-color: var(--secondary-blue);
     transform: translateY(-3px);
 }
+/* This is for the "Active Glow" effect */
 .course-card.glowing {
-    animation: cardGlow 2s ease-in-out;
+    animation: cardGlow 1.5s ease-in-out;
 }
 @keyframes cardGlow {
-    0% {
-        transform: translateY(0);
+    0%, 100% {
+        transform: scale(1.0);
         box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1);
         border-color: #e0eaff;
     }
     50% {
-        transform: translateY(-10px);
+        transform: scale(1.05);
         box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
         border-color: var(--primary-blue);
     }
-    100% {
-        transform: translateY(0);
-        box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1);
-        border-color: #e0eaff;
-    }
 }
+
+/* ======================================================= */
+/* NEW CAROUSEL STYLES FOR MOBILE - LIKE THE STAFF SECTION */
+/* ======================================================= */
+@media(max-width: 768px) {
+    .course-carousel-container {
+        position: relative;
+        width: 100%;
+        height: 480px; /* Give it a fixed height */
+        margin: auto;
+    }
+    .course-carousel-track {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    .free-courses-section .course-card {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 85%; /* Make the card a bit smaller than the screen */
+        max-width: 300px;
+        transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    }
+
+    /* These are the new classes for the carousel states */
+    .course-card.course-slide-active {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+        z-index: 10;
+        animation: cardGlow 1.5s ease-in-out; /* The glow effect for the middle one! */
+    }
+    .course-card.course-slide-prev {
+        transform: translate(-120%, -50%) scale(0.7);
+        opacity: 0.5;
+        z-index: 5;
+    }
+    .course-card.course-slide-next {
+        transform: translate(20%, -50%) scale(0.7);
+        opacity: 0.5;
+        z-index: 5;
+    }
+    .course-card.course-slide-hidden {
+        transform: translate(80%, -50%) scale(0.3);
+        opacity: 0;
+        z-index: 1;
+    }
+    }
