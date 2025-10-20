@@ -253,4 +253,62 @@ document.addEventListener('DOMContentLoaded', () => {
             setInterval(nextSlide, 3000); 
         }
     }
+    
+    // =======================================================
+    // NEW "FREE COURSES" SLIDER LOGIC FOR MOBILE
+    // =======================================================
+    // This code only runs if the screen is mobile-sized.
+    if (window.innerWidth <= 768) {
+        const courseTrack = document.getElementById('course-slider-track');
+        const dotsContainer = document.getElementById('course-slider-dots');
+        
+        if (courseTrack && dotsContainer) {
+            const slides = courseTrack.querySelectorAll('.course-card');
+            const slideCount = slides.length;
+            let currentCourseSlide = 0;
+            let slideInterval;
+
+            // 1. Create the dots
+            dotsContainer.innerHTML = '';
+            for (let i = 0; i < slideCount; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                dot.addEventListener('click', () => {
+                    showCourseSlide(i);
+                    resetInterval();
+                });
+                dotsContainer.appendChild(dot);
+            }
+            const dots = dotsContainer.querySelectorAll('.dot');
+
+            // 2. Function to show a slide
+            function showCourseSlide(index) {
+                const percentage = index * (100 / slideCount);
+                courseTrack.style.transform = `translateX(-${percentage}%)`;
+                
+                // Update active dot
+                dots.forEach(dot => dot.classList.remove('active'));
+                if (dots[index]) {
+                    dots[index].classList.add('active');
+                }
+                currentCourseSlide = index;
+            }
+
+            // 3. Function for the next slide
+            function nextCourseSlide() {
+                currentCourseSlide = (currentCourseSlide + 1) % slideCount;
+                showCourseSlide(currentCourseSlide);
+            }
+            
+            // 4. Function to reset the automatic sliding
+            function resetInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextCourseSlide, 5000); // Restart the timer
+            }
+
+            // 5. Start the slider
+            showCourseSlide(0); // Show the first slide initially
+            slideInterval = setInterval(nextCourseSlide, 5000); // Auto-slide every 5 seconds
+        }
+    }
 });
