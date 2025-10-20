@@ -984,9 +984,8 @@ main, footer {
     .carousel-container { height: 450px; }
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
-
-    /* The general rule for all grids to stack on mobile */
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { 
+    
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid, .course-grid { 
         grid-template-columns: 1fr; 
     }
 
@@ -1003,38 +1002,6 @@ main, footer {
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
     .admission-card {
         padding: 1.5rem;
-    }
-    
-    /* ======================================================= */
-    /* THE FINAL FIX IS HERE! */
-    /* ======================================================= */
-    .course-slider-wrapper {
-        position: relative;
-        width: 100%;
-        margin: auto;
-        overflow: hidden;
-    }
-    .free-courses-section .course-grid {
-        display: flex;
-        width: 300%; /* 100% for each of the 3 cards */
-        transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        /* This line is important to override the general grid rule */
-        grid-template-columns: none; 
-        gap: 0; /* Remove gap for the slider */
-    }
-    .free-courses-section .course-card {
-        /* Each card takes up 1/3rd of the 300% track, making it 100% of the screen width */
-        width: 33.333%; 
-        flex-shrink: 0;
-        padding: 2.5rem 2rem; /* Give some space inside the card */
-    }
-    .course-slider-dots {
-        display: block; /* Make sure dots are visible on mobile */
-        text-align: center;
-        padding-top: 1.5rem;
-    }
-    .course-slider-dots .dot {
-        cursor: pointer;
     }
 }
 
@@ -1317,6 +1284,23 @@ body.loading > .overlay {
     background-color: var(--secondary-blue);
     transform: translateY(-3px);
 }
-.course-slider-dots {
-    display: none; /* Hide dots on desktop by default */
-                                }
+.course-card.glowing {
+    animation: cardGlow 2s ease-in-out;
+}
+@keyframes cardGlow {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1);
+        border-color: #e0eaff;
+    }
+    50% {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
+        border-color: var(--primary-blue);
+    }
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 10px 30px rgba(74, 144, 226, 0.1);
+        border-color: #e0eaff;
+    }
+}
