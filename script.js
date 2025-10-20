@@ -253,40 +253,48 @@ document.addEventListener('DOMContentLoaded', () => {
             setInterval(nextSlide, 3000); 
         }
     }
-    
+
     // =======================================================
-    // NEW "FREE COURSES" GLOW ANIMATION LOGIC
+    // NEW PRO CAROUSEL FOR "FREE COURSES" (MOBILE ONLY)
     // =======================================================
-    const courseSection = document.querySelector('.free-courses-section');
-    if (courseSection) {
-        const courseCards = courseSection.querySelectorAll('.course-card');
+    if (window.innerWidth <= 768) {
+        const courseTrack = document.querySelector('.course-carousel-track');
+        if (courseTrack) {
+            const courseSlides = Array.from(courseTrack.children);
+            let currentCourseIndex = 0;
 
-        const glowSequence = () => {
-            courseCards.forEach((card, index) => {
-                // Add a delay for each card to glow one by one
-                setTimeout(() => {
-                    card.classList.add('glowing');
-                    // Remove the class after the animation is done so it can be re-triggered
-                    card.addEventListener('animationend', () => {
-                        card.classList.remove('glowing');
-                    }, { once: true }); // Use { once: true } to prevent multiple listeners
-                }, index * 500); // 0.5 second delay between each card's glow
-            });
-        };
+            function updateCourseCarousel() {
+                courseSlides.forEach((slide, index) => {
+                    // Remove all classes first
+                    slide.classList.remove('course-slide-active', 'course-slide-prev', 'course-slide-next', 'course-slide-hidden');
+                    
+                    // Logic to find the new position based on the current index
+                    let newIndex = (index - currentCourseIndex + courseSlides.length) % courseSlides.length;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Start the animation sequence immediately when it's visible
-                    glowSequence();
-                    // Then, repeat the animation sequence every 6 seconds (3 seconds for the sequence + 3 second gap)
-                    setInterval(glowSequence, 6000);
-                    // Stop observing once it has started to prevent multiple intervals
-                    observer.unobserve(courseSection);
-                }
-            });
-        }, { threshold: 0.2 }); // Start when 20% of the section is visible
+                    // Add the correct class based on the new position
+                    if (newIndex === 0) {
+                        slide.classList.add('course-slide-active');
+                    } else if (newIndex === 1) {
+                        slide.classList.add('course-slide-next');
+                    } else if (newIndex === courseSlides.length - 1) {
+                        slide.classList.add('course-slide-prev');
+                    } else {
+                        slide.classList.add('course-slide-hidden');
+                    }
+                });
+            }
 
-        observer.observe(courseSection);
+            function nextCourseSlide() {
+                currentCourseIndex = (currentCourseIndex + 1) % courseSlides.length;
+                updateCourseCarousel();
+            }
+
+            if (courseSlides.length > 1) {
+                // Initial setup
+                updateCourseCarousel();
+                // Auto-slide every 3 seconds as requested
+                setInterval(nextCourseSlide, 3000);
+            }
+        }
     }
 });
