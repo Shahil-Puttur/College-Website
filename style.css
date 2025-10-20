@@ -985,10 +985,10 @@ main, footer {
     .professor-slide { width: 220px; }
     .professor-slide img { height: 280px; }
 
-    /* ======================================================= */
-    /* THE FIX IS HERE! '.course-grid' has been removed from this line. */
-    /* ======================================================= */
-    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { grid-template-columns: 1fr; }
+    /* The general rule for all grids to stack on mobile */
+    .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { 
+        grid-template-columns: 1fr; 
+    }
 
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
@@ -1005,7 +1005,9 @@ main, footer {
         padding: 1.5rem;
     }
     
-    /* STYLES FOR THE "FREE COURSES" MOBILE SLIDER */
+    /* ======================================================= */
+    /* THE FINAL FIX IS HERE! */
+    /* ======================================================= */
     .course-slider-wrapper {
         position: relative;
         width: 100%;
@@ -1016,17 +1018,18 @@ main, footer {
         display: flex;
         width: 300%; /* 100% for each of the 3 cards */
         transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        /* IMPORTANT: This undoes the grid-template-columns from the general rule */
+        /* This line is important to override the general grid rule */
         grid-template-columns: none; 
+        gap: 0; /* Remove gap for the slider */
     }
     .free-courses-section .course-card {
-        width: 100%; /* On mobile, the card takes the full width of the wrapper */
+        /* Each card takes up 1/3rd of the 300% track, making it 100% of the screen width */
+        width: 33.333%; 
         flex-shrink: 0;
-        padding: 2rem 1.5rem;
-        /* The next line is not needed as width is 100% now */
-        /* width: 33.333%; */
+        padding: 2.5rem 2rem; /* Give some space inside the card */
     }
     .course-slider-dots {
+        display: block; /* Make sure dots are visible on mobile */
         text-align: center;
         padding-top: 1.5rem;
     }
@@ -1315,5 +1318,5 @@ body.loading > .overlay {
     transform: translateY(-3px);
 }
 .course-slider-dots {
-    display: none; /* Hide dots on desktop */
-    }
+    display: none; /* Hide dots on desktop by default */
+                                }
