@@ -157,10 +157,8 @@ main, footer {
     background-color: var(--light-bg);
     display: flex; 
     align-items: center; 
-    /* Using padding for controlled spacing. No more giant gaps! */
     padding-top: 120px;
     padding-bottom: 80px;
-    /* REMOVED overflow:hidden to prevent clipping the circle */
 }
 
 .hero-layout {
@@ -1020,7 +1018,7 @@ main, footer {
     .hero-image-container {
         order: 1; /* Image appears on top */
         width: 100%;
-        /* Add padding to the container itself to give the circle room */
+        /* Add padding to the container to give the circle room - FIXES THE HALF CIRCLE */
         padding-top: 2rem;
     }
     .hero-image-wrapper {
@@ -1365,4 +1363,4 @@ body.loading > .overlay {
         box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
         border-color: var(--primary-blue);
     }
-    }
+}```
