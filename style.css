@@ -40,7 +40,8 @@ body {
 .container { 
     max-width: 1100px; 
     margin: auto; 
-    overflow: hidden; 
+    /* Changed overflow to visible to prevent clipping issues */
+    overflow: visible; 
     padding: 0 2rem; 
 }
 
@@ -151,7 +152,7 @@ main, footer {
 }
 
 /* ======================================================= */
-/* START: REBUILT PROFESSIONAL HERO SECTION CSS            */
+/* HOMEPAGE HERO SECTION (index.html)                      */
 /* ======================================================= */
 .hero-section { 
     background-color: var(--light-bg);
@@ -160,20 +161,16 @@ main, footer {
     padding-top: 120px;
     padding-bottom: 80px;
 }
-
 .hero-layout {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 4rem;
 }
-
-/* --- Left Side: Text --- */
 .hero-text-content {
     flex: 1;
     max-width: 550px;
 }
-
 .hero-text-content h1 { 
     font-size: clamp(2.5rem, 5vw, 3.8rem); 
     font-weight: 700; 
@@ -181,14 +178,12 @@ main, footer {
     line-height: 1.2;
     color: var(--text-color-dark);
 }
-
 .hero-text-content p { 
     font-size: 1.2rem; 
     font-weight: 300; 
     margin-bottom: 2.5rem;
     color: var(--secondary-blue);
 }
-
 .btn-primary { 
     display: inline-block; 
     background-color: var(--accent-pink); 
@@ -204,15 +199,12 @@ main, footer {
     transform: translateY(-5px); 
     box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); 
 }
-
-/* --- Right Side: Image --- */
 .hero-image-container {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 .hero-image-wrapper {
     position: relative;
     width: 100%;
@@ -221,25 +213,68 @@ main, footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* THE CSS BACKGROUND CIRCLE */
     background: radial-gradient(circle, rgba(178,102,238,0.5) 0%, rgba(106,13,173,0.15) 55%, transparent 70%);
     border-radius: 50%;
     transition: transform 0.5s ease;
 }
-
-.hero-image-wrapper:hover {
-    transform: scale(1.05);
-}
-
+.hero-image-wrapper:hover { transform: scale(1.05); }
 .hero-college-image {
     width: 115%; 
     position: absolute;
     filter: drop-shadow(10px 15px 20px rgba(0, 0, 0, 0.1));
 }
-/* ======================================================= */
-/* END: NEW HERO SECTION CSS                               */
-/* ======================================================= */
 
+/* ======================================================= */
+/* VIDEO HERO FOR INTERNAL PAGES (BCA, BCOM, ETC.)         */
+/* ======================================================= */
+.video-hero-section {
+    position: relative;
+    height: 60vh; /* Reduced height for better content visibility */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white-color);
+    overflow: hidden;
+}
+.video-hero-section .hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    object-fit: cover; 
+}
+.video-hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 38, 71, 0.7); /* Slightly darker for better contrast */
+    z-index: 2;
+}
+.hero-video-content {
+    position: relative;
+    z-index: 3;
+    padding: 0 1rem;
+}
+.hero-video-content h1 {
+    font-size: clamp(2.2rem, 6vw, 3.5rem); /* Responsive font size */
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+.hero-video-content p {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
 /* --- General Content Sections --- */
 .content-section { 
@@ -252,8 +287,6 @@ main, footer {
     margin-bottom: 3rem; 
     font-weight: 700; 
 }
-
-/* --- Management Section --- */
 .management-section { background-color: var(--white-color); }
 .management-grid { 
     display: grid; 
@@ -310,8 +343,6 @@ main, footer {
     object-fit: cover; 
     border: 3px solid var(--primary-blue); 
 }
-
-/* --- Principal Section --- */
 .principal-card { 
     display: flex; 
     align-items: center; 
@@ -348,10 +379,7 @@ main, footer {
     margin-bottom: 1rem; 
     font-size: 1.05rem; 
 }
-
-/* --- Leader & Typing Text Sections --- */
 .leader-photo-section { }
-
 .leader-photo { 
     display: block; 
     width: 100%; 
@@ -384,8 +412,6 @@ main, footer {
     0%, 100% { opacity: 1; } 
     50% { opacity: 0; } 
 }
-
-/* --- Professor Carousel --- */
 .professors-section {}
 .carousel-container { 
     position: relative; 
@@ -453,8 +479,6 @@ main, footer {
     opacity: 0; 
     z-index: 1; 
 }
-
-/* --- Programs Section --- */
 .courses-section {}
 .card-grid { 
     display: grid; 
@@ -528,8 +552,6 @@ main, footer {
     transition: background-color 0.3s ease; 
     align-self: flex-start; 
 }
-
-/* --- Facilities Section --- */
 .facilities-section { background-color: var(--light-bg); }
 .pill-heading { 
     display: inline-block; 
@@ -617,8 +639,6 @@ main, footer {
     font-size: 1.25rem; 
     color: var(--text-color-dark); 
 }
-
-/* --- Co-curricular Section --- */
 .cocurricular-section { 
     background-color: var(--white-color); 
 }
@@ -677,8 +697,6 @@ main, footer {
 .redcross-card { 
     background-image: url('assets/images/redcross.png'); 
 }
-
-/* --- Mentors, Contact, Social --- */
 .mentors-section { 
     background-color: var(--light-bg); 
 }
@@ -814,8 +832,6 @@ main, footer {
     50%, 95% { transform: translateX(-50%); } 
     100% { transform: translateX(0%); } 
 }
-
-/* --- News Ticker --- */
 .news-ticker-section { 
     background-color: var(--text-color-dark); 
     width: 100%; 
@@ -843,8 +859,6 @@ main, footer {
     0% { transform: translateX(0); } 
     100% { transform: translateX(-50%); } 
 }
-
-/* --- Event Slider --- */
 .event-slider-section { 
     background-color: var(--white-color); 
     padding-top: 5rem; 
@@ -905,16 +919,12 @@ main, footer {
     background-color: var(--primary-blue); 
     transform: scale(1.2); 
 }
-
-/* --- Footer --- */
 .footer { 
     background: var(--header-footer-bg); 
     color: var(--white-color); 
     text-align: center; 
     padding: 3rem 0; 
 }
-
-/* --- Other Page Specific Styles --- */
 .bca-learn-section { background-color: var(--white-color); }
 .topic-card { background: #fff; padding: 2rem; border-radius: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 2px solid transparent; text-align: center; }
 .topic-card:hover { transform: translateY(-10px); box-shadow: 0 0 25px rgba(74, 144, 226, 0.4); border-color: var(--primary-blue); }
@@ -968,22 +978,20 @@ main, footer {
 .course-image-grid-single { grid-template-columns: 1fr; max-width: 800px; margin: auto; }
 .course-gallery-image img { width: 100%; border-radius: 15px; box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2); object-fit: cover; height: 100%; }
 
-
-/* --- Responsive Media Queries --- */
 @media(max-width: 992px) { 
     .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
     .bca-grid { grid-template-columns: repeat(2, 1fr); }
+    .course-detail-layout { flex-direction: column; gap: 2rem; } 
+    .course-text-wrapper { margin-left: 0; width: 90%; padding: 2rem; }
 }
 
 @media(max-width: 768px) {
-    /* Mobile Navbar layout fix */
     .navbar { justify-content: space-between; }
     .header-actions { order: 2; }
     .hamburger { order: 3; }
     .btn-apply-header.desktop-only-button { display: none; }
     .action-icon.mobile-only-icon { display: inline-flex; }
-
     .nav-menu { 
         position: fixed; right: -100%; top: 0; flex-direction: column; 
         background: var(--header-footer-bg); 
@@ -999,7 +1007,6 @@ main, footer {
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     
-    /* Responsive styles for the Hero Section */
     .hero-section {
         padding-top: 100px;
         padding-bottom: 60px;
@@ -1009,20 +1016,19 @@ main, footer {
         gap: 3rem;
     }
     .hero-text-content {
-        order: 2; /* Text appears below the image */
+        order: 2;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
     .hero-image-container {
-        order: 1; /* Image appears on top */
+        order: 1;
         width: 100%;
-        /* Add padding to the container to give the circle room - FIXES THE HALF CIRCLE */
         padding-top: 2rem;
     }
     .hero-image-wrapper {
-        max-width: 350px; /* Smaller circle on mobile */
+        max-width: 350px;
     }
 
     .content-section { padding: 3rem 0; }
@@ -1040,14 +1046,15 @@ main, footer {
     .card-grid, .cocurricular-grid, .mentors-grid, .facilities-grid, .bca-grid, .bca-extra-grid, .feature-grid, .course-image-grid, .admission-grid { 
         grid-template-columns: 1fr; 
     }
-    .course-grid {
-        grid-template-columns: 1fr; 
-    }
+    .course-grid { grid-template-columns: 1fr; }
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
-    
-    /* Mobile Scroll Snap Carousel Styles */
+    .facility-layout { grid-template-columns: 1fr; }
+    .facility-layout:nth-child(2) .facility-image { order: -1; } /* Re-order for alternating layout */
+    .course-text-wrapper { margin-top: 0; width: calc(100% - 2rem); padding: 1.5rem; }
+    .course-text-wrapper h2 { font-size: 1.5rem; }
+
     .free-courses-section .container { padding: 0; }
     .course-carousel-container {
         overflow-x: auto;
@@ -1108,11 +1115,7 @@ body.loading > .overlay {
     border-right-color: var(--accent-pink);
     animation: spin 1s linear infinite;
 }
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 
 /* --- HOMEPAGE NOTICE SLIDER STYLES --- */
@@ -1228,7 +1231,6 @@ body.loading > .overlay {
         height: 350px;
     }
 }
-/* --- ADMISSION APPLY SECTION STYLES --- */
 .admission-apply-section {
     padding-top: 0;
     padding-bottom: 5rem;
@@ -1363,4 +1365,4 @@ body.loading > .overlay {
         box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
         border-color: var(--primary-blue);
     }
-}```
+    }
