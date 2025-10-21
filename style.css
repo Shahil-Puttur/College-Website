@@ -931,7 +931,7 @@ main, footer {
 .course-detail-layout { position: relative; display: flex; align-items: center; }
 .course-image-wrapper { flex: 1; z-index: 1; }
 .course-image-wrapper img { width: 100%; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); display: block; }
-.course-text-wrapper { flex: 1.2; background: var(--white-color); padding: 3rem; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); margin-left: -50px; z-index: 2; }
+.course-text-wrapper { flex: 1.2; background: var(--white-color); padding: 3rem; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); z-index: 2; }
 .course-text-wrapper h2 { font-size: 1.8rem; margin-bottom: 1rem; color: var(--secondary-blue); }
 .course-text-wrapper p { margin-bottom: 1.5rem; line-height: 1.8; }
 .audio-player { margin-top: 2rem; background: var(--light-bg); padding: 1rem; border-radius: 10px; display: flex; align-items: center; gap: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -980,6 +980,16 @@ main, footer {
     .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
     .bca-grid { grid-template-columns: repeat(2, 1fr); }
+    .course-detail-layout {
+        flex-direction: column; 
+        gap: 2rem;
+    } 
+    .course-text-wrapper {
+        margin-left: 0;
+        margin-top: 0;
+        width: 90%;
+        padding: 2rem;
+    }
 }
 
 @media(max-width: 768px) {
@@ -1030,6 +1040,17 @@ main, footer {
     .hero-image-wrapper {
         max-width: 350px; /* Smaller circle on mobile */
     }
+
+    /* ==== MOBILE FIX FOR COURSE DETAILS PAGE ==== */
+    .course-text-wrapper {
+        order: 1; /* Make text appear FIRST on mobile */
+        width: 100%;
+        padding: 1.5rem;
+    }
+    .course-image-wrapper {
+        order: 2; /* Make image appear SECOND on mobile */
+    }
+     /* ========================================= */
 
     .content-section { padding: 3rem 0; }
     .section-title { font-size: 2rem; }
@@ -1431,4 +1452,4 @@ body.loading > .overlay {
     font-size: 1.25rem;
     font-weight: 300;
     opacity: 0.9;
-    }
+        }
