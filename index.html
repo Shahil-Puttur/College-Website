@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <!-- Preload Key Assets for a Faster User Experience -->
+    <!-- Preload ONLY the most critical image for a faster initial paint -->
     <link rel="preload" as="image" href="assets/images/college-gibli.png">
-    <link rel="preload" as="image" href="assets/images/principal.png">
 
     <!-- Supabase library is now loaded here on every page -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -107,8 +106,8 @@
                         <button id="readMoreBtn" class="btn-secondary">Read More</button>
                     </div>
                     <div class="management-images" data-aos="fade-left" data-aos-delay="200">
-                        <img src="assets/images/owner2.png" alt="Founder">
-                        <img src="assets/images/owner1.png" alt="Chairman">
+                        <img src="assets/images/owner2.png" alt="Founder" loading="lazy" decoding="async">
+                        <img src="assets/images/owner1.png" alt="Chairman" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -119,7 +118,7 @@
                 <h2 class="section-title">From the Principal's Desk</h2>
                 <div class="principal-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="principal-img">
-                        <img src="assets/images/principal.png" alt="College Principal">
+                        <img src="assets/images/principal.png" alt="College Principal" loading="lazy" decoding="async">
                     </div>
                     <div class="principal-text">
                         <p>It gives me immense pleasure to welcome you to the creative world of Vidyarashmi College. Our commitment is to provide a safe and intellectually challenging environment that will empower students to become innovative thinkers, creative problem solvers, and inspired learners prepared to thrive in the twenty-first century.</p>
@@ -133,7 +132,7 @@
             <div class="container">
                 <h2 class="section-title">STUDENTS OPINION 👨🏻‍🎓</h2>
                 <div data-aos="zoom-in-up">
-                     <img src="assets/images/Leader.jpg" alt="Esteemed Leader" class="leader-photo">
+                     <img src="assets/images/Leader.jpg" alt="Esteemed Leader" class="leader-photo" loading="lazy" decoding="async">
                 </div>
             </div>
         </section>
@@ -198,11 +197,11 @@
             <div class="container">
                 <h2 class="section-title">Co-curricular Activities</h2>
                 <div class="cocurricular-grid">
-                    <div class="activity-card nss-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="activity-card lazy-bg" data-bg-class="nss-card" data-aos="zoom-in" data-aos-delay="100">
                         <a href="nss.html" class="activity-link"></a>
                         <div class="activity-content"><h3>NSS</h3></div>
                     </div>
-                    <div class="activity-card redcross-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="activity-card lazy-bg" data-bg-class="redcross-card" data-aos="zoom-in" data-aos-delay="200">
                         <a href="redcross.html" class="activity-link"></a>
                          <div class="activity-content"><h3>Red Cross</h3></div>
                     </div>
@@ -215,8 +214,8 @@
                 <h2 class="section-title">Mentors Who Inspire Us 🎓✨</h2>
                 <p class="mentors-quote">“The lecturers of Vidyarashmi First Grade College, Savanoor are friendly, supportive, and highly knowledgeable. They not only teach with clarity but also motivate students to take part in NSS, Red Cross, sports, and cultural activities. Always approachable, they guide us like mentors and help us grow in both academics and life.”</p>
                 <div class="mentors-grid">
-                    <div class="mentor-image-wrapper" data-aos="fade-right" data-aos-delay="100"><img src="assets/images/pic2.jpg" alt="Vidyarashmi College Lecturers"></div>
-                    <div class="mentor-image-wrapper" data-aos="fade-left" data-aos-delay="200"><img src="assets/images/pic3.jpg" alt="Supportive Faculty at Vidyarashmi"></div>
+                    <div class="mentor-image-wrapper" data-aos="fade-right" data-aos-delay="100"><img src="assets/images/pic2.jpg" alt="Vidyarashmi College Lecturers" loading="lazy" decoding="async"></div>
+                    <div class="mentor-image-wrapper" data-aos="fade-left" data-aos-delay="200"><img src="assets/images/pic3.jpg" alt="Supportive Faculty at Vidyarashmi" loading="lazy" decoding="async"></div>
                 </div>
             </div>
         </section>
@@ -229,21 +228,21 @@
                     <div class="course-grid">
                         <!-- Google Course Card -->
                         <div class="course-card">
-                            <img src="assets/images/google-logo.png" alt="Google Logo" class="course-logo">
+                            <img src="assets/images/google-logo.png" alt="Google Logo" class="course-logo" loading="lazy" decoding="async">
                             <h3>Google Digital Garage</h3>
                             <p>Master the basics of digital marketing with Google's free, certified course.</p>
                             <a href="https://learndigital.withgoogle.com/digitalgarage/" target="_blank" class="btn-course">Start Learning</a>
                         </div>
                         <!-- Microsoft Course Card -->
                         <div class="course-card">
-                            <img src="assets/images/microsoft-logo.png" alt="Microsoft Logo" class="course-logo">
+                            <img src="assets/images/microsoft-logo.png" alt="Microsoft Logo" class="course-logo" loading="lazy" decoding="async">
                             <h3>Microsoft Learn</h3>
                             <p>Explore free learning paths for Azure, AI, Data Science, and much more.</p>
                             <a href="https://learn.microsoft.com/en-us/training/" target="_blank" class="btn-course">Explore Courses</a>
                         </div>
                         <!-- Meta Course Card -->
                         <div class="course-card">
-                            <img src="assets/images/meta-logo.png" alt="Meta Logo" class="course-logo">
+                            <img src="assets/images/meta-logo.png" alt="Meta Logo" class="course-logo" loading="lazy" decoding="async">
                             <h3>Meta Blueprint</h3>
                             <p>Learn social media marketing skills for Facebook and Instagram directly from Meta.</p>
                             <a href="https://www.facebook.com/business/learn" target="_blank" class="btn-course">Get Started</a>
@@ -276,6 +275,7 @@
                         src="https://maps.google.com/maps?width=375&amp;height=244&amp;hl=en&amp;q=Vidyarashmi First Grade college Savanoor &amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                         style="border:0;" 
                         allowfullscreen="" 
+                        loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
@@ -288,8 +288,8 @@
                 <h2 class="section-title">Follow Our Journey 📱</h2>
                 <div class="social-slider-container">
                     <div class="social-slider-track">
-                        <div class="social-slide"><img src="assets/images/ig-logo.png" alt="Instagram Logo" class="social-logo"><h3 class="social-platform-name">Instagram</h3><a href="https://www.instagram.com/vrfgc_modern_family?igsh=eTJkYzIyNnNlMTRl" target="_blank" class="btn-social btn-instagram">Follow</a></div>
-                        <div class="social-slide"><img src="assets/images/yt-logo.png" alt="YouTube Logo" class="social-logo"><h3 class="social-platform-name">YouTube</h3><a href="https://www.youtube.com" target="_blank" class="btn-social btn-youtube">Subscribe</a></div>
+                        <div class="social-slide"><img src="assets/images/ig-logo.png" alt="Instagram Logo" class="social-logo" loading="lazy" decoding="async"><h3 class="social-platform-name">Instagram</h3><a href="https://www.instagram.com/vrfgc_modern_family?igsh=eTJkYzIyNnNlMTRl" target="_blank" class="btn-social btn-instagram">Follow</a></div>
+                        <div class="social-slide"><img src="assets/images/yt-logo.png" alt="YouTube Logo" class="social-logo" loading="lazy" decoding="async"><h3 class="social-platform-name">YouTube</h3><a href="https://www.youtube.com" target="_blank" class="btn-social btn-youtube">Subscribe</a></div>
                     </div>
                 </div>
             </div>
@@ -320,4 +320,4 @@
     <!-- ======================================================= -->
 
 </body>
-                    </html>
+</html>
