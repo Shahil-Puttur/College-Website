@@ -1,29 +1,77 @@
 // --- script.js ---
 // This file contains JavaScript ONLY for the HOMEPAGE (index.html).
 
-// --- NEW PRELOADER LOGIC ---
-// This logic ensures the preloader is shown until the entire page (including images) is fully loaded.
+// --- NEW, FASTER PRELOADER LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Add 'loading' class immediately to hide content until it's ready
+    // Immediately add 'loading' to the body to hide the main content
+    // and prevent a flash of unstyled content.
     document.body.classList.add('loading');
-});
 
-window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
-    if (preloader) {
-        // Start the fade-out process for the preloader
-        preloader.classList.add('preloader-hidden');
+    const heroImage = document.querySelector('.hero-college-image');
 
-        // After the preloader has faded out, remove the loading class from the body
-        // This will trigger the fade-in of the main content (header, main, footer)
-        setTimeout(() => {
-            document.body.classList.remove('loading');
-        }, 500); // This duration should match the transition time in the CSS
-    } else {
-        // If for some reason there is no preloader, just show the content
+    // This function handles the fade-out animation and showing the page.
+    const showPageContent = () => {
+        if (preloader) {
+            preloader.classList.add('preloader-hidden');
+            // Remove the preloader from the DOM after its fade-out animation completes.
+            preloader.addEventListener('transitionend', () => preloader.remove());
+        }
+        // Fade in the main content.
         document.body.classList.remove('loading');
+    };
+
+    // The goal is to show the page as soon as the main hero image is loaded.
+    if (heroImage) {
+        // Check if the image is already loaded (e.g., from cache).
+        if (heroImage.complete) {
+            showPageContent();
+        } else {
+            // If not, wait for it to load.
+            heroImage.addEventListener('load', showPageContent);
+            // As a fallback, if the image fails to load, still show the page.
+            heroImage.addEventListener('error', () => {
+                console.error("Hero image failed to load. Showing page anyway.");
+                showPageContent();
+            });
+        }
+    } else {
+        // If there's no hero image for some reason, just show the page.
+        showPageContent();
     }
+    
+    // Set up lazy loading for other assets.
+    lazyLoadAssets();
 });
+
+
+// --- LAZY LOADING FOR BELOW-THE-FOLD ASSETS ---
+function lazyLoadAssets() {
+    // This handles elements with CSS background-images, like the NSS/Red Cross cards.
+    const lazyBackgrounds = document.querySelectorAll('.lazy-bg');
+    if ("IntersectionObserver" in window) {
+        const bgObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const lazyBg = entry.target;
+                    // Add the CSS class that applies the background-image
+                    lazyBg.classList.add(lazyBg.dataset.bgClass);
+                    // Stop observing this element once loaded
+                    observer.unobserve(lazyBg);
+                }
+            });
+        });
+
+        lazyBackgrounds.forEach(lazyBg => {
+            bgObserver.observe(lazyBg);
+        });
+    } else {
+        // Fallback for very old browsers: just load the images
+        lazyBackgrounds.forEach(lazyBg => {
+            lazyBg.classList.add(lazyBg.dataset.bgClass);
+        });
+    }
+}
 
 
 // --- DYNAMIC CONTENT LOADER FROM SUPABASE ---
@@ -79,7 +127,7 @@ async function loadHomepageNotices() {
                 const slide = document.createElement('div');
                 slide.className = 'notice-slide';
                 slide.innerHTML = `
-                    <img src="${imageUrl}" alt="${notice.heading}">
+                    <img src="${imageUrl}" alt="${notice.heading}" loading="lazy" decoding="async">
                     <div class="notice-slide-content">
                         <h3><a href="notices.html?id=${notice.id}">${notice.heading}</a></h3>
                     </div>
@@ -169,7 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
             slide.className = 'professor-slide';
             const qualText = prof.qual || '', descText = prof.desc || '';
             const separator = qualText && descText ? ', ' : '';
-            slide.innerHTML = `<img src="${prof.img}" alt="${prof.name}"><div class="professor-info"><h3>${prof.name}</h3><p>${qualText}${separator}${descText}</p></div>`;
+            // Added loading="lazy" to the images here
+            slide.innerHTML = `<img src="${prof.img}" alt="${prof.name}" loading="lazy" decoding="async"><div class="professor-info"><h3>${prof.name}</h3><p>${qualText}${separator}${descText}</p></div>`;
             track.appendChild(slide);
         });
         const slides = Array.from(track.children);
@@ -233,7 +282,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const track = document.createElement('div');
         track.className = 'event-slider-track';
         events.forEach((event, index) => {
-            track.innerHTML += `<div class="event-slide"><img src="${event.img}" alt="${event.caption}"><div class="event-slide-caption">${event.caption}</div></div>`;
+            // Added loading="lazy" to the slider images
+            track.innerHTML += `<div class="event-slide"><img src="${event.img}" alt="${event.caption}" loading="lazy" decoding="async"><div class="event-slide-caption">${event.caption}</div></div>`;
             if (dotsContainer) dotsContainer.innerHTML += `<div class="dot" data-index="${index}"></div>`;
         });
         eventSliderContainer.appendChild(track);
