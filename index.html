@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Force update -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,9 +13,6 @@
     <!-- Preload Key Assets for a Faster User Experience -->
     <link rel="preload" as="image" href="assets/images/hero-bg.jpg">
     <link rel="preload" as="image" href="assets/images/principal.png">
-    <link rel="preload" as="video" href="assets/videos/coding_video.mp4" type="video/mp4">
-    <link rel="preload" as="video" href="assets/videos/bcom_video.mp4" type="video/mp4">
-    <link rel="preload" as="video" href="assets/videos/ba_video.mp4" type="video/mp4">
 
     <!-- Supabase library is now loaded here on every page -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -34,6 +30,20 @@
             <a href="index.html" class="nav-logo">
                 <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo">
             </a>
+            
+            <!-- ======================================================= -->
+            <!-- NEW ICONS AND BUTTON ARE HERE! -->
+            <!-- ======================================================= -->
+            <div class="header-actions">
+                <a href="tel:9448501780" class="action-icon" aria-label="Call the college">
+                    <i class='bx bxs-phone-call'></i>
+                </a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbIbdxtHzK-zogOBhR0M78hYn0oY_S0XZyceHQW4lL4fyQPg/viewform?vc=0&c=0&w=1&flr=0" target="_blank" class="btn-apply-header">
+                    Apply
+                </a>
+            </div>
+            <!-- ======================================================= -->
+
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="index.html#management" class="nav-link">About</a></li>
@@ -53,7 +63,8 @@
     </header>
     <div class="overlay"></div>
 
-    <!-- MAIN CONTENT (Full version) -->
+    <!-- ... (The rest of your index.html file is perfect and remains the same) ... -->
+
     <main>
         <section class="hero-section">
             <div class="hero-background"></div>
@@ -208,10 +219,6 @@
             <div class="container">
                 <h2 class="section-title">Explore Free Courses from Top Companies 🎓</h2>
                 <p class="section-subtitle">We guide our students to powerful, free courses from industry leaders to boost their career skills.</p>
-                
-                <!-- ======================================================= -->
-                <!-- FINAL PRO SCROLL CAROUSEL STRUCTURE -->
-                <!-- ======================================================= -->
                 <div class="course-carousel-container">
                     <div class="course-grid">
                         <!-- Google Course Card -->
@@ -237,8 +244,6 @@
                         </div>
                     </div>
                 </div>
-                 <!-- ======================================================= -->
-
             </div>
         </section>
 
@@ -259,7 +264,6 @@
                     <div class="contact-card-home" data-aos="fade-up" data-aos-delay="200"><a href="mailto:vidyarashmifgc@gmail.com"><div class="contact-icon-home"><i class='bx bxl-gmail'></i></div><h3>Gmail</h3><p>vrfgc@vidyarashmi.in</p></a></div>
                 </div>
 
-                <!-- MAP SECTION (THE 100% FINAL FIX) -->
                 <div class="map-container" data-aos="fade-up" data-aos-delay="300">
                     <h3 class="map-title">COLLEGE LOCATION</h3>
                     <iframe 
@@ -286,19 +290,17 @@
         </section>
     </main>
 
-    <!-- FOOTER HTML (Full version) -->
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Vidyarashmi First Grade College Savanoor. All Rights Reserved. Website Developed by Mahammad Shahil, 1st BCA Student of Vidyarashmi College </p>
         </div>
     </footer>
 
-    <!-- CORRECT SCRIPT LOADING ORDER FOR HOMEPAGE -->
     <script src="supabase-client.js"></script>
-    <script src="script.js"></script> <!-- Homepage-specific logic -->
-    <script src="main.js"></script>   <!-- Shared navbar logic -->
+    <script src="script.js"></script>
+    <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script> AOS.init({ duration: 1000, once: true }); </script>
 
 </body>
-                </html>
+    </html>
