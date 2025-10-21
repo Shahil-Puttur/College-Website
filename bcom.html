@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✅ FIXED: Zoom is now disabled and the screen is perfectly fitted -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
     <title>B.Com Program - Vidyarashmi College</title>
 
-    <!-- FAVICON ADDED HERE -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
+    <!-- Your existing header is perfect, no changes needed here -->
     <header class="header">
         <nav class="navbar">
             <a href="index.html" class="nav-logo"><img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo"></a>
@@ -30,17 +31,19 @@
         </nav>
     </header>
     <div class="overlay"></div>
+
     <main>
-        <section class="video-hero-section">
-            <video autoplay muted loop playsinline class="hero-video" preload="metadata">
-                <source src="assets/videos/bcom_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-video-content">
-                <h1 data-aos="fade-up">Master the World of Business</h1>
-                <p data-aos="fade-up" data-aos-delay="200">The Bachelor of Commerce Program</p>
+        <!-- ✅ UPGRADED: Using the professional, reusable page-hero for a stunning video background -->
+        <section class="page-hero">
+            <div class="page-hero-background">
+                <video src="assets/videos/bcom_video.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            </div>
+            <div class="page-hero-content" data-aos="fade-in">
+                <h1>Bachelor of Commerce (B.Com)</h1>
+                <p>Master the World of Business and Finance</p>
             </div>
         </section>
+
         <section class="content-section bcom-details-section">
             <div class="container">
                 <p class="course-intro" data-aos="fade-up">The Bachelor of Commerce (B.Com) program at Vidyarashmi First Grade College, Savanoor, is designed to provide students with a strong foundation in accounting, finance, taxation, business law, and management. The course equips students with practical knowledge and analytical skills required for careers in commerce, banking, entrepreneurship, and corporate sectors. With a blend of academics and real-world applications, the program nurtures future professionals who can excel in today’s dynamic business world.</p>
@@ -51,6 +54,7 @@
                 </div>
             </div>
         </section>
+
         <section class="content-section course-gallery-section" style="background-color: var(--white-color);">
             <div class="container">
                  <h2 class="section-title" data-aos="fade-up">Inside the Commerce Department</h2>
@@ -61,13 +65,17 @@
             </div>
         </section>
     </main>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Vidyarashmi College. All Rights Reserved.</p>
         </div>
     </footer>
+
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
 </body>
-        </html>
+                                                                                                                                    </html>
