@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✅ FIXED: Zoom is now disabled and the screen is perfectly fitted -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
     <title>Library - Vidyarashmi College</title>
     
-    <!-- FAVICON ADDED HERE -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -40,14 +40,14 @@
     <div class="overlay"></div>
 
     <main>
-        <!-- GRAND LIBRARY VIDEO HERO SECTION -->
-        <section class="video-hero-section">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="assets/videos/library_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-video-content">
-                <h1 data-aos="fade-up">Welcome To The Vidyarashmi College Library 📚📖</h1>
+        <!-- ✅ UPGRADED: Using the professional, reusable page-hero for a stunning video background -->
+        <section class="page-hero">
+            <div class="page-hero-background">
+                <video src="assets/videos/library_video.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            </div>
+            <div class="page-hero-content" data-aos="fade-in">
+                <h1>The Library</h1>
+                <p>Your Gateway to Knowledge and Discovery</p>
             </div>
         </section>
 
@@ -60,14 +60,14 @@
                         <p>Our Library is a valuable resource center for students and faculty. It provides a collection of textbooks, reference books, journals, and magazines to support academic learning. The calm and organized environment encourages reading, research, and self-study. The Library plays an important role in helping students gain knowledge beyond the classroom.</p>
                     </div>
                     <div class="facility-image" data-aos="fade-left">
-                        <img src="assets/images/lib1.jpg" alt="College Library Collection">
+                        <img src="assets/images/lib1.jpg" alt="College Library Collection" loading="lazy" decoding="async">
                     </div>
                 </div>
 
                 <!-- Content Block 2 -->
                 <div class="facility-layout" data-aos="fade-up">
                     <div class="facility-image" data-aos="fade-right">
-                        <img src="assets/images/lib2.jpg" alt="Student studying in the Library">
+                        <img src="assets/images/lib2.jpg" alt="Student studying in the Library" loading="lazy" decoding="async">
                     </div>
                     <div class="facility-text">
                         <h2>A Hub for Knowledge</h2>
@@ -106,6 +106,6 @@
 
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script> AOS.init({ duration: 1000, once: true }); </script>
+    <script> AOS.init({ duration: 800, once: true }); </script>
 </body>
-    </html>
+                                         </html>
