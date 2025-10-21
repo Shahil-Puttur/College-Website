@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <!-- Preload Key Assets for a Faster User Experience -->
-    <!-- UPDATED: Preloading the new hero images -->
     <link rel="preload" as="image" href="assets/images/college-gibli.png">
-    <link rel="preload" as="image" href="assets/images/purple-blob.png">
     <link rel="preload" as="image" href="assets/images/principal.png">
 
     <!-- Supabase library is now loaded here on every page -->
@@ -58,20 +56,21 @@
 
     <main>
         <!-- ======================================================= -->
-        <!-- START: NEW HERO SECTION - REPLACE THE OLD ONE WITH THIS -->
+        <!-- START: NEW & CORRECTED HERO SECTION                   -->
         <!-- ======================================================= -->
         <section class="hero-section">
             <div class="hero-layout container">
                 <!-- Left Side: Text Content -->
-                <div class="hero-text-content" data-aos="fade-right">
-                    <h1>Welcome to Vidyarashmi First Grade College</h1>
-                    <p>Excellence in Education, Foundation for Life. Join us to build a bright future with quality education and holistic development.</p>
-                    <a href="#programs" class="btn-primary">Explore Our Courses</a>
+                <div class="hero-text-content">
+                    <h1 data-aos="fade-up">Welcome to Vidyarashmi First Grade College</h1>
+                    <p class="hero-subtitle">Excellence in Education, Foundation for Life. Join us to build a bright future with quality education and holistic development.</p>
+                    <div data-aos="fade-up" data-aos-delay="600">
+                        <a href="#programs" class="btn-primary">Explore Our Courses</a>
+                    </div>
                 </div>
 
-                <!-- Right Side: Image Content -->
-                <div class="hero-image-container" data-aos="fade-left">
-                    <img src="assets/images/purple-blob.png" alt="Decorative background shape" class="hero-bg-circle">
+                <!-- Right Side: Image with CSS Background Circle -->
+                <div class="hero-image-container" data-aos="zoom-in-up">
                     <img src="assets/images/college-gibli.png" alt="Vidyarashmi College Building Illustration" class="hero-college-image">
                 </div>
             </div>
@@ -305,7 +304,7 @@
     <script src="script.js"></script>
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script> AOS.init({ duration: 1000, once: true }); </script>
+    <script> AOS.init({ duration: 800, once: true }); </script>
 
 </body>
-                    </html>
+                        </html>
