@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✅ FIXED: Zoom is now disabled and the screen is perfectly fitted -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
     <title>Track and Field - Vidyarashmi College</title>
+    
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
@@ -16,13 +19,6 @@
             <a href="index.html" class="nav-logo">
                 <img src="assets/images/bannerlogo.png" alt="Vidyarashmi College Logo">
             </a>
-            <div class="header-actions">
-                <a href="tel:9448501780" class="action-icon" aria-label="Call the college"><i class='bx bxs-phone-call'></i></a>
-                <a href="index.html#contact" class="action-icon mobile-only-icon" aria-label="View Location"><i class='bx bxs-map'></i></a>
-                <a href="notices.html" class="action-icon mobile-only-icon" aria-label="Read Notices"><i class='bx bxs-news'></i></a>
-                <a href="gallery.html" class="action-icon mobile-only-icon" aria-label="View Gallery"><i class='bx bxs-photo-album'></i></a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbIbdxtHzK-zogOBhR0M78hYn0oY_S0XZyceHQW4lL4fyQPg/viewform?vc=0&c=0&w=1&flr=0" target="_blank" class="btn-apply-header desktop-only-button">Apply</a>
-            </div>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="index.html#management" class="nav-link">About</a></li>
@@ -34,38 +30,44 @@
                 <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </nav>
     </header>
+
     <div class="overlay"></div>
 
     <main>
-        <section class="video-hero-section">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="assets/videos/sports_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-video-content">
-                <h1 data-aos="fade-up">Track and Field 🏃</h1>
+        <!-- ✅ UPGRADED: Using the professional, reusable page-hero for a stunning video background -->
+        <section class="page-hero">
+            <div class="page-hero-background">
+                <video src="assets/videos/sports_video.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            </div>
+            <div class="page-hero-content" data-aos="fade-in">
+                <h1>Track & Field</h1>
+                <p>Unleash Your Potential on the Field</p>
             </div>
         </section>
 
         <section class="content-section facility-page-section">
             <div class="container">
+                <!-- Content Block 1 -->
                 <div class="facility-layout" data-aos="fade-up">
                     <div class="facility-text">
-                        <h2>🏃 Sports & Athletics</h2>
+                        <h2>🏃 Sports & Track – Vidyarashmi First Grade College, Savanoor</h2>
                         <p>Our college has an active sports ground that supports both athletics and outdoor games. Students regularly participate in cricket, kabaddi, volleyball, and track & field events. The facilities encourage fitness, teamwork, and discipline while giving opportunities to showcase talent in intercollegiate tournaments. Sports are an important part of campus life, helping students grow in both body and mind.</p>
                     </div>
                     <div class="facility-image" data-aos="fade-left">
-                        <img src="assets/images/sports1.jpg" alt="College Sports Ground">
+                        <img src="assets/images/sports1.jpg" alt="College Sports Ground" loading="lazy" decoding="async">
                     </div>
                 </div>
 
+                <!-- Content Block 2 -->
                 <div class="facility-layout" data-aos="fade-up">
                     <div class="facility-image" data-aos="fade-right">
-                        <img src="assets/images/sports2.jpg" alt="Students playing sports">
+                        <img src="assets/images/sports2.jpg" alt="Students playing sports" loading="lazy" decoding="async">
                     </div>
                     <div class="facility-text">
                         <h2>Beyond the Classroom</h2>
@@ -73,6 +75,7 @@
                     </div>
                 </div>
 
+                <!-- Amenities Grid -->
                 <div class="amenities-grid" data-aos="fade-up" data-aos-delay="200">
                     <div class="amenity-card">
                         <div class="amenity-icon"><i class='bx bx-football'></i></div>
@@ -104,7 +107,7 @@
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
     </html>
