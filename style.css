@@ -18,7 +18,7 @@
     --accent-orange: #e67e22; 
     --light-orange-bg: #fff8f0;
 
-    /* UPDATED: NEW PURPLE GRADIENT FOR HEADER & FOOTER */
+    /* UPDATED: PURPLE GRADIENT FOR HEADER & FOOTER */
     --header-footer-bg: linear-gradient(90deg, #6a0dad 0%, #e000e0 100%);
 }
 
@@ -34,7 +34,7 @@ html {
 body { 
     font-family: var(--font-family); 
     line-height: 1.6; 
-    background-color: var(--light-bg); 
+    background-color: var(--white-color); /* Changed to white for a cleaner overall look */
     color: var(--text-color-dark); 
 }
 .container { 
@@ -151,19 +151,18 @@ main, footer {
 }
 
 /* ======================================================= */
-/* START: NEW HERO SECTION CSS (REPLACEMENT)               */
+/* START: NEW & CORRECTED HERO SECTION CSS                 */
 /* ======================================================= */
 .hero-section { 
-    background-color: var(--light-bg); /* Use the light background for a clean look */
-    min-height: 100vh; /* Changed from height to min-height for flexibility */
+    background-color: var(--light-bg);
+    min-height: 100vh;
     display: flex; 
     align-items: center; 
-    padding-top: 100px; /* Push content below the fixed header */
-    padding-bottom: 3rem;
+    padding-top: 100px;
+    padding-bottom: 4rem;
     overflow: hidden;
 }
 
-/* The main 2-column layout container */
 .hero-layout {
     display: flex;
     align-items: center;
@@ -171,9 +170,8 @@ main, footer {
     gap: 3rem;
 }
 
-/* Left column for text */
 .hero-text-content {
-    flex: 1.2; /* Give text slightly more space */
+    flex: 1.2;
     z-index: 5;
 }
 
@@ -182,18 +180,32 @@ main, footer {
     font-weight: 700; 
     margin-bottom: 1rem;
     line-height: 1.2;
-    color: var(--text-color-dark); /* Text is now dark on a light background */
+    color: var(--text-color-dark);
 }
 
-.hero-text-content p { 
+.hero-text-content .hero-subtitle { 
     font-size: 1.2rem; 
     font-weight: 300; 
     margin-bottom: 2.5rem;
-    color: var(--secondary-blue); /* Darker text color */
-    max-width: 500px; /* Prevent text from being too wide */
+    color: var(--secondary-blue);
+    max-width: 500px;
+    /* Animation Properties */
+    opacity: 0; /* Start hidden */
+    animation: fadeInSlideUp 0.8s ease-out 0.4s forwards;
 }
 
-/* The "Explore Courses" button style */
+/* Subtitle Animation */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .btn-primary { 
     display: inline-block; 
     background-color: var(--accent-pink); 
@@ -210,42 +222,36 @@ main, footer {
     box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); 
 }
 
-
-/* Right column for images */
 .hero-image-container {
     flex: 1;
-    position: relative; /* Crucial for layering the images */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 500px; /* Ensures it has space */
 }
 
-/* The purple blob in the background */
-.hero-bg-circle {
+/* THIS IS THE CSS CIRCLE BACKGROUND */
+.hero-image-container::before {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%; /* Make it larger than the container */
-    max-width: 600px;
-    opacity: 0.9;
-    z-index: 1; /* Behind the college image */
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(178,102,238,0.5) 0%, rgba(106,13,173,0.2) 60%, rgba(240,247,255,0) 70%);
+    border-radius: 50%;
+    z-index: 1;
+    transition: transform 0.5s ease;
 }
 
-/* The college drawing in the foreground */
+.hero-image-container:hover::before {
+    transform: scale(1.1);
+}
+
 .hero-college-image {
-    position: relative; /* Can be relative or absolute, relative is simpler here */
-    z-index: 2; /* In front of the blob */
+    position: relative;
+    z-index: 2;
     width: 100%;
-    max-width: 500px;
-    /* Add a subtle shadow to lift the image off the page */
-    filter: drop-shadow(10px 15px 25px rgba(0, 0, 0, 0.1));
-    transition: transform 0.3s ease;
-}
-
-.hero-college-image:hover {
-    transform: scale(1.03); /* Slight zoom on hover */
+    max-width: 520px;
+    filter: drop-shadow(10px 15px 20px rgba(0, 0, 0, 0.15));
 }
 /* ======================================================= */
 /* END: NEW HERO SECTION CSS                               */
@@ -1077,40 +1083,39 @@ main, footer {
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     
-    /* NEW: Responsive styles for the new Hero Section */
+    /* Responsive styles for the Hero Section */
     .hero-section {
-        padding-top: 120px; /* More padding for mobile header */
-        padding-bottom: 4rem;
-        min-height: auto; /* Height should be automatic on mobile */
+        padding-top: 120px;
+        min-height: auto;
     }
     .hero-layout {
-        flex-direction: column; /* Stack the columns vertically */
+        flex-direction: column;
         text-align: center;
     }
     .hero-text-content {
-        order: 2; /* Put the text BELOW the image on mobile */
+        order: 2; /* Text appears below the image */
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center the button */
+        align-items: center;
     }
     .hero-text-content h1 {
-        font-size: 2.5rem; /* Smaller heading for mobile */
+        font-size: 2.5rem;
     }
-    .hero-text-content p {
-        font-size: 1.1rem; /* Smaller text for mobile */
+    .hero-text-content .hero-subtitle {
+        font-size: 1.1rem;
         margin-bottom: 2rem;
     }
     .hero-image-container {
-        order: 1; /* Put the image on TOP */
-        min-height: 300px; /* Reduce height for mobile */
+        order: 1; /* Image appears on top */
         width: 100%;
         margin-bottom: 2rem;
     }
-    .hero-college-image {
-        max-width: 350px;
+    .hero-image-container::before {
+        width: 320px;
+        height: 320px;
     }
-    .hero-bg-circle {
-        max-width: 400px;
+    .hero-college-image {
+        max-width: 300px;
     }
 
     .content-section { padding: 3rem 0; }
