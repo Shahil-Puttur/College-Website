@@ -2,18 +2,25 @@
 // This file contains JavaScript ONLY for the HOMEPAGE (index.html).
 
 // --- NEW PRELOADER LOGIC ---
+// This logic ensures the preloader is shown until the entire page (including images) is fully loaded.
 document.addEventListener('DOMContentLoaded', () => {
+    // Add 'loading' class immediately to hide content until it's ready
     document.body.classList.add('loading');
 });
 
 window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     if (preloader) {
+        // Start the fade-out process for the preloader
         preloader.classList.add('preloader-hidden');
+
+        // After the preloader has faded out, remove the loading class from the body
+        // This will trigger the fade-in of the main content (header, main, footer)
         setTimeout(() => {
             document.body.classList.remove('loading');
-        }, 500);
+        }, 500); // This duration should match the transition time in the CSS
     } else {
+        // If for some reason there is no preloader, just show the content
         document.body.classList.remove('loading');
     }
 });
@@ -31,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadTicker() {
     const tickerWrapper = document.querySelector('.scrolling-text-wrapper');
-    if (!tickerWrapper || typeof supaClient === 'undefined') return;
+    if (!tickerWrapper) return;
     
     try {
         const { data, error } = await supaClient.from('ticker').select('message').order('created_at', { ascending: false }).limit(1).single();
@@ -51,7 +58,7 @@ async function loadTicker() {
 
 async function loadHomepageNotices() {
     const noticeContainer = document.getElementById('notice-slider-container');
-    if (!noticeContainer || typeof supaClient === 'undefined') return;
+    if (!noticeContainer) return;
 
     try {
         const { data, error } = await supaClient.from('notices').select('*').order('created_at', { ascending: false }).limit(5);
@@ -99,6 +106,7 @@ async function loadHomepageNotices() {
 }
 
 // --- HOMEPAGE-ONLY WEBSITE FUNCTIONALITY ---
+// "Read More" Button Logic
 const readMoreBtn = document.getElementById('readMoreBtn');
 const managementTextWrapper = document.getElementById('managementText');
 if (readMoreBtn) {
@@ -108,6 +116,7 @@ if (readMoreBtn) {
     });
 }
 
+// Logic that runs after DOM is loaded for homepage-specific items
 document.addEventListener('DOMContentLoaded', () => {
     
     // Typing Animation
@@ -190,6 +199,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Custom Audio Player (for bca.html)
+    const audioPlayer = document.getElementById('bcaAudioPlayer');
+    if (audioPlayer) {
+        const audio = document.getElementById('bcaAudio');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        playBtn.addEventListener('click', () => { 
+            audio.play(); 
+            playBtn.style.display = 'none'; 
+            pauseBtn.style.display = 'flex'; 
+        });
+        pauseBtn.addEventListener('click', () => { 
+            audio.pause(); 
+            playBtn.style.display = 'flex'; 
+            pauseBtn.style.display = 'none'; 
+        });
+    }
+
+    // Latest Events Slider
     const eventSliderContainer = document.getElementById('eventSlider');
     if (eventSliderContainer) {
         const events = [
@@ -226,24 +254,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // =======================================================
+    // FINAL PRO "FREE COURSES" GLOW ON SCROLL LOGIC
+    // =======================================================
     const courseCards = document.querySelectorAll('.free-courses-section .course-card');
-    if (courseCards.length > 0 && window.innerWidth <= 768) { 
+    if (courseCards.length > 0 && window.innerWidth <= 768) { // Only run this on mobile
         const observerOptions = {
-            root: document.querySelector('.course-carousel-container'),
+            root: document.querySelector('.course-carousel-container'), // This is the scrollable area
             rootMargin: '0px',
-            threshold: 0.75
+            threshold: 0.75 // Trigger when 75% of the card is visible
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                // When a card is centered, add the glowing class
                 if (entry.isIntersecting) {
                     entry.target.classList.add('glowing');
                 } else {
+                    // When it's not centered, remove it so the animation can play again
                     entry.target.classList.remove('glowing');
                 }
             });
         }, observerOptions);
 
+        // Tell the observer to watch each of the course cards
         courseCards.forEach(card => {
             observer.observe(card);
         });
