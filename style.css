@@ -17,6 +17,9 @@
     --light-green-bg: #f0fff5;
     --accent-orange: #e67e22; 
     --light-orange-bg: #fff8f0;
+
+    /* PURPLE GRADIENT FOR HEADER & FOOTER */
+    --header-footer-bg: linear-gradient(90deg, #6a0dad 0%, #e000e0 100%);
 }
 
 /* --- Global Styles --- */
@@ -31,7 +34,7 @@ html {
 body { 
     font-family: var(--font-family); 
     line-height: 1.6; 
-    background-color: var(--light-bg); 
+    background-color: var(--white-color); 
     color: var(--text-color-dark); 
 }
 .container { 
@@ -43,7 +46,7 @@ body {
 
 /* --- Header & Navigation --- */
 .header { 
-    background-color: var(--text-color-dark); 
+    background: var(--header-footer-bg); 
     box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
     position: fixed; 
     width: 100%; 
@@ -61,6 +64,43 @@ body {
     width: auto; 
     vertical-align: middle; 
 }
+
+/* HEADER ACTION ICONS STYLING */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.action-icon {
+    color: var(--white-color);
+    font-size: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.action-icon:hover {
+    color: var(--accent-pink);
+    transform: scale(1.1);
+}
+.btn-apply-header {
+    background-color: var(--accent-pink);
+    color: var(--white-color);
+    padding: 8px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.btn-apply-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.mobile-only-icon {
+    display: none;
+}
+
 .nav-menu { 
     display: flex; 
     list-style: none; 
@@ -110,45 +150,45 @@ main, footer {
     transition: opacity 0.5s ease-in-out;
 }
 
-/* --- Hero Section --- */
+/* ======================================================= */
+/* START: REBUILT PROFESSIONAL HERO SECTION CSS            */
+/* ======================================================= */
 .hero-section { 
-    position: relative; 
-    height: 95vh; 
+    background-color: var(--light-bg);
     display: flex; 
-    justify-content: center; 
     align-items: center; 
-    text-align: center; 
-    color: var(--white-color); 
-    overflow: hidden; 
+    padding-top: 120px;
+    padding-bottom: 80px;
 }
-.hero-background { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-color: var(--primary-blue); 
-    background-image: url('assets/images/hero-bg.jpg'); 
-    background-blend-mode: multiply; 
-    background-position: center center; 
-    background-size: cover; 
-    z-index: 1; 
+
+.hero-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
 }
-.hero-content { 
-    position: relative; 
-    z-index: 3; 
-    padding: 0 1rem; 
+
+/* --- Left Side: Text --- */
+.hero-text-content {
+    flex: 1;
+    max-width: 550px;
 }
-.hero-content h1 { 
-    font-size: 3.8rem; 
+
+.hero-text-content h1 { 
+    font-size: clamp(2.5rem, 5vw, 3.8rem); 
     font-weight: 700; 
-    margin-bottom: 0.5rem; 
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: var(--text-color-dark);
 }
-.hero-content p { 
-    font-size: 1.4rem; 
+
+.hero-text-content p { 
+    font-size: 1.2rem; 
     font-weight: 300; 
-    margin-bottom: 2.5rem; 
+    margin-bottom: 2.5rem;
+    color: var(--secondary-blue);
 }
+
 .btn-primary { 
     display: inline-block; 
     background-color: var(--accent-pink); 
@@ -165,6 +205,42 @@ main, footer {
     box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); 
 }
 
+/* --- Right Side: Image --- */
+.hero-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1 / 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* THE CSS BACKGROUND CIRCLE */
+    background: radial-gradient(circle, rgba(178,102,238,0.5) 0%, rgba(106,13,173,0.15) 55%, transparent 70%);
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+
+.hero-image-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.hero-college-image {
+    width: 115%; 
+    position: absolute;
+    filter: drop-shadow(10px 15px 20px rgba(0, 0, 0, 0.1));
+}
+/* ======================================================= */
+/* END: NEW HERO SECTION CSS                               */
+/* ======================================================= */
+
+
 /* --- General Content Sections --- */
 .content-section { 
     padding: 5rem 0; 
@@ -178,6 +254,7 @@ main, footer {
 }
 
 /* --- Management Section --- */
+.management-section { background-color: var(--white-color); }
 .management-grid { 
     display: grid; 
     grid-template-columns: 2fr 1fr; 
@@ -217,7 +294,7 @@ main, footer {
     color: var(--white-color); 
 }
 .management-images { 
-    background-color: var(--text-color-dark); 
+    background-color: #fff;
     border-radius: 15px; 
     padding: 1.5rem; 
     display: flex; 
@@ -453,7 +530,7 @@ main, footer {
 }
 
 /* --- Facilities Section --- */
-.facilities-section {}
+.facilities-section { background-color: var(--light-bg); }
 .pill-heading { 
     display: inline-block; 
     background-color: rgba(74, 144, 226, 0.1); 
@@ -543,7 +620,7 @@ main, footer {
 
 /* --- Co-curricular Section --- */
 .cocurricular-section { 
-    background-color: var(--light-bg); 
+    background-color: var(--white-color); 
 }
 .cocurricular-grid { 
     display: grid; 
@@ -603,7 +680,7 @@ main, footer {
 
 /* --- Mentors, Contact, Social --- */
 .mentors-section { 
-    background-color: var(--white-color); 
+    background-color: var(--light-bg); 
 }
 .mentors-quote { 
     text-align: center; 
@@ -831,63 +908,13 @@ main, footer {
 
 /* --- Footer --- */
 .footer { 
-    background-color: var(--text-color-dark); 
+    background: var(--header-footer-bg); 
     color: var(--white-color); 
     text-align: center; 
     padding: 3rem 0; 
 }
 
-/* --- Video Hero Section --- */
-.video-hero-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--white-color);
-    overflow: hidden;
-}
-.video-hero-section .hero-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 1;
-    object-fit: cover; 
-}
-.video-hero-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(10, 38, 71, 0.7);
-    z-index: 2;
-}
-.hero-video-content {
-    position: relative;
-    z-index: 3;
-    padding: 0 1rem;
-}
-.hero-video-content h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-.hero-video-content p {
-    font-size: 1.5rem;
-    font-weight: 300;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* --- Other Page Specific Styles (BCA, etc.) --- */
+/* --- Other Page Specific Styles --- */
 .bca-learn-section { background-color: var(--white-color); }
 .topic-card { background: #fff; padding: 2rem; border-radius: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 2px solid transparent; text-align: center; }
 .topic-card:hover { transform: translateY(-10px); box-shadow: 0 0 25px rgba(74, 144, 226, 0.4); border-color: var(--primary-blue); }
@@ -941,25 +968,25 @@ main, footer {
 .course-image-grid-single { grid-template-columns: 1fr; max-width: 800px; margin: auto; }
 .course-gallery-image img { width: 100%; border-radius: 15px; box-shadow: 0 15px 40px rgba(74, 144, 226, 0.2); object-fit: cover; height: 100%; }
 
+
 /* --- Responsive Media Queries --- */
 @media(max-width: 992px) { 
     .management-grid { grid-template-columns: 1fr; } 
     .management-images { order: -1; margin-bottom: 2rem; }
-    .course-detail-layout {
-        flex-direction: column; 
-        gap: 2rem;
-    } 
-    .course-text-wrapper {
-        margin-left: 0;
-        margin-top: 0;
-        width: 90%;
-        padding: 2rem;
-    }
     .bca-grid { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media(max-width: 768px) {
+    /* Mobile Navbar layout fix */
+    .navbar { justify-content: space-between; }
+    .header-actions { order: 2; }
+    .hamburger { order: 3; }
+    .btn-apply-header.desktop-only-button { display: none; }
+    .action-icon.mobile-only-icon { display: inline-flex; }
+
     .nav-menu { 
-        position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--text-color-dark); 
+        position: fixed; right: -100%; top: 0; flex-direction: column; 
+        background: var(--header-footer-bg); 
         width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; 
         box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; 
     }
@@ -971,8 +998,33 @@ main, footer {
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    .hero-content h1, .hero-video-content h1 { font-size: 2.8rem; }
-    .hero-content p, .hero-video-content p { font-size: 1.2rem; }
+    
+    /* Responsive styles for the Hero Section */
+    .hero-section {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+    .hero-layout {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .hero-text-content {
+        order: 2; /* Text appears below the image */
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero-image-container {
+        order: 1; /* Image appears on top */
+        width: 100%;
+        /* Add padding to the container to give the circle room - FIXES THE HALF CIRCLE */
+        padding-top: 2rem;
+    }
+    .hero-image-wrapper {
+        max-width: 350px; /* Smaller circle on mobile */
+    }
+
     .content-section { padding: 3rem 0; }
     .section-title { font-size: 2rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
@@ -991,46 +1043,28 @@ main, footer {
     .course-grid {
         grid-template-columns: 1fr; 
     }
-
     .event-slider-container { aspect-ratio: 4 / 3; }
     .event-slide-caption { font-size: 1rem; padding: 2rem 1rem 1rem 1rem; }
-    .facility-layout { grid-template-columns: 1fr; }
-    .facility-layout:nth-child(2) .facility-image { order: -1; }
-    .course-text-wrapper {
-        margin-top: 0;
-        width: calc(100% - 2rem);
-        padding: 1.5rem;
-    }
-    .course-text-wrapper h2 { font-size: 1.5rem; }
     .tools-grid { grid-template-columns: repeat(2, 1fr); }
-    .admission-card {
-        padding: 1.5rem;
-    }
     
-    /* ======================================================= */
-    /* FINAL PRO SCROLL SNAP CAROUSEL STYLES (MOBILE ONLY) */
-    /* ======================================================= */
-    .free-courses-section .container {
-        padding: 0; /* Remove container padding to allow full width scroll */
-    }
+    /* Mobile Scroll Snap Carousel Styles */
+    .free-courses-section .container { padding: 0; }
     .course-carousel-container {
-        overflow-x: auto; /* Make it scrollable horizontally */
-        scroll-snap-type: x mandatory; /* This is the magic for snapping! */
-        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-        scrollbar-width: none; /* Hide scrollbar on Firefox */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
-    .course-carousel-container::-webkit-scrollbar {
-        display: none; /* Hide scrollbar on Chrome/Safari */
-    }
+    .course-carousel-container::-webkit-scrollbar { display: none; }
     .free-courses-section .course-grid {
-        display: flex; /* Make the cards a row */
-        width: max-content; /* Allow the row to be as wide as its content */
-        grid-template-columns: none; /* Override the desktop grid style */
-        padding: 0 50px; /* Add padding to allow first/last cards to center */
+        display: flex;
+        width: max-content;
+        grid-template-columns: none;
+        padding: 0 50px;
     }
     .free-courses-section .course-card {
-        scroll-snap-align: center; /* This is the magic! Snap each card to the center */
-        width: 80vw; /* Each card takes 80% of the screen width */
+        scroll-snap-align: center;
+        width: 80vw;
         max-width: 300px;
         flex-shrink: 0;
     }
@@ -1053,7 +1087,7 @@ body.loading > .overlay {
     left: 0; 
     width: 100%; 
     height: 100%; 
-    background-color: var(--text-color-dark); 
+    background-color: #6a0dad; 
     z-index: 9999; 
     display: flex; 
     justify-content: center; 
@@ -1329,4 +1363,4 @@ body.loading > .overlay {
         box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
         border-color: var(--primary-blue);
     }
-    }
+}```
