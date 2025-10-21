@@ -210,9 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/d5.jpg', name: 'Dr Kiranachandra Rai B', qual: 'M.A, Mphil, PhD', desc: 'Dept of political science' },
             { img: 'assets/images/d6.jpg', name: 'Sahana K', qual: 'Clerk/ Typist', desc: 'Office Staff' },
             { img: 'assets/images/d7.jpg', name: 'Bharath', qual: '', desc: 'Non-Teaching Staff' },
-            { img: 'assets/images/d8.jpg', name: 'Bharath.S', qual: '', desc: 'Pt.Lecturer' },
-            { img: 'assets/images/d9.jpg', name: 'Shreya', qual: '', desc: 'Liabrary Staff' },
-            { img: 'assets/images/d10.jpg', name: 'Dr. Rajalakshmi Rai', qual: '', desc: 'Principal' }
+            { img: 'assets/images/d10.jpg', name: 'Dr. Rajalakshmi Rai', qual: 'MBA, M.Com  PhD', desc: 'Principal' }
         ];
         professorData.forEach(prof => {
             const slide = document.createElement('div');
