@@ -18,9 +18,7 @@
     --accent-orange: #e67e22; 
     --light-orange-bg: #fff8f0;
 
-    /* ======================================================= */
-    /* UPDATED: NEW PURPLE GRADIENT FOR HEADER & FOOTER        */
-    /* ======================================================= */
+    /* UPDATED: NEW PURPLE GRADIENT FOR HEADER & FOOTER */
     --header-footer-bg: linear-gradient(90deg, #6a0dad 0%, #e000e0 100%);
 }
 
@@ -48,7 +46,6 @@ body {
 
 /* --- Header & Navigation --- */
 .header { 
-    /* UPDATED: Changed background color to new purple gradient */
     background: var(--header-footer-bg); 
     box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
     position: fixed; 
@@ -68,17 +65,15 @@ body {
     vertical-align: middle; 
 }
 
-/* ======================================================= */
-/* NEW: HEADER ACTION ICONS STYLING                        */
-/* ======================================================= */
+/* HEADER ACTION ICONS STYLING */
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 0.8rem; /* Space between icons and button */
+    gap: 0.8rem;
 }
 .action-icon {
     color: var(--white-color);
-    font-size: 1.8rem; /* Made icons a bit bigger */
+    font-size: 1.8rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -102,11 +97,9 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
-/* By default, hide the new mobile-only icons on desktop */
 .mobile-only-icon {
     display: none;
 }
-/* ======================================================= */
 
 .nav-menu { 
     display: flex; 
@@ -157,45 +150,50 @@ main, footer {
     transition: opacity 0.5s ease-in-out;
 }
 
-/* --- Hero Section --- */
+/* ======================================================= */
+/* START: NEW HERO SECTION CSS (REPLACEMENT)               */
+/* ======================================================= */
 .hero-section { 
-    position: relative; 
-    height: 95vh; 
+    background-color: var(--light-bg); /* Use the light background for a clean look */
+    min-height: 100vh; /* Changed from height to min-height for flexibility */
     display: flex; 
-    justify-content: center; 
     align-items: center; 
-    text-align: center; 
-    color: var(--white-color); 
-    overflow: hidden; 
+    padding-top: 100px; /* Push content below the fixed header */
+    padding-bottom: 3rem;
+    overflow: hidden;
 }
-.hero-background { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-color: var(--primary-blue); 
-    background-image: url('assets/images/hero-bg.jpg'); 
-    background-blend-mode: multiply; 
-    background-position: center center; 
-    background-size: cover; 
-    z-index: 1; 
+
+/* The main 2-column layout container */
+.hero-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
 }
-.hero-content { 
-    position: relative; 
-    z-index: 3; 
-    padding: 0 1rem; 
+
+/* Left column for text */
+.hero-text-content {
+    flex: 1.2; /* Give text slightly more space */
+    z-index: 5;
 }
-.hero-content h1 { 
-    font-size: 3.8rem; 
+
+.hero-text-content h1 { 
+    font-size: 3.5rem; 
     font-weight: 700; 
-    margin-bottom: 0.5rem; 
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    color: var(--text-color-dark); /* Text is now dark on a light background */
 }
-.hero-content p { 
-    font-size: 1.4rem; 
+
+.hero-text-content p { 
+    font-size: 1.2rem; 
     font-weight: 300; 
-    margin-bottom: 2.5rem; 
+    margin-bottom: 2.5rem;
+    color: var(--secondary-blue); /* Darker text color */
+    max-width: 500px; /* Prevent text from being too wide */
 }
+
+/* The "Explore Courses" button style */
 .btn-primary { 
     display: inline-block; 
     background-color: var(--accent-pink); 
@@ -211,6 +209,48 @@ main, footer {
     transform: translateY(-5px); 
     box-shadow: 0 8px 20px rgba(233, 69, 96, 0.5); 
 }
+
+
+/* Right column for images */
+.hero-image-container {
+    flex: 1;
+    position: relative; /* Crucial for layering the images */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px; /* Ensures it has space */
+}
+
+/* The purple blob in the background */
+.hero-bg-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%; /* Make it larger than the container */
+    max-width: 600px;
+    opacity: 0.9;
+    z-index: 1; /* Behind the college image */
+}
+
+/* The college drawing in the foreground */
+.hero-college-image {
+    position: relative; /* Can be relative or absolute, relative is simpler here */
+    z-index: 2; /* In front of the blob */
+    width: 100%;
+    max-width: 500px;
+    /* Add a subtle shadow to lift the image off the page */
+    filter: drop-shadow(10px 15px 25px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.hero-college-image:hover {
+    transform: scale(1.03); /* Slight zoom on hover */
+}
+/* ======================================================= */
+/* END: NEW HERO SECTION CSS                               */
+/* ======================================================= */
+
 
 /* --- General Content Sections --- */
 .content-section { 
@@ -264,7 +304,7 @@ main, footer {
     color: var(--white-color); 
 }
 .management-images { 
-    background-color: #fff; /* Changed from dark blue for better look */
+    background-color: #fff;
     border-radius: 15px; 
     padding: 1.5rem; 
     display: flex; 
@@ -878,7 +918,6 @@ main, footer {
 
 /* --- Footer --- */
 .footer { 
-    /* UPDATED: Changed background color to new purple gradient */
     background: var(--header-footer-bg); 
     color: var(--white-color); 
     text-align: center; 
@@ -1006,31 +1045,25 @@ main, footer {
     .bca-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media(max-width: 768px) {
-    /* ======================================================= */
-    /* UPDATED: Mobile Navbar layout fix                       */
-    /* ======================================================= */
+    /* Mobile Navbar layout fix */
     .navbar {
-        /* This ensures the logo stays left while icons and hamburger stay right */
         justify-content: space-between;
     }
     .header-actions {
-        order: 2; /* Puts icons before hamburger */
+        order: 2;
     }
     .hamburger {
-        order: 3; /* Puts hamburger last */
+        order: 3;
     }
-    /* UPDATED: Hiding the Apply button on mobile */
     .btn-apply-header.desktop-only-button {
         display: none;
     }
-    /* UPDATED: Showing the new mobile icons */
     .action-icon.mobile-only-icon {
         display: inline-flex;
     }
 
     .nav-menu { 
         position: fixed; right: -100%; top: 0; flex-direction: column; 
-        /* UPDATED: Changed mobile menu background to new purple gradient */
         background: var(--header-footer-bg); 
         width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; 
         box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; 
@@ -1043,8 +1076,43 @@ main, footer {
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
     .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    .hero-content h1, .hero-video-content h1 { font-size: 2.8rem; }
-    .hero-content p, .hero-video-content p { font-size: 1.2rem; }
+    
+    /* NEW: Responsive styles for the new Hero Section */
+    .hero-section {
+        padding-top: 120px; /* More padding for mobile header */
+        padding-bottom: 4rem;
+        min-height: auto; /* Height should be automatic on mobile */
+    }
+    .hero-layout {
+        flex-direction: column; /* Stack the columns vertically */
+        text-align: center;
+    }
+    .hero-text-content {
+        order: 2; /* Put the text BELOW the image on mobile */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the button */
+    }
+    .hero-text-content h1 {
+        font-size: 2.5rem; /* Smaller heading for mobile */
+    }
+    .hero-text-content p {
+        font-size: 1.1rem; /* Smaller text for mobile */
+        margin-bottom: 2rem;
+    }
+    .hero-image-container {
+        order: 1; /* Put the image on TOP */
+        min-height: 300px; /* Reduce height for mobile */
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .hero-college-image {
+        max-width: 350px;
+    }
+    .hero-bg-circle {
+        max-width: 400px;
+    }
+
     .content-section { padding: 3rem 0; }
     .section-title { font-size: 2rem; }
     .principal-card { flex-direction: column; text-align: center; padding: 2rem; }
@@ -1079,30 +1147,28 @@ main, footer {
         padding: 1.5rem;
     }
     
-    /* ======================================================= */
-    /* FINAL PRO SCROLL SNAP CAROUSEL STYLES (MOBILE ONLY) */
-    /* ======================================================= */
+    /* Mobile Scroll Snap Carousel Styles */
     .free-courses-section .container {
-        padding: 0; /* Remove container padding to allow full width scroll */
+        padding: 0;
     }
     .course-carousel-container {
-        overflow-x: auto; /* Make it scrollable horizontally */
-        scroll-snap-type: x mandatory; /* This is the magic for snapping! */
-        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
-        scrollbar-width: none; /* Hide scrollbar on Firefox */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
     .course-carousel-container::-webkit-scrollbar {
-        display: none; /* Hide scrollbar on Chrome/Safari */
+        display: none;
     }
     .free-courses-section .course-grid {
-        display: flex; /* Make the cards a row */
-        width: max-content; /* Allow the row to be as wide as its content */
-        grid-template-columns: none; /* Override the desktop grid style */
-        padding: 0 50px; /* Add padding to allow first/last cards to center */
+        display: flex;
+        width: max-content;
+        grid-template-columns: none;
+        padding: 0 50px;
     }
     .free-courses-section .course-card {
-        scroll-snap-align: center; /* This is the magic! Snap each card to the center */
-        width: 80vw; /* Each card takes 80% of the screen width */
+        scroll-snap-align: center;
+        width: 80vw;
         max-width: 300px;
         flex-shrink: 0;
     }
@@ -1125,7 +1191,6 @@ body.loading > .overlay {
     left: 0; 
     width: 100%; 
     height: 100%; 
-    /* UPDATED: Changed preloader background to a solid purple */
     background-color: #6a0dad; 
     z-index: 9999; 
     display: flex; 
