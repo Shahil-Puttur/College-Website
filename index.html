@@ -56,7 +56,7 @@
 
     <main>
         <!-- ======================================================= -->
-        <!-- START: NEW PROFESSIONAL HERO SECTION                  -->
+        <!-- START: NEW PROFESSIONAL HERO SECTION WITH ANIMATIONS    -->
         <!-- ======================================================= -->
         <section class="hero-section">
             <div class="hero-layout container">
@@ -306,7 +306,18 @@
     <script src="script.js"></script>
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script> AOS.init({ duration: 800, once: true, disable: 'mobile' }); </script>
+    <!-- ======================================================= -->
+    <!-- START: CORRECTED SCRIPT INITIALIZATION (FIXES MOBILE) -->
+    <!-- ======================================================= -->
+    <script>
+      AOS.init({
+        duration: 800, // Animation duration in milliseconds
+        once: true      // Whether animation should happen only once - while scrolling down
+      });
+    </script>
+    <!-- ======================================================= -->
+    <!-- END: CORRECTED SCRIPT INITIALIZATION                  -->
+    <!-- ======================================================= -->
 
 </body>
-            </html>
+                    </html>
