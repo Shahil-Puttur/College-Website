@@ -24,7 +24,7 @@
         <div class="loader"></div>
     </div>
 
-    <!-- HEADER and NAVBAR -->
+    <!-- HEADER and NAVBAR (No changes) -->
     <header class="header">
         <nav class="navbar">
             <a href="index.html" class="nav-logo">
@@ -56,22 +56,24 @@
 
     <main>
         <!-- ======================================================= -->
-        <!-- START: NEW & CORRECTED HERO SECTION                   -->
+        <!-- START: NEW PROFESSIONAL HERO SECTION                  -->
         <!-- ======================================================= -->
         <section class="hero-section">
             <div class="hero-layout container">
                 <!-- Left Side: Text Content -->
                 <div class="hero-text-content">
-                    <h1 data-aos="fade-up">Welcome to Vidyarashmi First Grade College</h1>
-                    <p class="hero-subtitle">Excellence in Education, Foundation for Life. Join us to build a bright future with quality education and holistic development.</p>
-                    <div data-aos="fade-up" data-aos-delay="600">
+                    <h1 data-aos="fade-up" data-aos-delay="100">Welcome to Vidyarashmi First Grade College</h1>
+                    <p data-aos="fade-up" data-aos-delay="300">Excellence in Education, Foundation for Life. Join us to build a bright future with quality education and holistic development.</p>
+                    <div data-aos="fade-up" data-aos-delay="500">
                         <a href="#programs" class="btn-primary">Explore Our Courses</a>
                     </div>
                 </div>
 
                 <!-- Right Side: Image with CSS Background Circle -->
-                <div class="hero-image-container" data-aos="zoom-in-up">
-                    <img src="assets/images/college-gibli.png" alt="Vidyarashmi College Building Illustration" class="hero-college-image">
+                <div class="hero-image-container" data-aos="fade-left" data-aos-delay="200">
+                    <div class="hero-image-wrapper">
+                        <img src="assets/images/college-gibli.png" alt="Vidyarashmi College Building Illustration" class="hero-college-image">
+                    </div>
                 </div>
             </div>
         </section>
@@ -304,7 +306,7 @@
     <script src="script.js"></script>
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script> AOS.init({ duration: 800, once: true }); </script>
+    <script> AOS.init({ duration: 800, once: true, disable: 'mobile' }); </script>
 
 </body>
-                        </html>
+            </html>
