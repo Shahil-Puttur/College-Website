@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BA Program - Vidyarashmi College</title>
+    <!-- ✅ FIXED: Zoom is now disabled and the screen is perfectly fitted -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>B.A. Program - Vidyarashmi College</title>
 
-    <!-- FAVICON ADDED HERE -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -30,43 +30,52 @@
         </nav>
     </header>
     <div class="overlay"></div>
+
     <main>
-         <section class="video-hero-section">
-            <video autoplay muted loop playsinline class="hero-video" preload="metadata">
-                <source src="assets/videos/ba_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-video-content">
-                <h1 data-aos="fade-up">Explore the World of Ideas</h1>
-                <p data-aos="fade-up" data-aos-delay="200">The Bachelor of Arts Program</p>
+        <!-- ✅ UPGRADED: Using the professional, reusable page-hero with an image background -->
+        <section class="page-hero">
+            <div class="page-hero-background">
+                <!-- You can replace this with a beautiful, relevant image for the BA course -->
+                <img src="assets/images/ba_hero_background.jpg" alt="Humanities and Arts">
+            </div>
+            <div class="page-hero-content" data-aos="fade-in">
+                <h1>Bachelor of Arts (B.A.)</h1>
+                <p>Explore the diverse world of Humanities and Social Sciences</p>
             </div>
         </section>
+
         <section class="content-section ba-details-section">
             <div class="container">
-                <p class="course-intro" data-aos="fade-up">The Bachelor of Arts (BA) program at Vidyarashmi First Grade College, Savanoor, offers a strong foundation in humanities and social sciences. The course helps students develop critical thinking, communication skills, and a broad understanding of literature, history, sociology, and other disciplines. It prepares graduates for diverse career opportunities in education, public service, media, research, and higher studies.</p>
+                <p class="course-intro" data-aos="fade-up">The Bachelor of Arts (B.A.) program at Vidyarashmi First Grade College offers a rich and diverse curriculum that explores history, economics, political science, sociology, and literature. This course is designed to develop critical thinking, analytical reasoning, and communication skills. Our students are prepared for a wide range of careers in civil services, journalism, teaching, social work, and further academic research, empowering them to become informed and engaged citizens.</p>
                 <div class="feature-grid">
-                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100"><i class='bx bx-brain feature-icon'></i><h3>Critical Thinking</h3><p>Analyze complex social and historical contexts with a sharp mind.</p></div>
-                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><i class='bx bx-microphone feature-icon'></i><h3>Communication Skills</h3><p>Master the art of effective communication for media and public service.</p></div>
-                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300"><i class='bx bx-book-heart feature-icon'></i><h3>Broad Understanding</h3><p>Explore diverse disciplines from literature to sociology for a holistic view.</p></div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="100"><i class='bx bx-book-heart feature-icon'></i><h3>Diverse Subjects</h3><p>Study a broad range of topics from history to economics and literature.</p></div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200"><i class='bx bx-bulb feature-icon'></i><h3>Critical Thinking</h3><p>Develop strong analytical and intellectual reasoning skills.</p></div>
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300"><i class='bx bx-conversation feature-icon'></i><h3>Versatile Careers</h3><p>Opens doors to careers in civil services, media, education, and more.</p></div>
                 </div>
             </div>
         </section>
+
         <section class="content-section course-gallery-section" style="background-color: var(--white-color);">
             <div class="container">
-                 <h2 class="section-title" data-aos="fade-up">A Hub of Arts & Culture</h2>
-                 <div class="course-image-grid course-image-grid-single" data-aos="fade-up" data-aos-delay="100">
-                    <div class="course-gallery-image"><img src="assets/images/ba2.jpg" alt="BA cultural event" loading="lazy" decoding="async"></div>
+                 <h2 class="section-title" data-aos="fade-up">Life in the Arts Department</h2>
+                 <div class="course-image-grid" data-aos="fade-up" data-aos-delay="100">
+                    <div class="course-gallery-image"><img src="assets/images/ba2.jpg" alt="B.A. students in a debate" loading="lazy" decoding="async"></div>
+                    <div class="course-gallery-image"><img src="assets/images/ba3.jpg" alt="B.A. field trip" loading="lazy" decoding="async"></div>
                  </div>
             </div>
         </section>
     </main>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Vidyarashmi College. All Rights Reserved.</p>
         </div>
     </footer>
+
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>AOS.init({ duration: 1000, once: true });</script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+    </script>
 </body>
-                     </html>
+                                                                                                                                                                </html>
