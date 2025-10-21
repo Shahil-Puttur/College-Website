@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✅ FIXED: Zoom is now disabled and the screen is perfectly fitted -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
     <title>BCA Program - Vidyarashmi College</title>
     
-    <!-- FAVICON ADDED HERE -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
 
+    <!-- Your existing header is perfect, no changes needed here -->
     <header class="header">
         <nav class="navbar">
             <a href="index.html" class="nav-logo">
@@ -40,14 +41,14 @@
     <div class="overlay"></div>
 
     <main>
-        <section class="video-hero-section">
-            <video autoplay muted loop playsinline class="hero-video" preload="metadata">
-                <source src="assets/videos/coding_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-video-content">
-                <h1 data-aos="fade-up">Welcome to the Future of Technology</h1>
-                <p data-aos="fade-up" data-aos-delay="200">The Bachelor of Computer Applications Program</p>
+        <!-- ✅ UPGRADED: Using the professional, reusable page-hero for a stunning video background -->
+        <section class="page-hero">
+            <div class="page-hero-background">
+                <video src="assets/videos/coding_video.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            </div>
+            <div class="page-hero-content" data-aos="fade-in">
+                <h1>Bachelor of Computer Applications (BCA)</h1>
+                <p>Welcome to the Future of Technology</p>
             </div>
         </section>
 
@@ -125,19 +126,25 @@
 
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    
+    <!-- ✅ IMPROVED: Cleaner script block for page-specific code -->
     <script>
-        AOS.init({ duration: 1000, once: true });
+        // Initialize the animation library
+        AOS.init({ duration: 800, once: true });
 
+        // Logic for the custom audio player on this page
         const audioPlayer = document.getElementById('bcaAudioPlayer');
         if (audioPlayer) {
             const audio = document.getElementById('bcaAudio');
             const playBtn = document.getElementById('playBtn');
             const pauseBtn = document.getElementById('pauseBtn');
+            
             playBtn.addEventListener('click', () => { 
                 audio.play(); 
                 playBtn.style.display = 'none'; 
                 pauseBtn.style.display = 'flex'; 
             });
+            
             pauseBtn.addEventListener('click', () => { 
                 audio.pause(); 
                 playBtn.style.display = 'flex'; 
@@ -146,4 +153,4 @@
         }
     </script>
 </body>
-                            </html>
+                                               </html>
