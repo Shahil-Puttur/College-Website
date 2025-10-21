@@ -56,6 +56,8 @@ function lazyLoadAssets() {
                     const lazyBg = entry.target;
                     // Add the CSS class that applies the background-image
                     lazyBg.classList.add(lazyBg.dataset.bgClass);
+                    // ✅ *** BUG FIX *** Remove the lazy-bg class to ensure the new background shows
+                    lazyBg.classList.remove('lazy-bg');
                     // Stop observing this element once loaded
                     observer.unobserve(lazyBg);
                 }
