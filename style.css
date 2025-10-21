@@ -17,6 +17,11 @@
     --light-green-bg: #f0fff5;
     --accent-orange: #e67e22; 
     --light-orange-bg: #fff8f0;
+
+    /* ======================================================= */
+    /* UPDATED: NEW PURPLE GRADIENT FOR HEADER & FOOTER        */
+    /* ======================================================= */
+    --header-footer-bg: linear-gradient(90deg, #6a0dad 0%, #e000e0 100%);
 }
 
 /* --- Global Styles --- */
@@ -43,7 +48,8 @@ body {
 
 /* --- Header & Navigation --- */
 .header { 
-    background-color: var(--text-color-dark); 
+    /* UPDATED: Changed background color to new purple gradient */
+    background: var(--header-footer-bg); 
     box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
     position: fixed; 
     width: 100%; 
@@ -61,6 +67,47 @@ body {
     width: auto; 
     vertical-align: middle; 
 }
+
+/* ======================================================= */
+/* NEW: HEADER ACTION ICONS STYLING                        */
+/* ======================================================= */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Space between icons and button */
+}
+.action-icon {
+    color: var(--white-color);
+    font-size: 1.8rem; /* Made icons a bit bigger */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.action-icon:hover {
+    color: var(--accent-pink);
+    transform: scale(1.1);
+}
+.btn-apply-header {
+    background-color: var(--accent-pink);
+    color: var(--white-color);
+    padding: 8px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.btn-apply-header:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+/* By default, hide the new mobile-only icons on desktop */
+.mobile-only-icon {
+    display: none;
+}
+/* ======================================================= */
+
 .nav-menu { 
     display: flex; 
     list-style: none; 
@@ -217,7 +264,7 @@ main, footer {
     color: var(--white-color); 
 }
 .management-images { 
-    background-color: var(--text-color-dark); 
+    background-color: #fff; /* Changed from dark blue for better look */
     border-radius: 15px; 
     padding: 1.5rem; 
     display: flex; 
@@ -831,7 +878,8 @@ main, footer {
 
 /* --- Footer --- */
 .footer { 
-    background-color: var(--text-color-dark); 
+    /* UPDATED: Changed background color to new purple gradient */
+    background: var(--header-footer-bg); 
     color: var(--white-color); 
     text-align: center; 
     padding: 3rem 0; 
@@ -958,8 +1006,32 @@ main, footer {
     .bca-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media(max-width: 768px) {
+    /* ======================================================= */
+    /* UPDATED: Mobile Navbar layout fix                       */
+    /* ======================================================= */
+    .navbar {
+        /* This ensures the logo stays left while icons and hamburger stay right */
+        justify-content: space-between;
+    }
+    .header-actions {
+        order: 2; /* Puts icons before hamburger */
+    }
+    .hamburger {
+        order: 3; /* Puts hamburger last */
+    }
+    /* UPDATED: Hiding the Apply button on mobile */
+    .btn-apply-header.desktop-only-button {
+        display: none;
+    }
+    /* UPDATED: Showing the new mobile icons */
+    .action-icon.mobile-only-icon {
+        display: inline-flex;
+    }
+
     .nav-menu { 
-        position: fixed; right: -100%; top: 0; flex-direction: column; background-color: var(--text-color-dark); 
+        position: fixed; right: -100%; top: 0; flex-direction: column; 
+        /* UPDATED: Changed mobile menu background to new purple gradient */
+        background: var(--header-footer-bg); 
         width: 280px; height: 100vh; text-align: left; padding: 2rem; transition: right 0.4s ease-in-out; 
         box-shadow: -5px 0 15px rgba(0,0,0,0.1); justify-content: flex-start; gap: 0; z-index: 999; 
     }
@@ -1053,7 +1125,8 @@ body.loading > .overlay {
     left: 0; 
     width: 100%; 
     height: 100%; 
-    background-color: var(--text-color-dark); 
+    /* UPDATED: Changed preloader background to a solid purple */
+    background-color: #6a0dad; 
     z-index: 9999; 
     display: flex; 
     justify-content: center; 
