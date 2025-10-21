@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ✅ FIXED: Zoom is now disabled and the screen is perfectly fitted -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>NSS - Vidyarashmi College</title>
     
-    <!-- FAVICON ADDED HERE -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -40,14 +40,14 @@
     <div class="overlay"></div>
 
     <main>
-        <!-- GRAND NSS VIDEO HERO SECTION -->
-        <section class="video-hero-section">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="assets/videos/nss_video.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-video-content">
-                <h1 data-aos="fade-up">National Service Scheme (NSS) 🌏</h1>
+        <!-- ✅ UPGRADED: Using the professional, reusable page-hero for a stunning video background -->
+        <section class="page-hero">
+            <div class="page-hero-background">
+                <video src="assets/videos/nss_video.mp4" autoplay loop muted playsinline preload="metadata"></video>
+            </div>
+            <div class="page-hero-content" data-aos="fade-in">
+                <h1>National Service Scheme (NSS)</h1>
+                <p>Not Me, But You: A Commitment to Community Service</p>
             </div>
         </section>
 
@@ -60,14 +60,14 @@
                         <p>The National Service Scheme (NSS) unit of our college actively involves students in community service, social awareness, and personality development. Through activities like cleanliness drives, health camps, blood donation, environmental programs, and rural outreach, NSS helps students build leadership, responsibility, and a spirit of service to society.</p>
                     </div>
                     <div class="facility-image" data-aos="fade-left">
-                        <img src="assets/images/nss2.jpg" alt="NSS Volunteers in Action">
+                        <img src="assets/images/nss2.jpg" alt="NSS Volunteers in Action" loading="lazy" decoding="async">
                     </div>
                 </div>
 
                 <!-- Content Block 2 -->
                 <div class="facility-layout" data-aos="fade-up">
                     <div class="facility-image" data-aos="fade-right">
-                        <img src="assets/images/nss3.jpg" alt="NSS Community Event">
+                        <img src="assets/images/nss3.jpg" alt="NSS Community Event" loading="lazy" decoding="async">
                     </div>
                     <div class="facility-text">
                         <h2>Our Core Activities</h2>
@@ -106,6 +106,6 @@
 
     <script src="main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script> AOS.init({ duration: 1000, once: true }); </script>
+    <script> AOS.init({ duration: 800, once: true }); </script>
 </body>
-    </html>
+                                         </html>
