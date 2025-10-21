@@ -641,6 +641,12 @@ main, footer {
     align-items: center; 
     text-align: center; 
 }
+
+/* Style to apply before lazy loading the background */
+.lazy-bg {
+    background-image: none !important;
+}
+
 .activity-card .activity-link { 
     position: absolute; 
     top: 0; 
@@ -1363,4 +1369,4 @@ body.loading > .overlay {
         box-shadow: 0 15px 40px rgba(74, 144, 226, 0.3);
         border-color: var(--primary-blue);
     }
-        }
+    }
