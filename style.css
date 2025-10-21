@@ -530,7 +530,7 @@ main, footer {
 }
 
 /* --- Facilities Section --- */
-.facilities-section { background-color: var(--light-bg); }
+.facilities-section {}
 .pill-heading { 
     display: inline-block; 
     background-color: rgba(74, 144, 226, 0.1); 
@@ -920,7 +920,7 @@ main, footer {
     padding: 3rem 0; 
 }
 
-/* --- Other Page Specific Styles --- */
+/* --- Other Page Specific Styles (FROM OLD CSS) --- */
 .bca-learn-section { background-color: var(--white-color); }
 .topic-card { background: #fff; padding: 2rem; border-radius: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 2px solid transparent; text-align: center; }
 .topic-card:hover { transform: translateY(-10px); box-shadow: 0 0 25px rgba(74, 144, 226, 0.4); border-color: var(--primary-blue); }
@@ -1431,4 +1431,4 @@ body.loading > .overlay {
     font-size: 1.25rem;
     font-weight: 300;
     opacity: 0.9;
-}
+    }
