@@ -211,6 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/d6.jpg', name: 'Sahana K', qual: 'Clerk/ Typist', desc: 'Office Staff' },
             { img: 'assets/images/d7.jpg', name: 'Bharath', qual: '', desc: 'Non-Teaching Staff' },
             { img: 'assets/images/d10.jpg', name: 'Dr. Rajalakshmi Rai', qual: 'MBA, M.Com  PhD', desc: 'Principal' }
+            { img: 'assets/images/poornima.jpg', name: 'Poornima N', qual: 'Master of library and Information science', desc: 'Librarian' },                       
         ];
         professorData.forEach(prof => {
             const slide = document.createElement('div');
