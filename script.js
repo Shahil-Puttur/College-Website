@@ -202,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/A-mam4.png', name: 'Harshitha A', qual: 'MSc CS', desc: 'Assistant Lecturer, Computer Science' },
             { img: 'assets/images/B-mam5.png', name: 'Nireeshma N Suvarna', qual: 'MCom, KSET', desc: 'Asst. Professor, Dept of Commerce' },
             { img: 'assets/images/B-mam6.jpg', name: 'Prathibha S', qual: 'M.A, M.Ed', desc: 'Lecturer in History' },
+            { img: 'assets/images/soumya.jpg', name: 'Soumya M', qual: 'MSc computer science', desc: 'Assistant professor' },
             { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'HOD, Dept of Commerce' },
             { img: 'assets/images/d1.jpg', name: 'Shivaprasad K R', qual: 'M.Com, B.Ed', desc: 'Asst. Prof. in Commerce' },
             { img: 'assets/images/d2.jpg', name: 'Sheshagiri', qual: 'Kannada Professor', desc: 'Vice Principal' },
