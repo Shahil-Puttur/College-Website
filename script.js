@@ -195,24 +195,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = document.querySelector('.carousel-track');
     if (track) {
         const professorData = [
-            { img: 'assets/images/A-mam1.jpg', name: 'Prathibha', qual: 'MCA', desc: 'HOD of Bachelor of Computer Application' },
-            { img: 'assets/images/A-mam2.jpg', name: 'Kaushalya S', qual: 'MSc', desc: 'Assistant Professor, IQAC Coordinator' },
-            { img: 'assets/images/A-sir1.png', name: 'Venkaataramana', qual: 'M. A B.ed', desc: 'IC Professor' },
-            { img: 'assets/images/sumana.jpg', name: 'Sumana Rao', qual: 'M.COM, B.E.D', desc: 'HOD Dept of Economics' },
-            { img: 'assets/images/A-mam4.png', name: 'Harshitha A', qual: 'MSc CS', desc: 'Assistant Lecturer, Computer Science' },
-            { img: 'assets/images/Harshitha.jpg', name: 'Harshitha K S', qual: 'MBA, NET, B.E.D ', desc: 'Department of Commerce' },
-            { img: 'assets/images/B-mam6.jpg', name: 'Prathibha S', qual: 'M.A, M.Ed', desc: 'Lecturer in History' },
-            { img: 'assets/images/soumya.jpg', name: 'Soumya M', qual: 'MSc computer science', desc: 'Assistant professor' },
-            { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'HOD, Dept of Commerce' },
-            { img: 'assets/images/Nishanth.jpg', name: 'Nishanth.Rao', qual: 'MBA, NET, Research Scholar', desc: 'Department of Commerce' },
-            { img: 'assets/images/ranjeetha.jpg', name: 'Ranjeeta B R', qual: 'M.A MEd', desc: 'Vice Principal' },
-            { img: 'assets/images/d4.jpg', name: 'Girisha Bhat.k', qual: '', desc: 'Assistant professor' },
-            { img: 'assets/images/d5.jpg', name: 'Dr Kiranachandra Rai B', qual: 'M.A, Mphil, PhD', desc: 'Dept of political science' },
-            { img: 'assets/images/d6.jpg', name: 'Sahana K', qual: 'Clerk/ Typist', desc: 'Office Staff' },
-            { img: 'assets/images/d7.jpg', name: 'Bharath', qual: '', desc: 'Non-Teaching Staff' },
-            { img: 'assets/images/d10.jpg', name: 'Dr. Rajalakshmi Rai', qual: 'MBA, M.Com  PhD', desc: 'Principal' },
-            { img: 'assets/images/poornima.jpg', name: 'Poornima N', qual: 'Master of library and Information science', desc: 'Librarian' },                       
-        ];
+    { img: 'assets/images/A-mam1.jpg', name: 'Prathibha', qual: 'MCA', desc: 'Assistant Professor, HOD of Bachelor of Computer Application' },
+    { img: 'assets/images/A-mam2.jpg', name: 'Kaushalya S', qual: 'MSc', desc: 'Assistant Professor, IQAC Coordinator' },
+    { img: 'assets/images/A-sir1.png', name: 'Venkaataramana', qual: 'M.A B.ed', desc: 'Assistant Professor, IC Professor' },
+    { img: 'assets/images/sumana.jpg', name: 'Sumana Rao', qual: 'M.COM, B.E.D', desc: 'Assistant Professor, HOD Dept of Economics' },
+    { img: 'assets/images/A-mam4.png', name: 'Harshitha A', qual: 'MSc CS', desc: 'Assistant Professor, Computer Science' },
+    { img: 'assets/images/Harshitha.jpg', name: 'Harshitha K S', qual: 'MBA, NET, B.E.D', desc: 'Assistant Professor, Department of Commerce' },
+    { img: 'assets/images/B-mam6.jpg', name: 'Prathibha S', qual: 'M.A, M.Ed', desc: 'Assistant Professor, Lecturer in History' },
+    { img: 'assets/images/soumya.jpg', name: 'Soumya M', qual: 'MSc computer science', desc: 'Assistant Professor' },
+    { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'Assistant Professor, HOD Dept of Commerce' },
+    { img: 'assets/images/Nishanth.jpg', name: 'Nishanth.Rao', qual: 'MBA, NET, Research Scholar', desc: 'Assistant Professor, Department of Commerce' },
+
+    // ❌ DO NOT CHANGE THESE TWO
+    { img: 'assets/images/ranjeetha.jpg', name: 'Ranjeeta B R', qual: 'M.A MEd', desc: 'Vice Principal' },
+    { img: 'assets/images/d10.jpg', name: 'Dr. Rajalakshmi Rai', qual: 'MBA, M.Com PhD', desc: 'Principal' },
+
+    // Remaining staff
+    { img: 'assets/images/d4.jpg', name: 'Girisha Bhat.k', qual: '', desc: 'Assistant Professor' },
+    { img: 'assets/images/d5.jpg', name: 'Dr Kiranachandra Rai B', qual: 'M.A, Mphil, PhD', desc: 'Assistant Professor, Dept of Political Science' },
+    { img: 'assets/images/d6.jpg', name: 'Sahana K', qual: 'Clerk/ Typist', desc: 'Office Staff' },
+    { img: 'assets/images/d7.jpg', name: 'Bharath', qual: '', desc: 'Non-Teaching Staff' },
+    { img: 'assets/images/poornima.jpg', name: 'Poornima N', qual: 'Master of Library and Information Science', desc: 'Librarian' }
+];
         professorData.forEach(prof => {
             const slide = document.createElement('div');
             slide.className = 'professor-slide';
