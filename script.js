@@ -206,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { img: 'assets/images/B-sir2.png', name: 'Niranjan', qual: 'MCom, MBA (pursuing)', desc: 'HOD, Dept of Commerce' },
             { img: 'assets/images/Nishanth.jpg', name: 'Nishanth.Rao', qual: 'MBA, NET, Research Scholar', desc: 'Department of Commerce' },
             { img: 'assets/images/ranjeetha.jpg', name: 'Ranjeeta B R', qual: 'M.A MEd', desc: 'Vice Principal' },
-            { img: 'assets/images/d3.png', name: 'Suma', qual: 'MA (Economics) B.Ed, KSET, MCom', desc: '' },
             { img: 'assets/images/d4.jpg', name: 'Girisha Bhat.k', qual: '', desc: 'Assistant professor' },
             { img: 'assets/images/d5.jpg', name: 'Dr Kiranachandra Rai B', qual: 'M.A, Mphil, PhD', desc: 'Dept of political science' },
             { img: 'assets/images/d6.jpg', name: 'Sahana K', qual: 'Clerk/ Typist', desc: 'Office Staff' },
