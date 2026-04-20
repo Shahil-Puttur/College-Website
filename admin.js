@@ -33,6 +33,7 @@ loginForm.addEventListener('submit', async (e) => {
 
         if (response.ok && data.success) {
             sessionStorage.setItem('isAdminLoggedIn', 'true');
+            sessionStorage.setItem('adminToken', data.token); // Store the token for subsequent requests
             showAdminPanel();
         } else {
             loginError.textContent = data.message || 'Invalid credentials';
@@ -52,8 +53,24 @@ loginForm.addEventListener('submit', async (e) => {
 const logoutBtn = document.getElementById('logout-btn');
 logoutBtn.addEventListener('click', () => {
     sessionStorage.removeItem('isAdminLoggedIn');
+    sessionStorage.removeItem('adminToken');
     window.location.reload();
 });
+
+// Helper for authenticated proxy requests
+async function proxyFetch(path, options = {}) {
+    const token = sessionStorage.getItem('adminToken');
+    const baseUrl = 'https://college-backened.onrender.com';
+    const headers = {
+        ...options.headers,
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
+    };
+    const response = await fetch(`${baseUrl}${path}`, { ...options, headers });
+    if (!response.ok) throw new Error(`Proxy request failed: ${response.statusText}`);
+    return response.json();
+}
+
 
 function sanitizeHTML(str) {
     var div = document.createElement("div");
@@ -99,23 +116,27 @@ async function loadTicker() {
 tickerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const message = document.getElementById('ticker-message').value;
-    // CORRECTED: Use supaClient
-    const { error } = await supaClient.from('ticker').insert({ message: message });
-    if (error) {
-        alert('Error adding ticker: ' + error.message);
-    } else {
+    try {
+        await proxyFetch('/api/ticker', {
+            method: 'POST',
+            body: JSON.stringify({ message })
+        });
         alert('Ticker updated successfully!');
         tickerForm.reset();
         loadTicker();
+    } catch (error) {
+        alert('Error adding ticker: ' + error.message);
     }
 });
 
 async function deleteTicker(id) {
     if (confirm('Are you sure you want to delete this ticker message?')) {
-        // CORRECTED: Use supaClient
-        const { error } = await supaClient.from('ticker').delete().eq('id', id);
-        if (error) alert('Error deleting ticker: ' + error.message);
-        else loadTicker();
+        try {
+            await proxyFetch(`/api/ticker/${id}`, { method: 'DELETE' });
+            loadTicker();
+        } catch (error) {
+            alert('Error deleting ticker: ' + error.message);
+        }
     }
 }
 
@@ -157,16 +178,16 @@ noticeForm.addEventListener('submit', async (e) => {
     try {
         if (imageFile) {
             const filePath = `public/${Date.now()}-${imageFile.name}`;
-            // CORRECTED: Use supaClient
             const { error: uploadError } = await supaClient.storage.from('notice-images').upload(filePath, imageFile);
             if (uploadError) throw uploadError;
-            
             const { data } = supaClient.storage.from('notice-images').getPublicUrl(filePath);
             imageUrl = data.publicUrl;
         }
 
-        const { error: insertError } = await supaClient.from('notices').insert({ heading, description, image_url: imageUrl });
-        if (insertError) throw insertError;
+        await proxyFetch('/api/notices', {
+            method: 'POST',
+            body: JSON.stringify({ heading, description, image_url: imageUrl })
+        });
 
         alert('Notice added successfully!');
         noticeForm.reset();
@@ -180,16 +201,16 @@ noticeForm.addEventListener('submit', async (e) => {
 
 async function deleteNotice(id, imageUrl) {
     if (confirm('Are you sure you want to delete this notice?')) {
-        const { error: dbError } = await supaClient.from('notices').delete().eq('id', id);
-        if (dbError) {
-            alert('Error deleting notice: ' + dbError.message);
-            return;
+        try {
+            await proxyFetch(`/api/notices/${id}`, { method: 'DELETE' });
+            if (imageUrl && imageUrl !== 'null') {
+                const fileName = imageUrl.split('/').pop();
+                await supaClient.storage.from('notice-images').remove([`public/${fileName}`]);
+            }
+            loadNotices();
+        } catch (error) {
+            alert('Error deleting notice: ' + error.message);
         }
-        if (imageUrl && imageUrl !== 'null') {
-            const fileName = imageUrl.split('/').pop();
-            await supaClient.storage.from('notice-images').remove([`public/${fileName}`]);
-        }
-        loadNotices();
     }
 }
 
@@ -232,15 +253,15 @@ galleryForm.addEventListener('submit', async (e) => {
 
     try {
         const filePath = `public/${Date.now()}-${imageFile.name}`;
-        // CORRECTED: Use supaClient
         const { error: uploadError } = await supaClient.storage.from('gallery-images').upload(filePath, imageFile);
         if (uploadError) throw uploadError;
-
         const { data } = supaClient.storage.from('gallery-images').getPublicUrl(filePath);
         const imageUrl = data.publicUrl;
 
-        const { error: insertError } = await supaClient.from('gallery').insert({ caption, image_url: imageUrl });
-        if (insertError) throw insertError;
+        await proxyFetch('/api/gallery', {
+            method: 'POST',
+            body: JSON.stringify({ caption, image_url: imageUrl })
+        });
 
         alert('Image added to gallery!');
         galleryForm.reset();
@@ -254,15 +275,15 @@ galleryForm.addEventListener('submit', async (e) => {
 
 async function deleteGalleryItem(id, imageUrl) {
      if (confirm('Are you sure you want to delete this gallery item?')) {
-        const { error: dbError } = await supaClient.from('gallery').delete().eq('id', id);
-        if (dbError) {
-            alert('Error deleting item: ' + dbError.message);
-            return;
+        try {
+            await proxyFetch(`/api/gallery/${id}`, { method: 'DELETE' });
+            if (imageUrl && imageUrl !== 'null') {
+                const fileName = imageUrl.split('/').pop();
+                await supaClient.storage.from('gallery-images').remove([`public/${fileName}`]);
+            }
+            loadGalleryItems();
+        } catch (error) {
+            alert('Error deleting item: ' + error.message);
         }
-        if (imageUrl && imageUrl !== 'null') {
-            const fileName = imageUrl.split('/').pop();
-            await supaClient.storage.from('gallery-images').remove([`public/${fileName}`]);
-        }
-        loadGalleryItems();
     }
 }
