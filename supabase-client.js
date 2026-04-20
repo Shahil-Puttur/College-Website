@@ -1,5 +1,5 @@
 const SUPABASE_URL = 'https://ynrbfvwrnujlkdepyzai.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlucmJmdndybnVqbGtkZXB5emFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTkyODQ1MzYsImV4cCI6MjA3NDg2MDUzNn0.FgCliv6gFdPXY3oKURnK2gRbTLD7XuDgviw-NGXHF98';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE'; // IMPORTANT: In a production environment, consider fetching this from a secure backend endpoint or environment variable to avoid exposing it directly in client-side code, even though it's an 'anon' key. Ensure robust Row Level Security (RLS) is enabled and configured in Supabase.
 
 // CRITICAL FIX #3:
 // The global 'supabase' object from the CDN is used to create our client.

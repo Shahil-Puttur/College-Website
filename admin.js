@@ -55,6 +55,12 @@ logoutBtn.addEventListener('click', () => {
     window.location.reload();
 });
 
+function sanitizeHTML(str) {
+    var div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+}
+
 function showAdminPanel() {
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('admin-panel').style.display = 'block';
@@ -78,7 +84,7 @@ async function loadTicker() {
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
-                div.innerHTML = `<span>${item.message.substring(0, 50)}...</span> <button class="delete-btn" onclick="deleteTicker(${item.id})">Delete</button>`;
+                div.innerHTML = `<span>${sanitizeHTML(item.message.substring(0, 50))}...</span> <button class="delete-btn" onclick="deleteTicker(${item.id})">Delete</button>`;
                 tickerList.appendChild(div);
             });
         } else {
@@ -127,7 +133,7 @@ async function loadNotices() {
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
-                div.innerHTML = `<span>${item.heading}</span> <button class="delete-btn" onclick="deleteNotice(${item.id}, '${item.image_url}')">Delete</button>`;
+                div.innerHTML = `<span>${sanitizeHTML(item.heading)}</span> <button class="delete-btn" onclick="deleteNotice(${item.id}, '${item.image_url}')">Delete</button>`;
                 noticeList.appendChild(div);
             });
         } else {
@@ -201,7 +207,7 @@ async function loadGalleryItems() {
             data.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'list-item';
-                div.innerHTML = `<span>${item.caption || 'No Caption'}</span> <button class="delete-btn" onclick="deleteGalleryItem(${item.id}, '${item.image_url}')">Delete</button>`;
+                div.innerHTML = `<span>${sanitizeHTML(item.caption || 'No Caption')}</span> <button class="delete-btn" onclick="deleteGalleryItem(${item.id}, '${item.image_url}')">Delete</button>`;
                 galleryList.appendChild(div);
             });
         } else {
